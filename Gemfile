@@ -75,3 +75,4 @@ group :test do
 end
 
 gem "rubocop-rails-omakase", "~> 1.0", require: false, group: [:development]
+gem "cloudinary"
