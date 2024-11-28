@@ -9,8 +9,13 @@ LANGUAGES = [
   'German'
 ]
 
+puts 'Created languages'
+
+# create templates of cards
 TEMPLATES = [
   'Picture Comprehension',
   'Listening Comprehension',
   'MCQ'
 ]
+
+puts 'Created templates'
