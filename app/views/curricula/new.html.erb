@@ -1,21 +1,35 @@
-<%= simple_form_for(@curriculum) do |f| %>
-<div class="form-input">
-  <%= f.input :title %>
+<div class="container" data-controller="form">
+  <%= simple_form_for(@curriculum) do |f| %>
+
+    <div class="form-step">
+      <%= f.input :title, wrapper_html: { class:"w-100" } %>
+    </div>
+
+    <div class="form-step">
+      <%= f.input :purpose, wrapper_html: { class:"w-100" } %>
+    </div>
+
+    <div class="form-step">
+      <%= f.input :start_date, as: :date, order: [:day, :month, :year], wrapper_html: { class:"w-100" }  %>
+    </div>
+
+    <div class="form-step">
+      <%= f.input :end_date, as: :date, order: [:day, :month, :year], wrapper_html: { class:"w-100" }  %>
+    </div>
+
+    <div class="form-step">
+      <%= f.association :language, wrapper_html: { class:"w-100" }  %>
+    </div>
+
+    <div class="form-step">
+      <%= f.input :context, wrapper_html: { class:"w-100" }  %>
+    </div>
+
+    <div class="arrow-button">
+      <a><i class="fa-solid fa-arrow-left"></i></a>
+      <a><i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+
+    <%= f.submit %>
+  <% end %>
 </div>
-<div class="form-input">
-  <%= f.input :purpose %>
-</div>
-<div class="form-input">
-  <%= f.input :start_date, as: :date, order: [:day, :month, :year]  %>
-</div>
-<div class="form-input">
-  <%= f.input :end_date, as: :date, order: [:day, :month, :year]%>
-</div>
-<div class="form-input">
-  <%= f.association :language %>
-</div>
-<div class="form-input">
-  <%= f.input :context %>
-<div class="form-input">
-  <%= f.submit %>
-<% end %>
