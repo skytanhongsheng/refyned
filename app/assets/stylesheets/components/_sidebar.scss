@@ -1,0 +1,48 @@
+$sidebarWidth: 400px;
+$sidebarItemIconSize: 32px;
+$sidebarToggleBtnSize: 40px;
+$sidebarToggleBtnTopOffset: 40px;
+
+.sidebar {
+  min-width: $sidebarWidth;
+  height: 100vh;
+  background-color: var(--bs--secondary-bg);
+}
+
+.sidebar.collapsed {
+  min-width: 40px;
+}
+
+.sidebar.collapsed h1 {
+  display: none;
+}
+
+.sidebar-header {
+  height: 60px;
+}
+
+.sidebar-item:hover {
+  background-color: var(--bs-secondary-bg-subtle);
+}
+
+.sidebar-item svg {
+  width: $sidebarItemIconSize;
+  height: $sidebarItemIconSize;
+}
+
+.sidebar.collapsed .sidebar-item span {
+  display: none;
+}
+
+.sidebar-toggle-btn {
+  width: $sidebarToggleBtnSize;
+  height: $sidebarToggleBtnSize;
+  border-radius: 50%;
+  top: $sidebarToggleBtnTopOffset;
+  left: $sidebarWidth - ($sidebarToggleBtnSize / 2);
+  z-index: 1;
+}
+.sidebar.collapsed .sidebar-toggle-btn {
+  left: 40px;
+  rotate: 180deg;
+}
