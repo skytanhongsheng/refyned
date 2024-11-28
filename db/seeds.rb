@@ -42,18 +42,18 @@ puts "Created languages!"
 # ----------------------------------------------
 
 # create templates of cards
-# puts 'Creating templates'
-# TEMPLATE_NAMES = [
-#   'Picture Comprehension',
-#   'Listening Comprehension',
-#   'MCQ'
-# ]
+puts "Creating templates"
+TEMPLATE_NAMES = [
+  'Picture Comprehension',
+  'Listening Comprehension',
+  'MCQ'
+]
 
-# template = Template.new(
-#   name: TEMPLATE_NAMES.sample
-# )
+template = Template.new(
+  name: TEMPLATE_NAMES.sample
+)
 
-# puts 'Created templates'
+puts "Created templates!"
 
 # ----------------------------------------------
 # CURRICULA
@@ -96,6 +96,22 @@ CURRICULA_TITLES.each do |title|
   )
 end
 
+puts "Created curricula!"
+
+# ----------------------------------------------
+# LESSONS
+# ----------------------------------------------
+
+puts "Creating lessons..."
+lesson_file_path = File.join(__dir__, 'data', 'lesson_plan.yml')
+lesson_plan_data = YAML::load(File.open(lesson_file_path))
+
+lesson_plan_data["lesson_plan"].each do |day|
+  p day
+  puts "---"
+end
+
+
 # Create 2 users
   # 1 - has curricula
   # 2 - no curricula
@@ -105,11 +121,3 @@ end
 # create 3 curricula
   # - create N number of lessons
     # - create N number of cards
-
-lesson_file_path = File.join(__dir__, 'data', 'lesson_plan.yml')
-lesson_plan_data = YAML::load(File.open(lesson_file_path))
-
-lesson_plan_data["lesson_plan"].each do |day|
-  p day
-  puts "---"
-end
