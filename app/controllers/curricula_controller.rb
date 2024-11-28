@@ -9,7 +9,8 @@ class CurriculaController < ApplicationController
 
   def create
     @curriculum = Curriculum.new(curriculum_params)
-    raise
+    @curriculum.user = current_user
+
     if @curriculum.save
       redirect_to curricula_path
     else
@@ -20,6 +21,6 @@ class CurriculaController < ApplicationController
   private
 
   def curriculum_params
-    params.require(:curriculum).permit(:title, :purpose, :start_date, :end_date, :context)
+    params.require(:curriculum).permit(:title, :purpose, :start_date, :end_date, :context, :language_id)
   end
 end
