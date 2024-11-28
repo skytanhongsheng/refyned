@@ -1,0 +1,48 @@
+<aside class="sidebar collapsed d-flex flex-column justify-content-between m-0 position-relative" data-controller="sidebar">
+  <div>
+    <div class="sidebar-header d-flex align-items-center mx-2 mb-4">
+      <%= lucide_icon('languages') %>
+      <h1 class="m-2">Refyned</h1>
+    </div>
+    <div>
+      <%= render 'shared/sidebar_item',
+        icon: 'layout-dashboard',
+        title: "My Dashboard",
+        link: "#"
+      %>
+      <%= render 'shared/sidebar_item',
+        icon: 'calendar-check-2',
+        title: "My Curricula",
+        link: "#"
+      %>
+    </div>
+  </div>
+  <div>
+    <%= render 'shared/sidebar_item',
+      icon: 'settings',
+      title: "Settings",
+      link: "#"
+    %>
+    <%= render 'shared/sidebar_item',
+      icon: 'circle-help',
+      title: "FAQ",
+      link: "#"
+    %>
+    <%= render 'shared/sidebar_item',
+      icon: 'circle-user-round',
+      title: "Account",
+      link: "#"
+    %>
+    <%= render 'shared/sidebar_item',
+      icon: 'log-out',
+      title: "Sign Out",
+      link: "#"
+    %>
+  </div>
+  <button
+    class="btn btn-primary sidebar-toggle-btn position-absolute d-flex align-items-center justify-content-center"
+    data-action="sidebar#toggle"
+  >
+    <%= lucide_icon('arrow-left') %>
+  </button>
+</aside>
