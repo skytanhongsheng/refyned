@@ -78,4 +78,5 @@ gem "rubocop-rails-omakase", "~> 1.0", require: false, group: [:development]
 
 gem "cloudinary"
 
+gem "lucide-rails", "~> 0.5.1"
 gem 'faker'
