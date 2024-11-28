@@ -1,17 +1,23 @@
 require 'faker'
 
+# clear all tables
+User.destroy_all
+Language.destroy_all
+Template.destroy_all
+Curriculum.destroy_all
+
 # ----------------------------------------------
 # USERS
 # ----------------------------------------------
 # Jim will have curricula assigned to him
-jim = User.new(
+jim = User.create!(
   email: 'jim@gmail.com',
   password: '123123',
   username: 'Jim'
 )
 
 # Jane will be a new user with no curricula
-jane = User.new(
+jane = User.create!(
   email: 'jane@gmail.com',
   password: '123123',
   username: 'Jane'
@@ -49,9 +55,11 @@ TEMPLATE_NAMES = [
   'MCQ'
 ]
 
-template = Template.new(
-  name: TEMPLATE_NAMES.sample
-)
+TEMPLATE_NAMES.each do |name|
+  Template.create!(
+    name: name
+  )
+end
 
 puts "Created templates!"
 
@@ -59,8 +67,8 @@ puts "Created templates!"
 # CURRICULA
 # ----------------------------------------------
 
-# create curricula
-puts "Creating curricula..."
+# create curricula elements
+
 CURRICULA_TITLES = [
   'Mandarin for Travelers: Essential Phrases',
   'Mandarin travel phrases you need to know',
@@ -85,13 +93,25 @@ CURRICULA_CONTEXT = [
   'go on student exchange in Wuhan'
 ]
 
-CURRICULA_TITLES.each do |title|
-  curriculum = Curriculum.new(
+# ----------------------------------------------
+# CURRICULA
+# ----------------------------------------------
+# first title will start from today and last a week
+# other curriculum will start at a random date 7 days
+# from today and up to 3 weeks from the date
+CURRICULA_TITLES.each_with_index do |title, index|
+  start_date = Date.today
+  start_date += rand(1..7).days if index.positive?
+
+  end_date = start_date + rand(7..14).days
+
+  Curriculum.create!(
     title: title,
     purpose: CURRICULA_PURPOSES.sample,
-    duration: rand(7..14),
+    start_date: start_date,
+    end_date: end_date,
     language: mandarin, # set Mandarin as default language for testing purposes
-    user: jim, # set Jim as default user for testing purposes
+    user: jim, # set Jim as default userraia for testing purposes
     context: CURRICULA_CONTEXT.sample
   )
 end
@@ -106,10 +126,14 @@ puts "Creating lessons..."
 lesson_file_path = File.join(__dir__, 'data', 'lesson_plan.yml')
 lesson_plan_data = YAML::load(File.open(lesson_file_path))
 
-lesson_plan_data["lesson_plan"].each do |day|
-  p day
-  puts "---"
-end
+# lesson_plan_data["lesson_plan"].each do |day|
+#   p day
+#   puts "---"
+# end
+
+Lesson.create!(
+  title:
+)
 
 
 # Create 2 users

@@ -5,5 +5,5 @@ class Curriculum < ApplicationRecord
   has_many :lessons, dependent: :destroy
   has_many :cards, through: :lessons
 
-  validates :title, :purpose, :duration, :context, presence: true
+  validates :title, :purpose, :start_date, :end_date, :context, presence: true
 end
