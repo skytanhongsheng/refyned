@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_27_083008) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_28_053523) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,12 +57,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_27_083008) do
   create_table "curricula", force: :cascade do |t|
     t.string "title", null: false
     t.text "purpose", null: false
-    t.string "duration", null: false
     t.text "context", null: false
     t.bigint "language_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "start_date", null: false
+    t.date "end_date", null: false
     t.index ["language_id"], name: "index_curricula_on_language_id"
     t.index ["user_id"], name: "index_curricula_on_user_id"
   end
