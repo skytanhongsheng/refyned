@@ -7,7 +7,7 @@ Template.destroy_all
 Curriculum.destroy_all
 
 curriculum_file_path = File.join(__dir__, 'data', 'curricula.yml')
-curriculum_content = YAML::load(File.open(curriculum_file_path))
+CURRICULUM_CONTENT = YAML::load(File.open(curriculum_file_path))
 
 # # ----------------------------------------------
 # # USERS
@@ -66,9 +66,7 @@ TEMPLATE_NAMES.each { |name| Template.create!(name:) }
 # first title will start from today and last a week
 # other curriculum will start at a random date 7 days
 # from today and up to 3 weeks from the date
-
-
-curriculum_content["titles"].each_with_index do |title, index|
+CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
   start_date = Date.today
   start_date += rand(1..7).days if index.positive?
 
@@ -76,12 +74,12 @@ curriculum_content["titles"].each_with_index do |title, index|
 
   curriculum = Curriculum.create!(
     title: title,
-    purpose: curriculum_content["purposes"].sample,
+    purpose: CURRICULUM_CONTENT["purposes"].sample,
     start_date: start_date,
     end_date: end_date,
     language: mandarin, # set Mandarin as default language for testing purposes
     user: jim, # set Jim as default user for testing purposes
-    context: curriculum_content["context"].sample
+    context: CURRICULUM_CONTENT["context"].sample
   )
 
   puts "Creating lessons..."
