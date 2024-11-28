@@ -8,3 +8,9 @@ LANGUAGES = [
   'Japanese',
   'German'
 ]
+
+TEMPLATES = [
+  'Picture Comprehension',
+  'Listening Comprehension',
+  'MCQ'
+]
