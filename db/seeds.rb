@@ -55,7 +55,7 @@ TEMPLATE_NAMES = [
   'MCQ'
 ]
 
-TEMPLATE_NAMES.eachs
+TEMPLATE_NAMES.each
 
 # # ----------------------------------------------
 # # CURRICULA
