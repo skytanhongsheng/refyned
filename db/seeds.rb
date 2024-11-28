@@ -9,6 +9,10 @@ LANGUAGES = [
   'German'
 ]
 
+language = Language.new(
+  name: LANGUAGES.first
+)
+
 puts 'Created languages'
 
 # create templates of cards
@@ -17,5 +21,9 @@ TEMPLATE_NAMES = [
   'Listening Comprehension',
   'MCQ'
 ]
+
+template = Template.new(
+  name: TEMPLATE_NAMES.sample
+)
 
 puts 'Created templates'
