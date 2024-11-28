@@ -1,11 +1,12 @@
 require 'faker'
 
 # # clear all tables
+Card.destroy_all
+Lesson.destroy_all
+Curriculum.destroy_all
 User.destroy_all
 Language.destroy_all
 Template.destroy_all
-Curriculum.destroy_all
-Lesson.destroy_all
 
 curriculum_file_path = File.join(__dir__, 'data', 'curricula.yml')
 CURRICULUM_CONTENT = YAML::load(File.open(curriculum_file_path))
@@ -26,6 +27,8 @@ jane = User.create!(
   password: '123123',
   username: 'Jane'
 )
+
+puts 'Created users!'
 
 # # ----------------------------------------------
 # # LANGUAGES
@@ -95,26 +98,26 @@ CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
   lesson_plan_data = YAML::load(File.open(lesson_file_path))
 
   lesson_plan_data.each do |plan|
-    Lesson.create!(
+    lesson = Lesson.create!(
       title: plan["title"],
       description: plan["description"],
-      curriciulum:
+      curriculum:
     )
+
+    card_count = rand(5..10)
+    card_count.times do |i|
+      Card.create!(
+        lesson: lesson,
+        correct: i >= card_count / 2 ? nil : [true, false].sample,
+        instruction: 'Translate the following sentence:',
+        context: 'This is a big house.',
+        answer: '这是一栋大房子。',
+        template: Template.all.sample
+      )
+    end
+
   end
 
 end
 
-puts "Created curricula and lessons!"
-
-
-
-
-# Create 2 users
-  # 1 - has curricula
-  # 2 - no curricula
-
-# create the languages
-# create the templates
-# create 3 curricula
-  # - create N number of lessons
-    # - create N number of cards
+puts "Created curricula, lessons and cards!"
