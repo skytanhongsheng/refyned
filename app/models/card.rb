@@ -6,5 +6,4 @@ class Card < ApplicationRecord
   has_one_attached :audio
 
   validates :bookmarked, :instruction, :answer, presence: true
-
 end
