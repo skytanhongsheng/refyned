@@ -12,7 +12,7 @@ LANGUAGES = [
 puts 'Created languages'
 
 # create templates of cards
-TEMPLATES = [
+TEMPLATE_NAMES = [
   'Picture Comprehension',
   'Listening Comprehension',
   'MCQ'
