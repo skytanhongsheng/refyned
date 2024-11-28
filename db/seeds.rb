@@ -1,33 +1,33 @@
 require 'faker'
 
-# clear all tables
+# # clear all tables
 User.destroy_all
 Language.destroy_all
 Template.destroy_all
 Curriculum.destroy_all
 
-# ----------------------------------------------
-# USERS
-# ----------------------------------------------
-# Jim will have curricula assigned to him
+# # ----------------------------------------------
+# # USERS
+# # ----------------------------------------------
+# # Jim will have curricula assigned to him
 jim = User.create!(
   email: 'jim@gmail.com',
   password: '123123',
   username: 'Jim'
 )
 
-# Jane will be a new user with no curricula
+# # Jane will be a new user with no curricula
 jane = User.create!(
   email: 'jane@gmail.com',
   password: '123123',
   username: 'Jane'
 )
 
-# ----------------------------------------------
-# LANGUAGES
-# ----------------------------------------------
-# creating a few languages, but will always
-# select Mandarin for the curricula
+# # ----------------------------------------------
+# # LANGUAGES
+# # ----------------------------------------------
+# # creating a few languages, but will always
+# # select Mandarin for the curricula
 LANGUAGES = [
   'Mandarin',
   'English',
@@ -36,18 +36,18 @@ LANGUAGES = [
   'German'
 ]
 
-# Create all the languages
+# # Create all the languages
 puts "Creating languages..."
 LANGUAGES.each { |name| Language.create!(name:) }
 mandarin = Language.find_by(name: 'Mandarin')
 
 puts "Created languages!"
 
-# ----------------------------------------------
-# TEMPLATES
-# ----------------------------------------------
+# # ----------------------------------------------
+# # TEMPLATES
+# # ----------------------------------------------
 
-# create templates of cards
+# # create templates of cards
 puts "Creating templates"
 TEMPLATE_NAMES = [
   'Picture Comprehension',
@@ -55,19 +55,13 @@ TEMPLATE_NAMES = [
   'MCQ'
 ]
 
-TEMPLATE_NAMES.each do |name|
-  Template.create!(
-    name: name
-  )
-end
+TEMPLATE_NAMES.eachs
 
-puts "Created templates!"
+# # ----------------------------------------------
+# # CURRICULA
+# # ----------------------------------------------
 
-# ----------------------------------------------
-# CURRICULA
-# ----------------------------------------------
-
-# create curricula elements
+# # create curricula elements
 
 CURRICULA_TITLES = [
   'Mandarin for Travelers: Essential Phrases',
@@ -93,12 +87,12 @@ CURRICULA_CONTEXT = [
   'go on student exchange in Wuhan'
 ]
 
-# ----------------------------------------------
-# CURRICULA
-# ----------------------------------------------
-# first title will start from today and last a week
-# other curriculum will start at a random date 7 days
-# from today and up to 3 weeks from the date
+# # ----------------------------------------------
+# # CURRICULA
+# # ----------------------------------------------
+# # first title will start from today and last a week
+# # other curriculum will start at a random date 7 days
+# # from today and up to 3 weeks from the date
 CURRICULA_TITLES.each_with_index do |title, index|
   start_date = Date.today
   start_date += rand(1..7).days if index.positive?
@@ -122,19 +116,15 @@ puts "Created curricula!"
 # LESSONS
 # ----------------------------------------------
 
-puts "Creating lessons..."
-lesson_file_path = File.join(__dir__, 'data', 'lesson_plan.yml')
-lesson_plan_data = YAML::load(File.open(lesson_file_path))
+# puts "Creating lessons..."
+# lesson_file_path = File.join(__dir__, 'data', 'lesson_plan.yml')
+# lesson_plan_data = YAML::load(File.open(lesson_file_path))
 
-# lesson_plan_data["lesson_plan"].each do |day|
-#   p day
+# lesson_plan_data.each do |plan|
+#   puts plan["title"]
+#   puts plan["description"]
 #   puts "---"
 # end
-
-Lesson.create!(
-  title:
-)
-
 
 # Create 2 users
   # 1 - has curricula
