@@ -1,0 +1,21 @@
+<%= simple_form_for(@curriculum) do |f| %>
+<div class="form-input">
+  <%= f.input :title %>
+</div>
+<div class="form-input">
+  <%= f.input :purpose %>
+</div>
+<div class="form-input">
+  <%= f.input :start_date, as: :date, order: [:day, :month, :year]  %>
+</div>
+<div class="form-input">
+  <%= f.input :end_date, as: :date, order: [:day, :month, :year]%>
+</div>
+<div class="form-input">
+  <%= f.association :language %>
+</div>
+<div class="form-input">
+  <%= f.input :context %>
+<div class="form-input">
+  <%= f.submit %>
+<% end %>

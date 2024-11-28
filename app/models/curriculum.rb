@@ -7,3 +7,4 @@ class Curriculum < ApplicationRecord
 
   validates :title, :purpose, :start_date, :end_date, :context, presence: true
 end
+
