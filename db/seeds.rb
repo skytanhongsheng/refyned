@@ -5,6 +5,7 @@ User.destroy_all
 Language.destroy_all
 Template.destroy_all
 Curriculum.destroy_all
+Lesson.destroy_all
 
 curriculum_file_path = File.join(__dir__, 'data', 'curricula.yml')
 CURRICULUM_CONTENT = YAML::load(File.open(curriculum_file_path))
@@ -51,7 +52,7 @@ puts "Created languages!"
 # # ----------------------------------------------
 
 # # create templates of cards
-puts "Creating templates"
+puts "Creating templates..."
 TEMPLATE_NAMES = [
   'Picture Comprehension',
   'Listening Comprehension',
@@ -60,12 +61,16 @@ TEMPLATE_NAMES = [
 
 TEMPLATE_NAMES.each { |name| Template.create!(name:) }
 
+puts "Created templates!"
+
 # ----------------------------------------------
 # CURRICULA
 # ----------------------------------------------
 # first title will start from today and last a week
 # other curriculum will start at a random date 7 days
 # from today and up to 3 weeks from the date
+
+puts "Creating curricula and lessons..."
 CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
   start_date = Date.today
   start_date += rand(1..7).days if index.positive?
@@ -82,7 +87,10 @@ CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
     context: CURRICULUM_CONTENT["context"].sample
   )
 
-  puts "Creating lessons..."
+  # ----------------------------------------------
+  # LESSONS
+  # ----------------------------------------------
+
   lesson_file_path = File.join(__dir__, 'data', 'lesson_plan.yml')
   lesson_plan_data = YAML::load(File.open(lesson_file_path))
 
@@ -96,11 +104,8 @@ CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
 
 end
 
-puts "Created curricula!"
+puts "Created curricula and lessons!"
 
-# ----------------------------------------------
-# LESSONS
-# ----------------------------------------------
 
 
 
