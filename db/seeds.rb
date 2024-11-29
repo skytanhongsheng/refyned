@@ -1,10 +1,15 @@
 require 'faker'
 
 # # clear all tables
+Card.destroy_all
+Lesson.destroy_all
+Curriculum.destroy_all
 User.destroy_all
 Language.destroy_all
 Template.destroy_all
-Curriculum.destroy_all
+
+curriculum_file_path = File.join(__dir__, 'data', 'curricula.yml')
+CURRICULUM_CONTENT = YAML::load(File.open(curriculum_file_path))
 
 # # ----------------------------------------------
 # # USERS
@@ -22,6 +27,8 @@ jane = User.create!(
   password: '123123',
   username: 'Jane'
 )
+
+puts 'Created users!'
 
 # # ----------------------------------------------
 # # LANGUAGES
@@ -48,90 +55,69 @@ puts "Created languages!"
 # # ----------------------------------------------
 
 # # create templates of cards
-puts "Creating templates"
+puts "Creating templates..."
 TEMPLATE_NAMES = [
   'Picture Comprehension',
   'Listening Comprehension',
   'MCQ'
 ]
 
-TEMPLATE_NAMES.each
+TEMPLATE_NAMES.each { |name| Template.create!(name:) }
 
-# # ----------------------------------------------
-# # CURRICULA
-# # ----------------------------------------------
+puts "Created templates!"
 
-# # create curricula elements
+# ----------------------------------------------
+# CURRICULA
+# ----------------------------------------------
+# first title will start from today and last a week
+# other curriculum will start at a random date 7 days
+# from today and up to 3 weeks from the date
 
-CURRICULA_TITLES = [
-  'Mandarin for Travelers: Essential Phrases',
-  'Mandarin travel phrases you need to know',
-  'Mandarin for Business Professionals'
-]
-
-CURRICULA_PURPOSES = [
-  'enhance travel experiences',
-  'cultural immersion',
-  'build connections with locals',
-  'enhance career opportunities',
-  'navigate the chinese market',
-  'improve cross-cultural communication'
-]
-
-CURRICULA_CONTEXT = [
-  'watch and enjoy Chinese dramas',
-  'have to reach intermediate level in order to get a promotion',
-  'to enrol in a university in Beijing',
-  'speak with locals in Xian',
-  'work with international clients',
-  'go on student exchange in Wuhan'
-]
-
-# # ----------------------------------------------
-# # CURRICULA
-# # ----------------------------------------------
-# # first title will start from today and last a week
-# # other curriculum will start at a random date 7 days
-# # from today and up to 3 weeks from the date
-CURRICULA_TITLES.each_with_index do |title, index|
+puts "Creating curricula and lessons..."
+CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
   start_date = Date.today
   start_date += rand(1..7).days if index.positive?
 
   end_date = start_date + rand(7..14).days
 
-  Curriculum.create!(
+  curriculum = Curriculum.create!(
     title: title,
-    purpose: CURRICULA_PURPOSES.sample,
+    purpose: CURRICULUM_CONTENT["purposes"].sample,
     start_date: start_date,
     end_date: end_date,
     language: mandarin, # set Mandarin as default language for testing purposes
-    user: jim, # set Jim as default userraia for testing purposes
-    context: CURRICULA_CONTEXT.sample
+    user: jim, # set Jim as default user for testing purposes
+    context: CURRICULUM_CONTENT["context"].sample
   )
+
+  # ----------------------------------------------
+  # LESSONS
+  # ----------------------------------------------
+
+  lesson_file_path = File.join(__dir__, 'data', 'lesson_plan.yml')
+  lesson_plan_data = YAML::load(File.open(lesson_file_path))
+
+  lesson_plan_data.each do |plan|
+    lesson = Lesson.create!(
+      title: plan["title"],
+      description: plan["description"],
+      curriculum:
+    )
+
+    card_count = rand(5..10)
+    card_count.times do |i|
+      Card.create!(
+        lesson: lesson,
+        correct: i >= card_count / 2 ? nil : [true, false].sample,
+        instruction: 'Translate the following sentence:',
+        context: 'This is a big house.',
+        answer: '这是一栋大房子。',
+        template: Template.all.sample
+      )
+    end
+
+  end
+
 end
 
-puts "Created curricula!"
-
-# ----------------------------------------------
-# LESSONS
-# ----------------------------------------------
-
-# puts "Creating lessons..."
-# lesson_file_path = File.join(__dir__, 'data', 'lesson_plan.yml')
-# lesson_plan_data = YAML::load(File.open(lesson_file_path))
-
-# lesson_plan_data.each do |plan|
-#   puts plan["title"]
-#   puts plan["description"]
-#   puts "---"
-# end
-
-# Create 2 users
-  # 1 - has curricula
-  # 2 - no curricula
-
-# create the languages
-# create the templates
-# create 3 curricula
-  # - create N number of lessons
-    # - create N number of cards
+puts "Created curricula, lessons and cards!"
