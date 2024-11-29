@@ -1,0 +1,55 @@
+<h1><%= @curriculum.title %></h1>
+<div class="mb-3">
+  <span class="badge rounded-pill text-bg-primary"><%= @curriculum.language.name %></span>
+  <span class=" ps-2 ms-2 border-start">Scheduled from <%= @curriculum.start_date %> to <%= @curriculum.end_date %></span>
+</div>
+<div class="bg-white rounded-5 p-3 border shadow-sm">
+  <h2>Purpose of this lesson</h2>
+  <p><%= @curriculum.purpose.capitalize %></p>
+  <h2>Context of Application </h2>
+  <p><%= @curriculum.context.capitalize %></p>
+</div>
+<div class="bg-white rounded-5 p-3 border my-3 shadow-sm">
+  <div class="d-flex vertical-tabs gap-2" data-controller="vertical-tabs">
+    <%# tabs %>
+    <div class="d-flex flex-column gap-2" data-vertical-tabs-target="tabs" data-action="change->vertical-tabs#selectTab">
+      <input class="d-none" type="radio" id="overview" name="tab" checked data-vertical-tabs-target="tab">
+      <label class="d-block p-2 border rounded-4 text-center" for="overview">Overview</label>
+      <input class="d-none" type="radio" id="lessons" name="tab" data-vertical-tabs-target="tab">
+      <label class="d-block p-2 border rounded-4 text-center" for="lessons">Lessons</label>
+      <input class="d-none" type="radio" id="bookmarks" name="tab" data-vertical-tabs-target="tab">
+      <label class="d-block p-2 border rounded-4 text-center" for="bookmarks">Bookmarks</label>
+    </div>
+    <%# tab contents %>
+    <div class="border rounded-5 w-100 p-3" style="height: 400px; overflow: auto;">
+      <div
+        class="d-flex align-items-center justify-content-center w-100 h-100"
+        data-tab-id="overview"
+        data-vertical-tabs-target="tabContent"
+      >
+        WORK IN PROGRESS
+      </div>
+      <div
+        class="w-100 h-100 d-none"
+        data-tab-id="lessons"
+        data-vertical-tabs-target="tabContent"
+      >
+        <%= render 'lessons', lessons: @curriculum.lessons %>
+      </div>
+      <div
+        class="w-100 h-100 d-none"
+        data-tab-id="bookmarks"
+        data-vertical-tabs-target="tabContent"
+      >
+        <div>
+          <% @curriculum.cards.each do |card| %>
+            <div class="d-flex">
+              <%= lucide_icon("bookmark", class: "me-2") %>
+              <%= link_to card.instruction, card_path(card), class: 'd-block' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
