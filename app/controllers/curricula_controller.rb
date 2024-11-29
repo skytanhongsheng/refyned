@@ -1,10 +1,10 @@
 class CurriculaController < ApplicationController
-  def new
-    @curriculum = Curriculum.new
-  end
 
   def index
-    @curriculums = Curriculum.all
+    @curricula = Curriculum.all
+
+    def new
+    @curriculum = Curriculum.new
   end
 
   def create
