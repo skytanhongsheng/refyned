@@ -1,0 +1,47 @@
+<h1>My curricula</h1>
+<div class="container">
+  <%# curriculum template start --- %>
+  <% @curricula.each do |curriculum|%>
+    <div class="curriculum-wrapper d-flex justify-content-between shadow rounded p-3 m-3">
+      <div class="curriculum-info">
+        <h2><%= curriculum.title %></h2>
+        <p><%= curriculum.lessons.count%> lessons</p>
+        <%= link_to 'View curriculum', curriculum_path(curriculum), class: 'view-curriculum-btn mt-auto' %>
+      </div>
+      <%# curriculum-stats template start --- %>
+      <div class="d-flex gap-5">
+        <div class="stats p-1 pb-8 text-center">
+          <div class="position-relative" style="width: 8rem; height: 8rem;">
+            <canvas
+                data-controller="doughnut-progress-chart"
+                data-doughnut-progress-chart-input-value="[<%= curriculum.progress %>,<%= 1 - curriculum.progress %>]"
+                data-doughnut-progress-chart-colors-value='["rgb(72, 156, 150)","rgb(200, 200, 200)"]'
+              ></canvas>
+            <div class="position-absolute top-50 start-50 translate-middle">
+              <p class="mt-4 fs-5"><%= (curriculum.progress * 100).ceil %>%</p>
+            </div>
+          </div>
+          <p class="mt-2">Progress</p>
+        </div>
+        <div class="stats p-1 pb-8 text-center">
+          <div class="position-relative" style="width: 8rem; height: 8rem;">
+            <canvas
+                data-controller="doughnut-progress-chart"
+                data-doughnut-progress-chart-input-value="[<%= curriculum.score %>,<%= 1 - curriculum.score %>]"
+                data-doughnut-progress-chart-colors-value='["rgb(72, 156, 150)","rgb(200, 200, 200)"]'
+              ></canvas>
+            <div class="position-absolute top-50 start-50 translate-middle">
+              <p class="mt-4 fs-5"><%= (curriculum.score * 100).ceil %>%</p>
+            </div>
+          </div>
+          <p class="mt-2">Score</p>
+        </div>
+      </div>
+      <%# --- curriculum-stats template end%>
+    </div>
+  <% end %>
+  <%# --- curriculum template end%>
+  <div class="text-center">
+    <button type="button" class="align-self-end btn btn-primary">Add a new curriculum</button>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+// .curriculum-wrapper {
+//   background: #f1b1c1;
+// }
+
+.curriculum-info {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.view-curriculum-btn {
+  background: #d63384;
+  color: white;
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 2.5rem;
+
+  &:hover {
+    background: #bd0c64
+  }
+}
