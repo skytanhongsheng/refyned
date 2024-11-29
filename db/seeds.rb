@@ -101,7 +101,9 @@ CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
     lesson = Lesson.create!(
       title: plan["title"],
       description: plan["description"],
-      curriculum:
+      curriculum:,
+      score: rand,
+      progress: rand
     )
 
     card_count = rand(5..10)
