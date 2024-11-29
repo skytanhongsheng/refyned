@@ -2,8 +2,9 @@ class CurriculaController < ApplicationController
 
   def index
     @curricula = Curriculum.all
+  end
 
-    def new
+  def new
     @curriculum = Curriculum.new
   end
 
