@@ -107,7 +107,7 @@ CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
   lesson_plan_data = YAML::load(File.open(lesson_file_path))
 
   # only generate first 3 lessons to reduce seed time
-  lesson_plan_data.first(3).each do |plan|
+  lesson_plan_data.first(2).each do |plan|
     lesson = Lesson.create!(
       title: plan["title"],
       description: plan["description"],
@@ -122,7 +122,7 @@ CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
         lesson: lesson,
         instruction: card_args[:instruction],
         context: card_args.key?(:context) ? card_args[:context]: nil,
-        answer: card_args[:answer],
+        model_answer: card_args[:answer],
         template: Template.find_by(name: card_args[:template])
       )
       if card_args.key?(:picture)
@@ -135,7 +135,11 @@ CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
         file = File.open(file_path)
         card.audio.attach(io: file, filename: "sample_card_audio.mp3", content_type: "audio/mpeg")
       end
+      if card_args.key?(:options)
+        card_args[:options].each { |option| Option.create!(card: card, content: option)}
+      end
       card.save!
+      puts "Creating card"
     end
 
     # card_count = rand(5..10)
