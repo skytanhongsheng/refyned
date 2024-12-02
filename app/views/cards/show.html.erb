@@ -1,0 +1,23 @@
+<div class="d-flex justify-content-between p-5">
+  <div class="back-to-lesson"><%= link_to 'Back to lesson', lesson_path%></div>
+  <div class="bookmark-icon">Add to bookmarks
+    <%= render 'shared/card_item',
+        icon: 'bookmark',
+        link: "#"%>
+  </div>
+
+</div>
+
+<div class="container text-center">
+  <div class="card-content">
+    <%# render partials of templates here%>
+    <%#= render @card.template_path, card: @card %>
+    <%= render 'cards/templates/picture_comprehension' %>
+  </div>
+
+  <div class="text-center d-flex flex-column-reverse">
+    <%# <button type="button" class="align-self-end btn btn-secondary">Next</button> %>
+    <%= link_to 'Answer', card_path(@card.lesson.next_card), class: 'next-card-btn mt-auto align-self-end' %>
+  </div>
+
+</div>
