@@ -10,12 +10,12 @@
 
 <div class="container text-center">
   <div class="card-content">
-    <h3>Instruction</h3>
+    <h3><%= @card.instruction %></h3>
     <div class="context border border-3 rounded p-5 mt-5 mb-5">
-      <p>Context: Text/Image/Audio. This is where partials are rendered.</p>
+      <p><%= @card.context %></p>
     </div>
-  <p class="border border-3 rounded-pill p-2">User answer</p>
-
+    <p class="border border-3 rounded-pill p-2"><%= @card.answer %></p>
+    <button type="button" class="btn btn-secondary align-self-end ">See answer</button>
 
   </div>
 
