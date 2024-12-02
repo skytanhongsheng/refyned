@@ -1,0 +1,24 @@
+<%# Example instruction: 'Select the correct answer'%>
+
+<h3><%= card.instruction %></h3>
+<div class="context border border-3 rounded p-5 mt-5 mb-5">
+  <p>MCQ question here</p>
+
+  <% if card.photo.attached?  %>
+    render photo
+    <%# cl_image_tag %>
+  <% elsif card.audio.attached? %>
+    render audio
+    <%# cl_image_tag? I legit dunno %>
+  <% else %>
+    <%= card.context %>
+  <% end %>
+
+  <div class="container">
+    <div class="row">
+      <% card.options.each do |option| %>
+        <div class="col-3"><%= option.content %></div>
+      <% end %>
+    </div>
+  </div>
+</div>

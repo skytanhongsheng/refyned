@@ -8,9 +8,8 @@ class Card < ApplicationRecord
 
   validates :instruction, :answer, presence: true
 
-  def template_name
-    # find the name of the template
-    # convert it to lower_snake_case
-    # i.e Picture Comprehension => picture_comprehension
+  def template_path
+    template_name = self.template.name.downcase.gsub(' ', '_')
+    "cards/templates/#{template_name}"
   end
 end
