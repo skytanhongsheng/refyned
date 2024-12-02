@@ -2,14 +2,12 @@
 
 <h3><%= card.instruction %></h3>
 <div class="context border border-3 rounded p-5 mt-5 mb-5">
-  <p>MCQ question here</p>
+  <p>[MCQ question here]</p>
 
-  <% if card.photo.attached?  %>
-    render photo
-    <%# cl_image_tag %>
+  <% if card.picture.attached?  %>
+    <%= render cl_image_tag @card.picture.key, height: 300, width: 400, crop: :fill %>
   <% elsif card.audio.attached? %>
-    render audio
-    <%# cl_image_tag? I legit dunno %>
+    <%= render cl_audio_tag @card.audio.key %>
   <% else %>
     <%= card.context %>
   <% end %>
