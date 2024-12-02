@@ -16,8 +16,12 @@
   </div>
 
   <div class="text-center d-flex flex-column-reverse">
-    <%# <button type="button" class="align-self-end btn btn-secondary">Next</button> %>
-    <%= link_to 'Answer', card_path(@card.lesson.next_card), class: 'next-card-btn mt-auto align-self-end' %>
+    <%= simple_form_for @card do |f| %>
+      <%= f.input :user_answer %>
+      <%= f.submit "Answer" %>
+    <% end %>
+
+   <%#= link_to 'Answer', card_path(@card.lesson.next_card), class: 'next-card-btn mt-auto align-self-end' %>
   </div>
 
 </div>
