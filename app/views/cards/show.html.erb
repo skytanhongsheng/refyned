@@ -11,8 +11,7 @@
 <div class="container text-center">
   <div class="card-content">
     <%# render partials of templates here%>
-    <%#= render @card.template_path, card: @card %>
-    <%= render 'cards/templates/picture_comprehension' %>
+    <%= render @template_path, card: @card %>
   </div>
 
   <div class="text-center">
