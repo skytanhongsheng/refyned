@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-between p-5">
-  <div class="back-to-lesson"><%= link_to 'Back to lesson', '#'%></div>
+  <div class="back-to-lesson"><%= link_to 'Back to lesson', lesson_path%></div>
   <div class="bookmark-icon">Add to bookmarks
     <%= render 'shared/card_item',
         icon: 'bookmark',
@@ -10,14 +10,14 @@
 
 <div class="container text-center">
   <div class="card-content">
-    <h3><%= @card.instruction %></h3>
-    <div class="context border border-3 rounded p-5 mt-5 mb-5">
-      <p><%= @card.context %></p>
-    </div>
-    <p class="border border-3 rounded-pill p-2"><%= @card.answer %></p>
-    <button type="button" class="btn btn-secondary align-self-end ">See answer</button>
-
+    <%# render partials of templates here%>
+    <%#= render card.template_name %>
+    <%= render 'translate_template' %>
   </div>
 
+  <div class="text-center">
+    <%# <button type="button" class="align-self-end btn btn-secondary">Next</button> %>
+    <%= link_to 'Next', '#', class: 'next-card-btn mt-auto align-self-end' %>
+  </div>
 
 </div>
