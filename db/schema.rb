@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_28_092349) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_02_090441) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,11 +47,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_28_092349) do
     t.boolean "correct"
     t.text "instruction", null: false
     t.text "context"
-    t.text "answer", null: false
     t.bigint "template_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "lesson_id", null: false
+    t.text "user_answer"
+    t.text "model_answer", default: "", null: false
     t.index ["lesson_id"], name: "index_cards_on_lesson_id"
     t.index ["template_id"], name: "index_cards_on_template_id"
   end

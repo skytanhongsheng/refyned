@@ -11,12 +11,13 @@
 <div class="container text-center">
   <div class="card-content">
     <%# render partials of templates here%>
-    <%= render @card.template_path, card: @card %>
+    <%#= render @card.template_path, card: @card %>
+    <%= render 'cards/templates/picture_comprehension' %>
   </div>
 
-  <div class="text-center">
+  <div class="text-center d-flex flex-column-reverse">
     <%# <button type="button" class="align-self-end btn btn-secondary">Next</button> %>
-    <%= link_to 'Next', card_path(@card.lesson.next_card), class: 'next-card-btn mt-auto align-self-end' %>
+    <%= link_to 'Answer', card_path(@card.lesson.next_card), class: 'next-card-btn mt-auto align-self-end' %>
   </div>
 
 </div>
