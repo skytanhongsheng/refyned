@@ -52,7 +52,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_02_090441) do
     t.datetime "updated_at", null: false
     t.bigint "lesson_id", null: false
     t.text "user_answer"
-    t.text "model_answer"
+    t.text "model_answer", default: "", null: false
     t.index ["lesson_id"], name: "index_cards_on_lesson_id"
     t.index ["template_id"], name: "index_cards_on_template_id"
   end

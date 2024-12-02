@@ -6,7 +6,7 @@ class Card < ApplicationRecord
   has_one_attached :picture
   has_one_attached :audio
 
-  validates :instruction, :answer, presence: true
+  validates :instruction, :model_answer, presence: true
 
   def template_path
     template_name = self.template.name.downcase.gsub(' ', '_')

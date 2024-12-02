@@ -113,7 +113,7 @@ CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
         correct: i >= card_count / 2 ? nil : [true, false].sample,
         instruction: 'Translate the following sentence:',
         context: 'This is a big house.',
-        answer: '这是一栋大房子。',
+        model_answer: '这是一栋大房子。',
         template: Template.all.sample
       )
     end
