@@ -1,0 +1,36 @@
+[
+  {
+    "instruction": "Type what you hear below:",
+    "template": "Listening Comprehension",
+    "audio": [
+      "app",
+      "assets",
+      "audio",
+      "sample_card_audio.mp3"
+    ],
+    "answer": "今天天气真好"
+  },
+  {
+    "instruction": "Which option is the correct translation?",
+    "template": "MCQ",
+    "context": "图书馆",
+    "options": [
+      "shopping mall",
+      "hospital",
+      "post office",
+      "library"
+    ],
+    "answer": "library"
+  },
+  {
+    "instruction": "Describe the image below:",
+    "template": "Picture Comprehension",
+    "picture": [
+      "app",
+      "assets",
+      "images",
+      "sample_card_picture.jpg"
+    ],
+    "answer": "correct answer"
+  }
+]
