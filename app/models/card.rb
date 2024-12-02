@@ -7,4 +7,9 @@ class Card < ApplicationRecord
   has_one_attached :audio
 
   validates :instruction, :answer, presence: true
+
+  def complete?
+    # [true, false].include?(correct)
+    !correct.nil?
+  end
 end
