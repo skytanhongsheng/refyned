@@ -15,9 +15,9 @@
     <%= render 'cards/templates/picture_comprehension' %>
   </div>
 
-  <div class="text-center d-flex flex-column-reverse">
+  <div class="text-center">
     <%= simple_form_for @card do |f| %>
-      <%= f.input :user_answer %>
+      <%= f.input :user_answer, label: false %>
       <%= f.submit "Answer" %>
     <% end %>
 
