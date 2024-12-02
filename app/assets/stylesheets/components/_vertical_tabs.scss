@@ -1,0 +1,9 @@
+.vertical-tabs input[type="radio"]:checked + label {
+  background-color: purple;
+  color: white;
+}
+
+.vertical-tabs input[type="radio"]:checked + label:hover,
+.vertical-tabs label:hover {
+  background-color: gray;
+}
