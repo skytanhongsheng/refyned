@@ -11,5 +11,8 @@ class Card < ApplicationRecord
   def template_path
     template_name = self.template.name.downcase.gsub(' ', '_')
     "cards/templates/#{template_name}"
+  def complete?
+    # [true, false].include?(correct)
+    !correct.nil?
   end
 end

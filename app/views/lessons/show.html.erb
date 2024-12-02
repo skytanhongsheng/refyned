@@ -30,50 +30,25 @@
       <div class="tab-pane fade lesson-tab-content" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">abc</div>
       <div class="tab-pane fade show active lesson-tab-content" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
         <div class="d-flex border px-3 mb-3">
-          <i class="fa-solid fa-bookmark"></i>
-          <p class="ms-3 my-0 py-3">an idiom</p>
+          <div class="row m-0">
+            <% @lesson.cards.each do |card| %>
+             <%= render 'lessons/bookmarked_preview', card: card %>
+            <% end %>
+          </div>
         </div>
-
-        <div class="d-flex border px-3">
-          <i class="fa-solid fa-bookmark"></i>
-          <p class="ms-3 my-0 py-3">an idiom</p>
-        </div>
-
       </div>
 
       <div class="tab-pane fade lesson-tab-content" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
         <div class="row m-0">
-          <div class="col-6">
-            <div class="d-flex border justify-content-between px-3 py-3">
-              <p class="ms-3 my-0 py-1.5 px-3">garden</p>
-              <i class="fa-regular fa-pen-to-square"></i>
-            </div>
-          </div>
-
-          <div class="col-6">
-            <div class="d-flex border justify-content-between px-3 py-3">
-              <p class="ms-3 my-0 py-1.5 px-3">ocean</p>
-              <i class="fa-regular fa-pen-to-square"></i>
-            </div>
-          </div>
-           <div class="col-6">
-            <div class="d-flex border justify-content-between px-3 py-3">
-              <p class="ms-3 my-0 py-1.5 px-3">fruits</p>
-              <i class="fa-regular fa-pen-to-square"></i>
-            </div>
-          </div>
-           <div class="col-6">
-            <div class="d-flex border justify-content-between px-3 py-3">
-              <p class="ms-3 my-0 py-1.5 px-3">greetings</p>
-              <i class="fa-regular fa-pen-to-square"></i>
-            </div>
-          </div>
+          <% @lesson.cards.each do |card| %>
+            <%= render 'lessons/card_preview', card: card %>
+          <% end %>
     </div>
   </div>
 
   <div class="d-flex justify-content-between py-4">
     <%= link_to 'Add custom card', new_card_path, class: 'btn btn-primary border-radius rounded-pill' %>
-    <%= link_to 'Begin Lesson', "#" , class: 'btn btn-primary border-radius rounded-pill' %>
+    <%= link_to 'Begin Lesson', card_path(@lesson.next_card), class: 'btn btn-primary border-radius rounded-pill' %>
   </div>
 
 </div>
