@@ -7,6 +7,18 @@ class Lesson < ApplicationRecord
   validates :progress, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 1 }
 
   def next_card
-    self.cards.where(correct: nil).first
+    cards.where(correct: nil).first
+  end
+
+  def status
+    completed = cards.pluck(:correct)
+
+    if completed.all?(&:nil?)
+      "completed"
+    elsif completed.any?(&:nil?)
+      "started"
+    else
+      "pending"
+    end
   end
 end
