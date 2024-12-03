@@ -21,6 +21,7 @@ class CreateCurriculumLessonsService
   def send_request(request_body)
     # TODO: replace the following hard coded data with API request
     lessons_file_path = File.join(Rails.root, 'db', 'data', 'lesson_plan.yml')
-    YAML.load(File.open(lessons_file_path))
+    lessons_info = YAML.load(File.open(lessons_file_path))
+    lessons_info.first(2)
   end
 end
