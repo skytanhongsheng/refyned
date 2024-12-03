@@ -8,7 +8,9 @@ class CardsController < ApplicationController
     @card.update(card_params)
 
     if @card.save
+      @card.lesson.verify_complete
       next_card = @card.lesson.next_card(@card)
+
       redirect_to next_card.nil? ? @card.lesson : next_card
     else
       render :show, status: :unprocessable_entity
@@ -26,6 +28,4 @@ class CardsController < ApplicationController
   def card_params
     params.require(:card).permit(:user_answer)
   end
-
-
 end
