@@ -4,15 +4,23 @@ class Curriculum < ApplicationRecord
 
   has_many :lessons, dependent: :destroy
   has_many :cards, through: :lessons
+  has_many :curriculum_templates, dependent: :destroy
+  has_many :templates, through: :curriculum_templates
 
   validates :title, :purpose, :start_date, :end_date, :context, presence: true
+  validates :lesson_hours, presence: true, numericality: { greater_than: 0 }
+
+  after_create :create_lessons
 
   def progress
-    (lessons.sum{ |lesson| lesson.progress }) / lessons.length
+    lessons.sum(&:progress) / lessons.length
   end
 
   def score
-    (lessons.sum{ |lesson| lesson.score }) / lessons.length
+    lessons.sum(&:score) / lessons.length
+  end
+
+  def create_lessons
+    CreateCurriculumLessonsJob.perform_later(self) unless ENV['SEED']
   end
 end
-

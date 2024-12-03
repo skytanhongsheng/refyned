@@ -1,6 +1,9 @@
 require 'faker'
 require 'json'
 
+# set environment variable to disable after create background jobs
+ENV['SEED'] = 'true'
+
 # # clear all tables
 Card.destroy_all
 Lesson.destroy_all
@@ -79,8 +82,8 @@ puts "Created templates!"
 # parse card data from json
 cards_file_path = File.join(__dir__, 'data', 'cards.json')
 puts cards_file_path
-cards_json = "";
-File.open(cards_file_path, "r") { |file| cards_json = JSON.parse(file.read, { symbolize_names: true }) }
+cards_info = "";
+File.open(cards_file_path, "r") { |file| cards_info = JSON.parse(file.read, { symbolize_names: true }) }
 
 puts "Creating curricula and lessons..."
 CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
@@ -117,44 +120,44 @@ CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
       status: "pending"
     )
 
+    # helper method to set card context
+    def set_card_context(card, context)
+      if context.instance_of?(String)
+        card.context = context
+      else
+        # TODO: change hard coded files
+        file_path = File.join(Rails.root, "app", "assets", "audio", "sample_card_audio.mp3")
+        file = File.open(file_path)
+        if context[:type] == "audio/mpeg"
+          card.audio.attach(io: file, filename: "sample_card_audio.mp3", content_type: "audio/mpeg")
+        elsif context[:type] == "image/png"
+          card.picture.attach(io: file, filename: "sample_card_picture.jpg", content_type: "image/png")
+        end
+      end
+    end
+
     # seed 1 card for each card template
-    cards_json.each do |card_args|
+    cards_info.each do |card_info|
       card = Card.new(
-        lesson: lesson,
-        instruction: card_args[:instruction],
-        context: card_args.key?(:context) ? card_args[:context]: nil,
-        model_answer: card_args[:answer],
-        template: Template.find_by(name: card_args[:template])
+        instruction: card_info[:instruction],
+        template: Template.find_by(name: card_info[:template]),
+        model_answer: card_info[:answer],
+        lesson: lesson
       )
-      if card_args.key?(:picture)
-        file_path = File.join(Rails.root, *card_args[:picture])
-        file = File.open(file_path)
-        card.picture.attach(io: file, filename: "sample_card_picture.jpg", content_type: "image/png")
-      end
-      if card_args.key?(:audio)
-        file_path = File.join(Rails.root, *card_args[:audio])
-        file = File.open(file_path)
-        card.audio.attach(io: file, filename: "sample_card_audio.mp3", content_type: "audio/mpeg")
-      end
-      if card_args.key?(:options)
-        card_args[:options].each { |option| Option.create!(card: card, content: option)}
-      end
+      # check context and set context to appropriate columns accordingly
+      set_card_context(card, card_info[:context])
+
+      # add options if exist
+      card.options = card_info[:options].map { |option| Option.new(content: option) } if card_info.key?(:options)
+
+      # create card
       card.save!
       puts "Created card"
     end
-    # card_count = rand(5..10)
-    # card_count.times do |i|
-
-    #   Card.create!(
-    #     lesson: lesson,
-    #     correct: i >= card_count / 2 ? nil : [true, false].sample,
-    #     instruction: 'Translate the following sentence:',
-    #     context: 'This is a big house.',
-    #     answer: '这是一栋大房子。',
-    #     template: Template.all.sample
-    #   )
-    # end
   end
 end
 
 puts "Created curricula, lessons and cards!"
+
+# remove environment variable after seeding is done
+ENV.delete('SEED')
