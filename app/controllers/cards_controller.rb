@@ -4,7 +4,6 @@ class CardsController < ApplicationController
   def show
   end
 
-  # card will
   def update
     @card.update(card_params)
 
