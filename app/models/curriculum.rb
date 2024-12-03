@@ -10,6 +10,8 @@ class Curriculum < ApplicationRecord
   validates :title, :purpose, :start_date, :end_date, :context, presence: true
   validates :lesson_hours, presence: true, numericality: { greater_than: 0 }
 
+  after_create :create_lessons
+
   def progress
     lessons.sum(&:progress) / lessons.length
   end
@@ -17,5 +19,8 @@ class Curriculum < ApplicationRecord
   def score
     lessons.sum(&:score) / lessons.length
   end
-end
 
+  def create_lessons
+    CreateCurriculumLessonsJob.perform_later(self) unless ENV['SEED']
+  end
+end
