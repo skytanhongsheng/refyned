@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_03_021621) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_03_051652) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,8 +67,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_03_021621) do
     t.datetime "updated_at", null: false
     t.date "start_date", null: false
     t.date "end_date", null: false
+    t.integer "lesson_hours", default: 1
     t.index ["language_id"], name: "index_curricula_on_language_id"
     t.index ["user_id"], name: "index_curricula_on_user_id"
+  end
+
+  create_table "curriculum_templates", force: :cascade do |t|
+    t.bigint "template_id", null: false
+    t.bigint "curriculum_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["curriculum_id"], name: "index_curriculum_templates_on_curriculum_id"
+    t.index ["template_id"], name: "index_curriculum_templates_on_template_id"
   end
 
   create_table "languages", force: :cascade do |t|
@@ -123,6 +133,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_03_021621) do
   add_foreign_key "cards", "templates"
   add_foreign_key "curricula", "languages"
   add_foreign_key "curricula", "users"
+  add_foreign_key "curriculum_templates", "curricula"
+  add_foreign_key "curriculum_templates", "templates"
   add_foreign_key "lessons", "curricula"
   add_foreign_key "options", "cards"
 end

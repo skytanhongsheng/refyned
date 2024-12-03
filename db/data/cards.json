@@ -2,12 +2,10 @@
   {
     "instruction": "Type what you hear below:",
     "template": "Listening Comprehension",
-    "audio": [
-      "app",
-      "assets",
-      "audio",
-      "sample_card_audio.mp3"
-    ],
+    "context": {
+      "type": "audio/mpeg",
+      "source": "audio url"
+    },
     "answer": "今天天气真好"
   },
   {
@@ -25,12 +23,10 @@
   {
     "instruction": "Describe the image below:",
     "template": "Picture Comprehension",
-    "picture": [
-      "app",
-      "assets",
-      "images",
-      "sample_card_picture.jpg"
-    ],
+    "context": {
+      "type": "image/png",
+      "source": "image url"
+    },
     "answer": "correct answer"
   }
 ]
