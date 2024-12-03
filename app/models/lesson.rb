@@ -6,10 +6,6 @@ class Lesson < ApplicationRecord
   validates :score, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 1 }
   validates :progress, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 1 }
 
-  def next_card
-    cards.where(correct: nil).first
-  end
-
   def next_lesson
     # lesson.curriculm.lessons
   end
@@ -23,6 +19,23 @@ class Lesson < ApplicationRecord
       "started"
     else
       "completed"
+    end
+  end
+
+  # find the first card in the lesson where the
+  # correct key is nil. This would represent the
+  # "next" card.
+  # if card is passed as an argument, return the
+  # next card from that provided card
+
+  def next_card(card = nil)
+    incomplete_cards = self.cards.where(correct: nil).order(:id)
+
+    if card.nil?
+      incomplete_cards.first
+    else
+      index = incomplete_cards.find_index(card)
+      incomplete_cards[index + 1]
     end
   end
 end
