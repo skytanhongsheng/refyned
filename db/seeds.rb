@@ -109,14 +109,15 @@ CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
   lesson_file_path = File.join(__dir__, 'data', 'lesson_plan.yml')
   lesson_plan_data = YAML::load(File.open(lesson_file_path))
 
-  # only generate first 3 lessons to reduce seed time
-  lesson_plan_data.first(2).each do |plan|
+  lesson_plan_data.first(2).each_with_index do |plan, index|
     lesson = Lesson.create!(
       title: plan["title"],
       description: plan["description"],
       curriculum:,
       score: rand,
-      progress: rand
+      progress: rand,
+      order: index + 1,
+      status: "pending"
     )
 
     # helper method to set card context
@@ -151,7 +152,7 @@ CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
 
       # create card
       card.save!
-      puts "Creating card"
+      puts "Created card"
     end
   end
 end

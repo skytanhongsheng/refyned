@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-between p-5">
-  <div class="back-to-lesson"><%= link_to 'Back to lesson', lesson_path%></div>
+  <div class="back-to-lesson"><%= link_to 'Back to lesson', lesson_path(@card.lesson)%></div>
   <div class="bookmark-icon">Add to bookmarks
     <%= render 'shared/card_item',
         icon: 'bookmark',
@@ -11,13 +11,23 @@
 <div class="container text-center">
   <div class="card-content">
     <%# render partials of templates here%>
-    <%#= render @card.template_path, card: @card %>
-    <%= render 'cards/templates/picture_comprehension' %>
+    <%= render @template_path, card: @card %>
   </div>
 
-  <div class="text-center d-flex flex-column-reverse">
-    <%# <button type="button" class="align-self-end btn btn-secondary">Next</button> %>
-    <%= link_to 'Answer', card_path(@card.lesson.next_card), class: 'next-card-btn mt-auto align-self-end' %>
+  <div class="text-center">
+    <%= simple_form_for @card do |f| %>
+      <%= f.input :user_answer, label: false %>
+      <%= f.submit "Answer" %>
+    <% end %>
+
+   <%#= link_to 'Answer', card_path(@card.lesson.next_card), class: 'next-card-btn mt-auto align-self-end' %>
   </div>
 
+
+  <div class="thumbnails">
+    <% @card.lesson.cards.each do |card| %>
+        o
+    <% end %>
+
+  </div>
 </div>

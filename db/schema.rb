@@ -95,6 +95,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_03_051652) do
     t.bigint "curriculum_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "order"
+    t.string "status"
     t.index ["curriculum_id"], name: "index_lessons_on_curriculum_id"
   end
 

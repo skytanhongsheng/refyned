@@ -8,13 +8,23 @@ class Card < ApplicationRecord
 
   validates :instruction, :model_answer, presence: true
 
-  def template_path
-    template_name = self.template.name.downcase.gsub(' ', '_')
-    "cards/templates/#{template_name}"
-  end
+  before_validation :check_empty
+  before_save :score!, if: :will_save_change_to_user_answer?
 
   def complete?
     # [true, false].include?(correct)
     !correct.nil?
+  end
+
+  # called after user has submitted user_answer
+  # call API if image_comprehention
+  # check against model_answer for everything else
+  # updates :correct
+  def score!
+    self.correct = true
+  end
+
+  def check_empty
+    self.user_answer = nil if user_answer == ""
   end
 end
