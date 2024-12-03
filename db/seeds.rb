@@ -140,7 +140,7 @@ CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
         card_args[:options].each { |option| Option.create!(card: card, content: option)}
       end
       card.save!
-      puts "Creating card"
+      puts "Created card"
     end
     # card_count = rand(5..10)
     # card_count.times do |i|
