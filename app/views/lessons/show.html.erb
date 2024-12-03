@@ -48,7 +48,7 @@
 
   <div class="d-flex justify-content-between py-4">
     <%= link_to 'Add custom card', new_card_path, class: 'btn btn-primary border-radius rounded-pill' %>
-    <%=  if @lesson.status == 'pending'
+    <%= if @lesson.status == 'pending'
           link_to 'Begin Lesson', card_path(@lesson.next_card), class: 'btn btn-primary border-radius rounded-pill'
         elsif @lesson.next_lesson == nil
           link_to 'Return to Curriculum', curriculum_path(@lesson.curriculum), class: 'btn btn-primary border-radius rounded-pill'
