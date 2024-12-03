@@ -6,9 +6,10 @@ class Card < ApplicationRecord
   has_one_attached :picture
   has_one_attached :audio
 
-  validates :instruction, :model_answer, :user_answer, presence: true
+  validates :instruction, :model_answer, presence: true
 
-  after_save :score!, if: :will_save_change_to_user_answer?
+  before_validation :check_empty
+  before_save :score!, if: :will_save_change_to_user_answer?
 
   def complete?
     # [true, false].include?(correct)
@@ -21,5 +22,9 @@ class Card < ApplicationRecord
   # updates :correct
   def score!
     self.correct = true
+  end
+
+  def check_empty
+    self.user_answer = nil if user_answer == ""
   end
 end
