@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-between p-5">
-  <div class="back-to-lesson"><%= link_to 'Back to lesson', lesson_path%></div>
+  <div class="back-to-lesson"><%= link_to 'Back to lesson', lesson_path(@card.lesson)%></div>
   <div class="bookmark-icon">Add to bookmarks
     <%= render 'shared/card_item',
         icon: 'bookmark',
@@ -23,4 +23,11 @@
    <%#= link_to 'Answer', card_path(@card.lesson.next_card), class: 'next-card-btn mt-auto align-self-end' %>
   </div>
 
+
+  <div class="thumbnails">
+    <% @card.lesson.cards.each do |card| %>
+        o
+    <% end %>
+
+  </div>
 </div>
