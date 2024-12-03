@@ -8,7 +8,7 @@
   <%= link_to lesson_path(lesson), class:"row p-2 border rounded-4 mt-1 text-decoration-none" do %>
     <div class="col-1"><%= i+1 %></div>
     <div class="col-7"><%= lesson.title %></div>
-    <div class="col-2"><%= lesson.progress %></div>
-    <div class="col-2"><%= lesson.score %></div>
+    <div class="col-2"><%= (lesson.progress * 100).ceil %>%</div>
+    <div class="col-2"><%= (lesson.score * 100).ceil %>%</div>
   <% end %>
 <% end %>
