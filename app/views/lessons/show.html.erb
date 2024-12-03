@@ -51,7 +51,7 @@
     <%=  if @lesson.status == 'pending'
           link_to 'Begin Lesson', card_path(@lesson.next_card), class: 'btn btn-primary border-radius rounded-pill'
         elsif @lesson.status == 'completed'
-          link_to 'Next Lesson', curriculum_path, class: 'btn btn-primary border-radius rounded-pill'
+          link_to 'Next Lesson', lesson_path, class: 'btn btn-primary border-radius rounded-pill'
         else
           link_to 'Resume Lesson', card_path(@lesson.next_card), class: 'btn btn-primary border-radius rounded-pill'
         end

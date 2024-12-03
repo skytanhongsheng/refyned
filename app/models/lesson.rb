@@ -14,11 +14,11 @@ class Lesson < ApplicationRecord
     completed = cards.pluck(:correct)
 
     if completed.all?(&:nil?)
-      "completed"
+      "pending"
     elsif completed.any?(&:nil?)
       "started"
     else
-      "pending"
+      "completed"
     end
   end
 end
