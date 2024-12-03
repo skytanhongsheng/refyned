@@ -97,13 +97,15 @@ CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
   lesson_file_path = File.join(__dir__, 'data', 'lesson_plan.yml')
   lesson_plan_data = YAML::load(File.open(lesson_file_path))
 
-  lesson_plan_data.each do |plan|
+  lesson_plan_data.each_with_index do |plan, index|
     lesson = Lesson.create!(
       title: plan["title"],
       description: plan["description"],
       curriculum:,
       score: rand,
-      progress: rand
+      progress: rand,
+      order: index + 1,
+      status: "pending"
     )
 
     card_count = rand(5..10)

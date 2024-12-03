@@ -10,6 +10,10 @@ class Lesson < ApplicationRecord
     cards.where(correct: nil).first
   end
 
+  def next_lesson
+    # lesson.curriculm.lessons
+  end
+
   def status
     completed = cards.pluck(:correct)
 
