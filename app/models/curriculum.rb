@@ -9,6 +9,7 @@ class Curriculum < ApplicationRecord
 
   validates :title, :purpose, :start_date, :end_date, :context, presence: true
   validates :lesson_hours, presence: true, numericality: { greater_than: 0 }
+  validates :card_templates, length: { minimum: 1, too_short: "need to have at least 1 card template" }
 
   after_create :create_lessons
 
