@@ -121,7 +121,6 @@ CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
       description: plan["description"],
       curriculum:,
       order: index + 1,
-      status: "pending"
     )
 
     # helper method to set card context
