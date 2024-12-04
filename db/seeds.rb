@@ -125,12 +125,13 @@ CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
       if context.instance_of?(String)
         card.context = context
       else
-        # TODO: change hard coded files
-        file_path = File.join(Rails.root, "app", "assets", "audio", "sample_card_audio.mp3")
-        file = File.open(file_path)
         if context[:type] == "audio/mpeg"
+          file_path = File.join(Rails.root, "app", "assets", "audio", "sample_card_audio.mp3")
+          file = File.open(file_path)
           card.audio.attach(io: file, filename: "sample_card_audio.mp3", content_type: "audio/mpeg")
         elsif context[:type] == "image/png"
+          file_path = File.join(Rails.root, "app", "assets", "images", "sample_card_picture.jpg")
+          file = File.open(file_path)
           card.picture.attach(io: file, filename: "sample_card_picture.jpg", content_type: "image/png")
         end
       end
