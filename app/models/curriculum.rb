@@ -13,7 +13,7 @@ class Curriculum < ApplicationRecord
   after_create :create_lessons
 
   def progress
-    lessons.sum(&:progress).to_f / lessons.length
+    lessons.empty? ? 0 : lessons.sum(&:progress).to_f / lessons.length
   end
 
   def score

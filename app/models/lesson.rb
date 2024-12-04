@@ -41,10 +41,9 @@ class Lesson < ApplicationRecord
     correct = cards.where(correct: true).length
     wrong = cards.where(correct: false).length
     (correct + wrong).positive? ? correct.to_f / (correct + wrong) : 0
-    #   cards.where(correct: true).length / (cards.where(correct: true).length + cards.where(correct: false).length)
   end
 
   def progress
-    cards.reject { |card| card.correct.nil? }.length.to_f / cards.length
+    cards.empty? ? 0 : cards.reject { |card| card.correct.nil? }.length.to_f / cards.length
   end
 end
