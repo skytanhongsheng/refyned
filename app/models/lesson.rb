@@ -37,24 +37,13 @@ class Lesson < ApplicationRecord
     end
   end
 
-  def complete?
-    cards.pluck(:correct).count(nil).zero?
-  end
-
-  def complete!
-    self.status = "completed"
-    save
-  end
-
-  def verify_complete
-    complete! if complete?
-  end
-
   def score
-    cards.where(correct: true).length.to_f / cards.length
+    correct = cards.where(correct: true).length
+    wrong = cards.where(correct: false).length
+    (correct + wrong).positive? ? correct.to_f / (correct + wrong) : 0
   end
 
   def progress
-    cards.reject { |card| card.correct.nil? }.length.to_f / cards.length
+    cards.empty? ? 0 : cards.reject { |card| card.correct.nil? }.length.to_f / cards.length
   end
 end

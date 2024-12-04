@@ -10,7 +10,6 @@ class CardsController < ApplicationController
     @card.correct = @card.model_answer == user_answer
 
     if @card.save
-      @card.lesson.verify_complete
       next_card = @card.lesson.next_card(@card)
 
       redirect_to next_card.nil? ? @card.lesson : next_card
@@ -19,18 +18,7 @@ class CardsController < ApplicationController
     end
   end
 
-  def update
-    @card.update(card_params)
-
-    if @card.save
-      @card.lesson.verify_complete
-      next_card = @card.lesson.next_card(@card)
-
-      redirect_to next_card.nil? ? @card.lesson : next_card
-    else
-      render :show, status: :unprocessable_entity
-    end
-  end
+  def update; end
 
   def bookmark
     @card.bookmarked = !@card.bookmarked
