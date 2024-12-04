@@ -42,7 +42,7 @@ class CardsController < ApplicationController
 
   def set_card
     @card = Card.find(params[:id])
-    template_name = @card.template.name.downcase.gsub(' ', '_')
+    template_name = @card.card_template.name.downcase.gsub(' ', '_')
     @template_path = "cards/templates/#{template_name}"
   end
 
