@@ -12,7 +12,7 @@ class CreateLessonCardsService
       description: lesson.description,
       card_count: calculate_card_count(
         lesson.curriculum.lesson_hours,
-        lesson.curriculum.templates
+        lesson.curriculum.card_templates
       )
     }
   end
