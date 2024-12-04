@@ -21,10 +21,24 @@ class Card < ApplicationRecord
   # check against model_answer for everything else
   # updates :correct
   def score!
-    self.correct = true
+    self.correct = if card_template == "mcq"
+                     direct_comparison
+                   else
+                     similarity_comparison
+                   end
+    save!
   end
 
   def check_empty
     self.user_answer = nil if user_answer == ""
+  end
+
+  # For a MCQ question, this is the scoring method:
+  def direct_comparison
+    user_answer == model_answer
+  end
+
+  def similarity_comparison
+    AnswerSimilarityService.is_correct?(id, user_answer, model_answer)
   end
 end
