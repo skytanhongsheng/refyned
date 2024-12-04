@@ -10,7 +10,7 @@ Lesson.destroy_all
 Curriculum.destroy_all
 User.destroy_all
 Language.destroy_all
-Template.destroy_all
+CardTemplate.destroy_all
 
 puts "cleared all tables"
 
@@ -68,7 +68,7 @@ TEMPLATE_NAMES = [
   'MCQ'
 ]
 
-TEMPLATE_NAMES.each { |name| Template.create!(name:) }
+TEMPLATE_NAMES.each { |name| CardTemplate.create!(name:) }
 
 puts "Created templates!"
 
@@ -141,7 +141,7 @@ CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
     cards_info.each do |card_info|
       card = Card.new(
         instruction: card_info[:instruction],
-        template: Template.find_by(name: card_info[:template]),
+        card_template: CardTemplate.find_by(name: card_info[:template]),
         model_answer: card_info[:answer],
         lesson: lesson
       )
