@@ -9,7 +9,7 @@ class Lesson < ApplicationRecord
   def next_lesson
     curriculum.lessons.find_by(order: self.order + 1)
   end
-2
+
   def status
     completed = cards.pluck(:correct)
 
@@ -50,5 +50,13 @@ class Lesson < ApplicationRecord
 
   def verify_complete
     complete! if complete?
+  end
+
+  def score
+    cards.where(correct: true).length / cards.length
+  end
+
+  def progress
+    cards.reject{ |card| card.correct.nil? }.length / cards.length
   end
 end
