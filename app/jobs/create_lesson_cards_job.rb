@@ -16,7 +16,7 @@ class CreateLessonCardsJob < ApplicationJob
   def create_lesson_card(lesson, card_info)
     card = Card.new(
       instruction: card_info[:instruction],
-      template: Template.find_by(name: card_info[:template]),
+      card_template: CardTemplate.find_by(name: card_info[:template]),
       model_answer: card_info[:answer],
       lesson: lesson
     )
