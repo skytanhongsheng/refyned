@@ -18,7 +18,7 @@ class CardsController < ApplicationController
   end
 
   def bookmark
-    @card.bookmarked = true
+    @card.bookmarked = !@card.bookmarked
     @card.save
     redirect_to card_path(@card)
   end
