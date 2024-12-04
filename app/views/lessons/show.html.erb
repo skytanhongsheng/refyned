@@ -20,30 +20,34 @@
         <button class="nav-link lesson-tab" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Cards</button>
       </li>
     </ul>
+
     <div class="tab-content" id="myTabContent">
+
       <div class="tab-pane fade show active lesson-tab-content" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
         <div class="my-3">
-          abc
+          To include:
+          1. No. of cards remaining
+          2. No. of cards completed
+          2. Progress of
         </div>
       </div>
+
       <div class="tab-pane fade lesson-tab-content" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-        <div class="d-flex px-3 my-3">
-          <div class="row m-0">
-            <% @lesson.cards.each do |card| %>
-              <%= render 'lessons/bookmarked_preview', card: card %>
-            <% end %>
-          </div>
+        <div class="px-3 my-3">
+          <% @lesson.cards.each do |card| %>
+            <%= render 'lessons/card_preview', card: card if card.bookmarked %>
+          <% end %>
         </div>
       </div>
+
       <div class="tab-pane fade lesson-tab-content" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
-        <div class="row">
-          <div class="my-3">
-            <% @lesson.cards.each do |card| %>
-              <%= render 'lessons/card_preview', card: card %>
-            <% end %>
-          </div>
+        <div class="px-3 my-3">
+          <% @lesson.cards.each do |card| %>
+            <%= render 'lessons/card_preview', card: card %>
+          <% end %>
         </div>
       </div>
+
     </div>
   </div>
 

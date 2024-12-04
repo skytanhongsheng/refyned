@@ -1,3 +1,8 @@
+# 1. showing audio file
+# 2. comparing user answer with model answer
+# 3. mark the user answer
+  # correct: true | false | nil
+
 require 'faker'
 require 'json'
 
@@ -65,7 +70,8 @@ puts "Creating templates..."
 TEMPLATE_NAMES = [
   'Picture Comprehension',
   'Listening Comprehension',
-  'MCQ'
+  'MCQ',
+  'Translate'
 ]
 
 TEMPLATE_NAMES.each { |name| CardTemplate.create!(name:) }

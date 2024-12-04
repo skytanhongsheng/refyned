@@ -1,9 +1,13 @@
 <div class="d-flex justify-content-between p-5">
   <div class="back-to-lesson"><%= link_to 'Back to lesson', lesson_path(@card.lesson)%></div>
-  <div class="bookmark-icon">Add to bookmarks
-    <%= render 'shared/card_item',
-        icon: 'bookmark',
-        link: "#"%>
+  <div class="bookmark-icon">
+  <%= link_to bookmark_card_path(@card), class: "text-decoration-none" do %>
+    <% if @card.bookmarked %>
+      Bookmarked <%= lucide_icon('bookmark-check') %>
+    <% else %>
+      Add to bookmarks <%= lucide_icon('bookmark') %>
+    <% end %>
+  <% end %>
   </div>
 
 </div>
@@ -14,14 +18,7 @@
     <%= render @template_path, card: @card %>
   </div>
 
-  <div class="text-center">
-    <%= simple_form_for @card do |f| %>
-      <%= f.input :user_answer, label: false %>
-      <%= f.submit "Answer" %>
-    <% end %>
-
    <%#= link_to 'Answer', card_path(@card.lesson.next_card), class: 'next-card-btn mt-auto align-self-end' %>
-  </div>
 
 
   <div class="thumbnails">
