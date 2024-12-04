@@ -28,5 +28,12 @@
       "source": "image url"
     },
     "answer": "correct answer"
+  },
+
+  {
+    "instruction": "Translate the sentence below:",
+    "template": "Translate",
+    "context": "",
+    "answer": "correct answer"
   }
 ]
