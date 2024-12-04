@@ -2,7 +2,6 @@ class CreateCurriculumLessonsJob < ApplicationJob
   queue_as :default
 
   def perform(curriculum)
-    puts "running"
     # get lessons info from API service
     lessons_info = CreateCurriculumLessonsService.new.generate_lessons_info(curriculum)
 
@@ -21,9 +20,7 @@ class CreateCurriculumLessonsJob < ApplicationJob
     Lesson.create!(
       title: lesson_info["title"],
       description: lesson_info["description"],
-      curriculum: curriculum,
-      score: 0,
-      progress: 0
+      curriculum: curriculum
     )
   end
 end
