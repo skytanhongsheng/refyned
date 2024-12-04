@@ -78,6 +78,8 @@ TEMPLATE_NAMES.each { |name| CardTemplate.create!(name:) }
 
 puts "Created templates!"
 
+card_templates = CardTemplate.all
+
 # ----------------------------------------------
 # CURRICULA
 # ----------------------------------------------
@@ -105,7 +107,8 @@ CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
     end_date: end_date,
     language: mandarin, # set Mandarin as default language for testing purposes
     user: jim, # set Jim as default user for testing purposes
-    context: CURRICULUM_CONTENT["context"].sample
+    context: CURRICULUM_CONTENT["context"].sample,
+    card_templates: [card_templates.first]
   )
 
   # ----------------------------------------------
