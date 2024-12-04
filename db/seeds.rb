@@ -1,3 +1,8 @@
+# 1. showing audio file
+# 2. comparing user answer with model answer
+# 3. mark the user answer
+  # correct: true | false | nil
+
 require 'faker'
 require 'json'
 
@@ -65,7 +70,8 @@ puts "Creating templates..."
 TEMPLATE_NAMES = [
   'Picture Comprehension',
   'Listening Comprehension',
-  'MCQ'
+  'MCQ',
+  'Translate'
 ]
 
 TEMPLATE_NAMES.each { |name| Template.create!(name:) }
@@ -126,11 +132,13 @@ CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
         card.context = context
       else
         # TODO: change hard coded files
-        file_path = File.join(Rails.root, "app", "assets", "audio", "sample_card_audio.mp3")
-        file = File.open(file_path)
         if context[:type] == "audio/mpeg"
+          file_path = File.join(Rails.root, "app", "assets", "audio", "sample_card_audio.mp3")
+          file = File.open(file_path)
           card.audio.attach(io: file, filename: "sample_card_audio.mp3", content_type: "audio/mpeg")
         elsif context[:type] == "image/png"
+          file_path = File.join(Rails.root, "app", "assets", "images", "sample_card_picture.jpg")
+          file = File.open(file_path)
           card.picture.attach(io: file, filename: "sample_card_picture.jpg", content_type: "image/png")
         end
       end
