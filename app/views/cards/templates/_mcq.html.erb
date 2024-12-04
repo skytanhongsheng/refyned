@@ -1,5 +1,4 @@
 <%# Example instruction: 'Select the correct answer'%>
-
 <h3><%= card.instruction %></h3>
 <div class="context border border-3 rounded p-5 mt-5 mb-5">
   <% if card.picture.attached?  %>
@@ -9,19 +8,11 @@
   <% else %>
     <%= card.context %>
   <% end %>
-
-  <div class="container">
-    <div class="row">
-      <% card.options.each do |option| %>
-        <div class="col-3"><%= option.content %></div>
-      <% end %>
-    </div>
-  </div>
 </div>
 
 <div class="text-center">
-    <%= simple_form_for @card do |f| %>
-      <%= f.input :user_answer, label: false %>
-      <%= f.submit "Answer" %>
-    <% end %>
-  </div>
+  <%= simple_form_for @card do |f| %>
+    <%= f.collection_radio_buttons :user_answer, @card.options.map { |option| [option.content, option.content] }, :first, :last %>
+    <%= f.submit "Answer" %>
+  <% end %>
+</div>
