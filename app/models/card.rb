@@ -21,12 +21,10 @@ class Card < ApplicationRecord
   # check against model_answer for everything else
   # updates :correct
   def score!
-    self.correct = if card_template == "mcq"
-                     direct_comparison
-                   else
-                     similarity_comparison
-                   end
+    self.correct = card_template.name == "picture_comprehension" ? similarity_comparison : direct_comparison
   end
+
+  private
 
   def check_empty
     self.user_answer = nil if user_answer == ""
@@ -37,6 +35,7 @@ class Card < ApplicationRecord
     user_answer == model_answer
   end
 
+  # For a Picture Comprehension question, this is the scoring method:
   def similarity_comparison
     AnswerSimilarityService.is_correct?(id, user_answer, model_answer)
   end
