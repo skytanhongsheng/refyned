@@ -114,8 +114,6 @@ CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
       title: plan["title"],
       description: plan["description"],
       curriculum:,
-      score: rand,
-      progress: rand,
       order: index + 1,
       status: "pending"
     )
