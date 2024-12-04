@@ -17,7 +17,7 @@ class Card < ApplicationRecord
   end
 
   # called after user has submitted user_answer
-  # call API if image_comprehention
+  # call API if image_comprehension
   # check against model_answer for everything else
   # updates :correct
   def score!
