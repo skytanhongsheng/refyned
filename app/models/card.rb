@@ -21,7 +21,7 @@ class Card < ApplicationRecord
   # check against model_answer for everything else
   # updates :correct
   def score!
-    self.correct = card_template.name == "picture_comprehension" ? similarity_comparison : direct_comparison
+    self.correct = card_template.name == "Picture Comprehension" ? similarity_comparison : direct_comparison
   end
 
   private

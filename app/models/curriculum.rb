@@ -17,7 +17,7 @@ class Curriculum < ApplicationRecord
   end
 
   def score
-    lessons.sum(&:score) / lessons.length
+    lessons.filter(&:score).sum(&:score) / lessons.length
   end
 
   def create_lessons
