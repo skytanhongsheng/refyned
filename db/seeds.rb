@@ -65,7 +65,8 @@ puts "Creating templates..."
 TEMPLATE_NAMES = [
   'Picture Comprehension',
   'Listening Comprehension',
-  'MCQ'
+  'MCQ',
+  'Translate'
 ]
 
 TEMPLATE_NAMES.each { |name| Template.create!(name:) }
