@@ -33,7 +33,7 @@
   {
     "instruction": "Translate the sentence below:",
     "template": "Translate",
-    "context": "",
+    "context": "她正在学习。",
     "answer": "correct answer"
   }
 ]

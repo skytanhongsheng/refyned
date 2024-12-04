@@ -5,3 +5,9 @@
   <p><%= @card.context %></p>
 </div>
 <%# <p class="border border-3 rounded-pill p-2">= @card.model_answer</p> %>
+<div class="text-center">
+    <%= simple_form_for @card do |f| %>
+      <%= f.input :user_answer, label: false %>
+      <%= f.submit "Answer" %>
+    <% end %>
+  </div>

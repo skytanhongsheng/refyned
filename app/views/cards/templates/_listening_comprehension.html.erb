@@ -4,6 +4,11 @@
 <div class="context border border-3 rounded p-5 mt-5 mb-5">
   <%# <p>Audio file here</p> %>
   <p><%= cl_video_tag @card.audio.key %></p>
-
 </div>
+<div class="text-center">
+    <%= simple_form_for @card do |f| %>
+      <%= f.input :user_answer, label: false %>
+      <%= f.submit "Answer" %>
+    <% end %>
+  </div>
 <%# <p class="border border-3 rounded-pill p-2">= @card.model_answer</p> %>
