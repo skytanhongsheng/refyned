@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_03_051652) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_04_022841) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,19 +42,25 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_03_051652) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "card_templates", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "cards", force: :cascade do |t|
     t.boolean "bookmarked", default: false, null: false
     t.boolean "correct"
     t.text "instruction", null: false
     t.text "context"
-    t.bigint "template_id", null: false
+    t.bigint "card_template_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "lesson_id", null: false
     t.text "user_answer"
     t.text "model_answer", default: "", null: false
+    t.index ["card_template_id"], name: "index_cards_on_card_template_id"
     t.index ["lesson_id"], name: "index_cards_on_lesson_id"
-    t.index ["template_id"], name: "index_cards_on_template_id"
   end
 
   create_table "curricula", force: :cascade do |t|
@@ -72,13 +78,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_03_051652) do
     t.index ["user_id"], name: "index_curricula_on_user_id"
   end
 
-  create_table "curriculum_templates", force: :cascade do |t|
-    t.bigint "template_id", null: false
+  create_table "curriculum_card_templates", force: :cascade do |t|
+    t.bigint "card_template_id", null: false
     t.bigint "curriculum_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["curriculum_id"], name: "index_curriculum_templates_on_curriculum_id"
-    t.index ["template_id"], name: "index_curriculum_templates_on_template_id"
+    t.index ["card_template_id"], name: "index_curriculum_card_templates_on_card_template_id"
+    t.index ["curriculum_id"], name: "index_curriculum_card_templates_on_curriculum_id"
   end
 
   create_table "languages", force: :cascade do |t|
@@ -108,12 +114,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_03_051652) do
     t.index ["card_id"], name: "index_options_on_card_id"
   end
 
-  create_table "templates", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -129,12 +129,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_03_051652) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cards", "card_templates"
   add_foreign_key "cards", "lessons"
-  add_foreign_key "cards", "templates"
   add_foreign_key "curricula", "languages"
   add_foreign_key "curricula", "users"
-  add_foreign_key "curriculum_templates", "curricula"
-  add_foreign_key "curriculum_templates", "templates"
+  add_foreign_key "curriculum_card_templates", "card_templates"
+  add_foreign_key "curriculum_card_templates", "curricula"
   add_foreign_key "lessons", "curricula"
   add_foreign_key "options", "cards"
 end
