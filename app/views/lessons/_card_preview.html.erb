@@ -3,6 +3,14 @@
     <i class="fa-solid fa-bookmark"></i>
     <p class="ms-3 my-0 py-3"><%= card.card_template.name %></p>
     <p class="ms-3 my-0 py-3"><%= card.instruction %></p>
-    <p class="ms-3 my-0 py-3"><% if card.complete? %> <i class="fa-regular fa-circle-check"></i> <% end %></p>
+    <p class="ms-3 my-0 py-3">
+      <% if card.correct == true %>
+        <i class="fa-regular fa-circle-check text-success"></i>
+      <% elsif card.correct == false %>
+        <i class="fa-regular fa-circle-xmark text-danger"></i>
+      <% else %>
+        <i class="fa-solid fa-question"></i>
+      <% end %>
+    </p>
   </div>
 <% end %>
