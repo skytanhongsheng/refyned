@@ -1,7 +1,22 @@
 class CardsController < ApplicationController
-  before_action :set_card, only: %i[show update bookmark]
+  before_action :set_card, only: %i[show update bookmark attempt]
 
   def show
+  end
+
+  def attempt
+    user_answer = card_params[:user_answer]
+
+    @card.correct = @card.model_answer == user_answer
+
+    if @card.save
+      @card.lesson.verify_complete
+      next_card = @card.lesson.next_card(@card)
+
+      redirect_to next_card.nil? ? @card.lesson : next_card
+    else
+      render :show, status: :unprocessable_entity
+    end
   end
 
   def update
@@ -27,7 +42,7 @@ class CardsController < ApplicationController
 
   def set_card
     @card = Card.find(params[:id])
-    template_name = @card.template.name.downcase.gsub(' ', '_')
+    template_name = @card.card_template.name.downcase.gsub(' ', '_')
     @template_path = "cards/templates/#{template_name}"
   end
 

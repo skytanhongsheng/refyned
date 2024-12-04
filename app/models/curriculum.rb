@@ -4,8 +4,8 @@ class Curriculum < ApplicationRecord
 
   has_many :lessons, dependent: :destroy
   has_many :cards, through: :lessons
-  has_many :curriculum_templates, dependent: :destroy
-  has_many :templates, through: :curriculum_templates
+  has_many :curriculum_card_templates, dependent: :destroy
+  has_many :card_templates, through: :curriculum_card_templates
 
   validates :title, :purpose, :start_date, :end_date, :context, presence: true
   validates :lesson_hours, presence: true, numericality: { greater_than: 0 }
