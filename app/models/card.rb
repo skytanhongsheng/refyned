@@ -17,14 +17,26 @@ class Card < ApplicationRecord
   end
 
   # called after user has submitted user_answer
-  # call API if image_comprehention
+  # call API if image_comprehension
   # check against model_answer for everything else
   # updates :correct
   def score!
-    self.correct = true
+    self.correct = card_template.name == "Picture Comprehension" ? similarity_comparison : direct_comparison
   end
+
+  private
 
   def check_empty
     self.user_answer = nil if user_answer == ""
+  end
+
+  # For a MCQ question, this is the scoring method:
+  def direct_comparison
+    user_answer == model_answer
+  end
+
+  # For a Picture Comprehension question, this is the scoring method:
+  def similarity_comparison
+    AnswerSimilarityService.is_correct?(id, user_answer, model_answer)
   end
 end
