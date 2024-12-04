@@ -5,7 +5,7 @@ class Lesson < ApplicationRecord
   validates :title, :description, presence: true
 
   def next_lesson
-    curriculum.lessons.find_by(order: self.order + 1)
+    curriculum.lessons.find_by(order: order + 1)
   end
 
   def status
@@ -51,10 +51,10 @@ class Lesson < ApplicationRecord
   end
 
   def score
-    cards.where(correct: true).length / cards.length
+    cards.where(correct: true).length.to_f / cards.length
   end
 
   def progress
-    cards.reject{ |card| card.correct.nil? }.length / cards.length
+    cards.reject { |card| card.correct.nil? }.length.to_f / cards.length
   end
 end

@@ -13,11 +13,17 @@ class Curriculum < ApplicationRecord
   after_create :create_lessons
 
   def progress
-    lessons.sum { |lesson| lesson.progress } / lessons.length
+    lessons.sum(&:progress).to_f / lessons.length
   end
 
   def score
-    lessons.filter(&:score).sum(&:score) / lessons.length
+    attempted_lessons = lessons.select do |lesson|
+      lesson.cards.any? { |card| card.complete? }
+    end
+
+    return 0 if attempted_lessons.empty?
+
+    lessons.filter(&:score).sum(&:score) / attempted_lessons.length
   end
 
   def create_lessons
