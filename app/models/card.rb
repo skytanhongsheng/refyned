@@ -11,7 +11,7 @@ class Card < ApplicationRecord
   before_validation :check_empty
   before_save :score!, if: :will_save_change_to_user_answer?
 
-  def complete?
+  def attempted?
     # [true, false].include?(correct)
     !correct.nil?
   end

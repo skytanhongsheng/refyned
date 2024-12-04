@@ -11,7 +11,7 @@
 </div>
 
 <div class="text-center">
-  <%= simple_form_for @card do |f| %>
+  <%= simple_form_for @card, url: attempt_card_path(@card) do |f| %>
     <%= f.collection_radio_buttons :user_answer, @card.options.map { |option| [option.content, option.content] }, :first, :last %>
     <%= f.submit "Answer" %>
   <% end %>
