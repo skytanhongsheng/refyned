@@ -26,7 +26,6 @@ class Card < ApplicationRecord
                    else
                      similarity_comparison
                    end
-    save!
   end
 
   def check_empty
