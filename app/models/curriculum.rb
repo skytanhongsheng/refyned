@@ -13,7 +13,7 @@ class Curriculum < ApplicationRecord
   after_create :create_lessons
 
   def progress
-    lessons.sum(&:progress) / lessons.length
+    lessons.sum { |lesson| lesson.progress } / lessons.length
   end
 
   def score
