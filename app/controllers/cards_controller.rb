@@ -1,5 +1,5 @@
 class CardsController < ApplicationController
-  before_action :set_card, only: %i[show update attempt]
+  before_action :set_card, only: %i[show update bookmark attempt]
 
   def show
   end
@@ -30,6 +30,12 @@ class CardsController < ApplicationController
     else
       render :show, status: :unprocessable_entity
     end
+  end
+
+  def bookmark
+    @card.bookmarked = !@card.bookmarked
+    @card.save
+    redirect_to card_path(@card)
   end
 
   private

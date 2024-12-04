@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   resources :lessons
   resources :cards do
     member do
-      patch '/attempt', to: 'cards#attempt'
+      patch :attempt
+      get :bookmark
     end
   end
 
