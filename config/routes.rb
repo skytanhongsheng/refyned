@@ -12,6 +12,10 @@ Rails.application.routes.draw do
 
   resources :curricula
   resources :lessons
-  resources :cards
+  resources :cards do
+    member do
+      get :bookmark
+    end
+  end
 
 end
