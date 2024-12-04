@@ -1,5 +1,5 @@
 class Card < ApplicationRecord
-  belongs_to :template
+  belongs_to :card_template
   belongs_to :lesson
   has_many :options, dependent: :destroy
 
