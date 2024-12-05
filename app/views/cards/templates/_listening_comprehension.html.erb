@@ -1,14 +1,19 @@
-<%# Example instruction: 'Type what you hear'%>
-  <audio src="<%= @card.audio.url %>"></audio>
-
-<h3><%= @card.instruction %></h3>
 <div class="context border border-3 rounded p-5 mt-5 mb-5">
-  <audio src='<%= @card.audio.url %>' controls preload='auto'></audio>
+  <audio src='<%= card.audio.url %>' controls preload='auto'></audio>
 </div>
-<div class="text-center">
-    <%= simple_form_for @card, url: attempt_card_path(@card) do |f| %>
+
+<% if mode == 'learning' %>
+  <div class="d-flex flex-column">
+    <%= card.model_answer %>
+    <%= link_to 'Next', next_card.nil? ? card.lesson : card_path("learning", next_card) %>
+  </div>
+<% else %>
+  <p><%= card.instruction %></p>
+  <div class="text-center">
+    <%= simple_form_for card, url: attempt_card_path(card) do |f| %>
       <%= f.input :user_answer, label: false %>
       <%= f.submit "Answer" %>
     <% end %>
   </div>
+<% end %>
 <%# <p class="border border-3 rounded-pill p-2">= @card.model_answer</p> %>
