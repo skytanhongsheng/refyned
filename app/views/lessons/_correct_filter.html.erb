@@ -1,0 +1,16 @@
+<%= link_to card_path(card), class:"lesson-card" do %>
+  <div class="d-flex border px-3 justify-content-between">
+      <% if card.bookmarked == true %>
+        <%= lucide_icon('bookmark-check') %>
+      <% else %>
+        <%= lucide_icon('bookmark') %>
+      <% end %>
+        <p class="ms-3 my-0 py-3"><%= card.instruction %></p>
+        <p class="ms-3 my-0 py-3"><%= card.card_template.name %></p>
+    <p class="ms-3 my-0 py-3">
+      <% if card.correct == true %>
+        <i class="fa-regular fa-circle-check text-success"></i>
+      <% end %>
+    </p>
+  </div>
+<% end %>

@@ -29,13 +29,13 @@
   </div>
 
     <div class="text-end px-5">
-      <%= link_to "All |", @lesson, class: "px-1 text-decoration-none" %>
-      <%= link_to "Correct |", @lesson, cards: "correct", class:"px-1 text-decoration-none" %>
-      <%= link_to "Mistakes", @lesson, cards: "mistakes", class: "px-1 text-decoration-none" %>
+      <%= link_to "All", lesson_path(@lesson), class: "px-1 text-decoration-none" %> |
+      <%= link_to "Correct", lesson_path(@lesson, cards: "correct"), class:"px-1 text-decoration-none" %> |
+      <%= link_to "Mistakes", lesson_path(@lesson, cards: "mistakes"), class: "px-1 text-decoration-none" %>
     </div>
 
     <div class="px-3 my-3">
-      <% @lesson.cards.order(:id).each do |card| %>
+      <% @cards.order(:id).each do |card| %>
         <%= render 'lessons/card_preview', card: card %>
       <% end %>
     </div>
