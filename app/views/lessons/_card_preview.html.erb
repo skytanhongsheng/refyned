@@ -5,8 +5,8 @@
       <% else %>
         <%= lucide_icon('bookmark') %>
       <% end %>
-        <p class="ms-3 my-0 py-3"><%= card.instruction %></p>
-        <p class="ms-3 my-0 py-3"><%= card.card_template.name %></p>
+        <p class="ms-3 my-0 py-3 btn btn-primary rounded-pill"><%= card.instruction %></p>
+        <p class="ms-3 my-0 py-3 btn btn-primary rounded-pill"><%= card.card_template.name %></p>
     <p class="ms-3 my-0 py-3">
       <% if card.correct == true %>
         <i class="fa-regular fa-circle-check text-success"></i>
