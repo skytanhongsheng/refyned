@@ -21,17 +21,9 @@
    <%#= link_to 'Answer', card_path(@card.lesson.next_card), class: 'next-card-btn mt-auto align-self-end' %>
 
 
-  <div class="thumbnails">
+  <div class="thumbnails d-flex justify-content-center mt-3">
     <% @card.lesson.cards.order(:id).each do |card| %>
-        <% if card.correct %>
-          🟢
-        <% elsif card.correct == false %>
-          🔴
-        <% elsif card.calculating_score? %>
-          <%= lucide_icon("loader") %>
-        <% else %>
-          ⚪️
-        <% end %>
+        <%= render 'cards/thumbnail', card: card %>
     <% end %>
 
   </div>
