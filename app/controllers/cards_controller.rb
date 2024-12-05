@@ -2,6 +2,8 @@ class CardsController < ApplicationController
   before_action :set_card, only: %i[show update bookmark attempt]
 
   def show
+    @mode = params[:mode]
+    @next_card = @card.lesson.next_card(@card)
   end
 
   def attempt
@@ -12,7 +14,7 @@ class CardsController < ApplicationController
     if @card.save
       next_card = @card.lesson.next_card(@card)
 
-      redirect_to next_card.nil? ? @card.lesson : next_card
+      redirect_to next_card.nil? ? @card.lesson : card_path("test", next_card)
     else
       render :show, status: :unprocessable_entity
     end
@@ -23,7 +25,7 @@ class CardsController < ApplicationController
   def bookmark
     @card.bookmarked = !@card.bookmarked
     @card.save
-    redirect_to card_path(@card)
+    redirect_to card_path(params[:mode], @card)
   end
 
   private
