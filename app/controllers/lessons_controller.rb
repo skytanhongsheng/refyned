@@ -1,6 +1,7 @@
 class LessonsController < ApplicationController
   def show
     @lesson = Lesson.find(params[:id])
+    @mode = params[:mode] || "learning"
   end
 
   def update
