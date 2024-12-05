@@ -3,7 +3,7 @@ class CardsController < ApplicationController
 
   def show
     @mode = params[:mode]
-    @next_card = @card.lesson.next_card(@card)
+    @next_card = @card.lesson.next_card(@mode, @card)
   end
 
   def attempt
@@ -12,7 +12,7 @@ class CardsController < ApplicationController
     @card.correct = @card.model_answer == user_answer
 
     if @card.save
-      next_card = @card.lesson.next_card(@card)
+      next_card = @card.lesson.next_card(@mode, @card)
 
       redirect_to next_card.nil? ? @card.lesson : card_path("test", next_card)
     else
