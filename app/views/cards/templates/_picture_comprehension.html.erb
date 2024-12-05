@@ -1,13 +1,11 @@
-<%# Example instruction: 'Describe the following image'%>
-
-<h3><%= @card.instruction %></h3>
 <div class="context border border-3 rounded p-5 mt-5 mb-5">
   <p><%= cl_image_tag @card.picture.key, height: 300, width: 400, crop: :fill %></p>
 </div>
-<div class="text-center">
+
+  <h3><%= @card.instruction %></h3>
+  <div class="text-center">
     <%= simple_form_for @card, url: attempt_card_path(@card) do  |f| %>
       <%= f.input :user_answer, label: false %>
       <%= f.submit "Answer" %>
     <% end %>
   </div>
-<%# <p class="border border-3 rounded-pill p-2">= @card.model_answer</p> %>
