@@ -5,9 +5,11 @@ class CardsController < ApplicationController
   end
 
   def attempt
-    user_answer = card_params[:user_answer]
+    # user_answer = card_params[:user_answer]
 
-    @card.correct = @card.model_answer == user_answer
+    # @card.correct = @card.model_answer == user_answer
+    #
+    @card.update(card_params)
 
     if @card.save
       next_card = @card.lesson.next_card(@card)

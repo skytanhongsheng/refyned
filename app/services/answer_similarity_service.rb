@@ -8,6 +8,7 @@ class AnswerSimilarityService
   end
 
   def self.call_api(id, model_answer, user_answer)
+    sleep 2
     {
       score: 0.8
     }
