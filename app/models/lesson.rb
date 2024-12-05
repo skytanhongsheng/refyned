@@ -26,14 +26,16 @@ class Lesson < ApplicationRecord
   # if card is passed as an argument, return the
   # next card from that provided card
 
-  def next_card(card = nil)
-    incomplete_cards = cards.where(correct: nil).order(:id)
+  def next_card(mode, card = nil)
+    cardset = cards.where(correct: nil).order(:id)
+
+    cardset = cards.select { |c| Card::LEARNING_TEMPLATES.include?(c.card_template.name) } if mode == 'learning'
 
     if card.nil?
-      incomplete_cards.first
+      cardset.first
     else
-      index = incomplete_cards.find_index(card)
-      index.nil? ? incomplete_cards.first : incomplete_cards[index + 1]
+      index = cardset.find_index(card)
+      index.nil? ? cardset.first : cardset[index + 1]
     end
   end
 

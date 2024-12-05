@@ -45,7 +45,7 @@
           <% @curriculum.cards.each do |card| %>
             <div class="d-flex">
               <%= lucide_icon("bookmark", class: "me-2") %>
-              <%= link_to card.instruction, card_path(card), class: 'd-block' %>
+              <%= link_to card.instruction, card_path("learning", card), class: 'd-block' %>
             </div>
           <% end %>
         </div>

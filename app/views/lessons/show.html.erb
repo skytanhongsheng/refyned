@@ -25,33 +25,48 @@
         </div>
       </div>
       </div>
-    </div>
+  <%= link_to (@mode == "learning" ? "Test yourself" : "Back to cards"), lesson_path(mode: @mode == "learning" ? "test" : "learning"), class: 'btn btn-primary border-radius rounded-pill' %>
+</div>
+
+<div class="tab-pane fade lesson-tab-content" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+  <div class="px-3 my-3">
+    <% @lesson.cards.where(bookmarked: true).each do |card| %>
+      <%= render 'lessons/card_preview', card: card, mode: "learning" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="tab-pane fade lesson-tab-content" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+  <div class="px-3 my-3">
+    <% @lesson.cards.each do |card| %>
+      <%= render 'lessons/card_preview', card: card, mode: @mode %>
+    <% end %>
+  </div>
+</div>
+
+  <div class="text-end px-5">
+    <%= link_to "All", lesson_path(@lesson), class: "px-1 text-decoration-none" %> |
+    <%= link_to "Correct", lesson_path(@lesson, cards: "correct"), class:"px-1 text-decoration-none" %> |
+    <%= link_to "Mistakes", lesson_path(@lesson, cards: "mistakes"), class: "px-1 text-decoration-none" %>
   </div>
 
-    <div class="text-end px-5">
-      <%= link_to "All", lesson_path(@lesson), class: "px-1 text-decoration-none" %> |
-      <%= link_to "Correct", lesson_path(@lesson, cards: "correct"), class:"px-1 text-decoration-none" %> |
-      <%= link_to "Mistakes", lesson_path(@lesson, cards: "mistakes"), class: "px-1 text-decoration-none" %>
-    </div>
-
-    <div class="px-3 my-3">
-      <% @cards.order(:id).each do |card| %>
-        <%= render 'lessons/card_preview', card: card %>
-      <% end %>
-    </div>
- </div>
+  <div class="px-3 my-3">
+    <% @cards.order(:id).each do |card| %>
+      <%= render 'lessons/card_preview', card: card, mode: @mode %>
+    <% end %>
+  </div>
 
   <div class="d-flex justify-content-between py-4 px-5">
-    <%= link_to 'Add custom card', new_card_path, class: 'btn btn-primary border-radius rounded-pill' %>
-    <%= if @lesson.status == 'pending'
-          link_to 'Begin Lesson', card_path(@lesson.next_card), class: 'btn btn-primary border-radius rounded-pill'
-        elsif @lesson.next_lesson == nil
-          link_to 'Return to Curriculum', curriculum_path(@lesson.curriculum), class: 'btn btn-primary border-radius rounded-pill'
-        elsif @lesson.status == 'completed'
-          link_to 'Next Lesson', lesson_path(@lesson.next_lesson), class: 'btn btn-primary border-radius rounded-pill'
-        else
-          link_to 'Resume Lesson', card_path(@lesson.next_card), class: 'btn btn-primary border-radius rounded-pill'
-        end
+   <%= link_to 'Add custom card', new_card_path, class: 'btn btn-primary border-radius rounded-pill' %>
+   <%= if @lesson.status == 'pending'
+         link_to 'Begin Lesson', card_path(@mode, @lesson.next_card(@mode)), class: 'btn btn-primary border-radius rounded-pill'
+       elsif @lesson.next_lesson == nil
+         link_to 'Return to Curriculum', curriculum_path(@lesson.curriculum), class: 'btn btn-primary border-radius rounded-pill'
+       elsif @lesson.status == 'completed'
+         link_to 'Next Lesson', lesson_path(@lesson.next_lesson), class: 'btn btn-primary border-radius rounded-pill'
+       else
+         link_to 'Resume Lesson', card_path(@mode, @lesson.next_card(@mode)), class: 'btn btn-primary border-radius rounded-pill'
+       end
     %>
   </div>
 </div>

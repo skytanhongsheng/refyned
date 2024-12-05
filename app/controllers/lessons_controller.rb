@@ -5,6 +5,7 @@ class LessonsController < ApplicationController
     @cards = @lesson.cards
     @cards = @cards.where(correct: true) if params[:cards] == "correct"
     @cards = @cards.where(correct: false) if params[:cards] == "mistakes"
+    @mode = params[:mode] || "learning"
   end
 
   def update
