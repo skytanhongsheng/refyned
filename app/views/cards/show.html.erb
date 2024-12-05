@@ -18,9 +18,6 @@
     <%= render @template_path, card: @card, mode: @mode, next_card: @next_card %>
   </div>
 
-   <%#= link_to 'Answer', card_path(@card.lesson.next_card), class: 'next-card-btn mt-auto align-self-end' %>
-
-
   <div class="thumbnails">
     <% @card.lesson.cards.each do |card| %>
         o
