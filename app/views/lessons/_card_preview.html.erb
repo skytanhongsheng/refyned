@@ -1,4 +1,4 @@
-<% if mode == 'learning' && card.learn? %>
+<% if (mode == 'learning' && card.learn?) || mode == 'test' %>
 
   <%= link_to card_path(mode, card), class:"lesson-card" do %>
     <div class="d-flex border px-3 justify-content-between">
