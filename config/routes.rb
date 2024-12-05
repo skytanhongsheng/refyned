@@ -12,11 +12,11 @@ Rails.application.routes.draw do
 
   resources :curricula
   resources :lessons
-  resources :cards do
+  resources :cards, only: %i[new] do
     member do
       patch :attempt
       get :bookmark
     end
   end
-
+  get ":mode/card/:id", to: 'cards#show', as: :card, mode: /learning|test/
 end
