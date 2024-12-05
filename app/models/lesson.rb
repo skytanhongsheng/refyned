@@ -48,4 +48,12 @@ class Lesson < ApplicationRecord
   def progress
     cards.empty? ? 0 : cards.reject { |card| card.correct.nil? }.length.to_f / cards.length
   end
+
+  def completed_cards
+    cards.where.not(correct: nil)
+  end
+
+  def incomplete_cards
+    cards.where(correct: nil)
+  end
 end
