@@ -81,3 +81,4 @@ gem "cloudinary"
 gem "lucide-rails", "~> 0.5.1"
 gem 'faker'
 gem "rest-client"
+gem "solid_cable"

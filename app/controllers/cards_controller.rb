@@ -10,6 +10,7 @@ class CardsController < ApplicationController
     # user_answer = card_params[:user_answer]
 
     # @card.correct = @card.model_answer == user_answer
+
     @card.update(card_params)
 
     if @card.save

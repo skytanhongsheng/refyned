@@ -1,0 +1,12 @@
+<div id="thumb_<%= card.id %>" class="px-1">
+  <% if card.correct %>
+    🟢
+  <% elsif card.correct == false %>
+    🔴
+  <% elsif card.calculating_score? %>
+    <%= lucide_icon("loader") %>
+  <% else %>
+    ⚪️
+  <% end %>
+
+</div>

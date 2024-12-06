@@ -27,11 +27,26 @@ class Card < ApplicationRecord
   # check against model_answer for everything else
   # updates :correct
   def score!
-    self.correct = card_template.name == "Picture Comprehension" ? similarity_comparison : direct_comparison
+    if card_template.name == "Picture Comprehension"
+      CardScoringJob.perform_later(id, user_answer, model_answer)
+    else
+      self.correct = direct_comparison
+    end
+  end
+
+  def calculating_score?
+    !user_answer.nil? && correct.nil?
   end
 
   def learn?
     LEARNING_TEMPLATES.include? card_template.name
+  end
+
+  def broadcast_score
+    broadcast_replace_to "thumbnails",
+                         partial: "cards/thumbnail",
+                         target: "thumb_#{id}",
+                         locals: { card: self }
   end
 
   private
@@ -47,6 +62,6 @@ class Card < ApplicationRecord
 
   # For a Picture Comprehension question, this is the scoring method:
   def similarity_comparison
-    AnswerSimilarityService.is_correct?(id, user_answer, model_answer)
+    CardScoringJob.perform_later(id, user_answer, model_answer)
   end
 end
