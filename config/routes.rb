@@ -20,4 +20,5 @@ Rails.application.routes.draw do
   end
 
   get ":mode/card/:id", to: 'cards#show', as: :card, mode: /learning|test/
+  resources  :bookmarks, only: %i[index]
 end
