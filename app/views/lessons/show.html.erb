@@ -12,7 +12,7 @@
         <p><%= @lesson.description %></p>
       </div>
       <div class="d-flex p-2 gap-2">
-        <%= link_to 'Learn', card_path('learning', @lesson.next_card(@mode)), class: 'btn btn-learn border-radius rounded-pill' %>
+        <%= link_to 'Learn 👩🏻‍🎓', card_path('learning', @lesson.next_card(@mode)), class: 'btn btn-learn border-radius rounded-pill' %>
         <% if @lesson.status == 'pending' %>
           <%= link_to 'Begin quiz', card_path('test', @lesson.next_card(@mode)), class: 'btn btn-quiz border-radius rounded-pill' %>
         <% else %>
@@ -43,9 +43,14 @@
         <h2>Cards</h2>
       </div>
       <div class="d-flex">
-        <%= link_to "All", lesson_path(@lesson), class: "px-1" %> |
-        <%= link_to "Correct", lesson_path(@lesson, cards: "correct"), class:"px-1" %> |
-        <%= link_to "Mistakes", lesson_path(@lesson, cards: "mistakes"), class: "px-1" %>
+        <%
+          is_correct = params[:cards] == "correct"
+          is_mistakes = params[:cards] == "mistakes"
+          is_all = !is_correct && !is_mistakes
+        %>
+        <%= link_to "All", lesson_path(@lesson), class: "px-1 #{is_all ? "text-decoration-underline" : ""}" %> |
+        <%= link_to "Correct", lesson_path(@lesson, cards: "correct"), class:"px-1 #{is_correct ? "text-decoration-underline" : ""}" %> |
+        <%= link_to "Mistakes", lesson_path(@lesson, cards: "mistakes"), class: "px-1 #{is_mistakes ? "text-decoration-underline" : ""}" %>
       </div>
     </div>
 

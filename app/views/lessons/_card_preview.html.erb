@@ -5,13 +5,15 @@
     </div>
     <%= link_to "#{card.instruction}", card_path("learning", card.id) %>
   </div>
-  <div class="right-side d-flex gap-2">
-    <p class="badge rounded-pill <%= "pill-#{card.card_template.name.downcase.gsub(" ", "-")}" %>"> <%= card.card_template.name %></p>
+  <div class="right-side d-flex gap-5">
+    <div align="center" style="width: 12rem;">
+      <p class="badge rounded-pill <%= "pill-#{card.card_template.name.downcase.gsub(" ", "-")}" %> "> <%= card.card_template.name %></p>
+    </div>
     <p><% if card.correct == true %>
         <i class="fa-regular fa-circle-check text-success"></i>
-        <% else %>
+      <% else %>
         <i class="fa-regular fa-circle-xmark text-danger"></i>
-        <% end %>
+      <% end %>
     </p>
   </div>
 </div>
