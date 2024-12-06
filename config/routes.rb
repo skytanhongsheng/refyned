@@ -18,5 +18,6 @@ Rails.application.routes.draw do
       get :bookmark
     end
   end
+
   get ":mode/card/:id", to: 'cards#show', as: :card, mode: /learning|test/
 end

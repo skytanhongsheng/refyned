@@ -1,0 +1,47 @@
+.cards-content {
+  background: #FAEADD;
+}
+
+.btn-learn {
+  background-color: #FCB984;
+  color: #295970;
+
+    &:hover {
+      background-color: #f9aa6e;
+      font-weight: 500;
+    }
+}
+
+.btn-quiz {
+  background-color: #295970;
+  color: #ffffff;
+
+    &:hover {
+      background-color: #48636f;
+    }
+}
+
+a {
+  text-decoration: none;
+  color: black;
+
+  &:hover {
+    color: rgb(112, 111, 111);
+  }
+}
+
+.pill-picture-comprehension {
+  background: #6B8A9E;
+}
+
+.pill-listening-comprehension {
+  background: #AA4FA7;
+}
+
+.pill-mcq {
+  background: #295970;
+}
+
+.pill-translate {
+  background: #FCB984;
+}
