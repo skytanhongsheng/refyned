@@ -5,7 +5,6 @@ class CreateLessonCardsJob < ApplicationJob
     # get cards info from API service
     cards_info = CreateLessonCardsService.new(lesson).generate_cards_info
 
-    puts "Creating Cards"
     # create cards from cards info
     cards_info.each { |card_info| create_lesson_card(lesson, card_info) }
   end
@@ -14,15 +13,14 @@ class CreateLessonCardsJob < ApplicationJob
 
   # create a lesson card from card info
   def create_lesson_card(lesson, card_info)
-    debugger
     card = Card.new(
-      instruction: card_info[:instruction],
-      card_template: CardTemplate.find_by(name: card_info[:template]),
-      model_answer: card_info[:answer],
+      instruction: card_info["instruction"],
+      card_template: CardTemplate.find_by(name: card_info["template"]),
+      model_answer: card_info["answer"],
       lesson: lesson
     )
     # check context and set context to appropriate columns accordingly
-    set_card_context(card, card_info[:context])
+    set_card_context(card, card_info["context"])
 
     # add options if exist
     card.options = card_info[:options].map { |option| Option.new(content: option) } if card_info.key?(:options)
