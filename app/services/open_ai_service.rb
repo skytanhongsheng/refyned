@@ -7,35 +7,41 @@ class OpenAiService
   # craete the audio files based on the inputs generated
   # save to tmp folder and send back as json for card creation
   def generate_audio_cards(request)
-    return if request["card_count"]["listening_comprehension"].zero?
+    return if request[:card_count]["listening_comprehension"].nil?
+
+    return mock_response
 
     inputs = create_inputs(request)
     response = []
 
-    inputs.each do |input|
-      response = @client.audio.speech(
+    inputs["phrases"].each do |input|
+      file = @client.audio.speech(
         parameters: {
           model: "tts-1",
-          input: input,
+          input: input["phrase"],
           voice: "alloy",
           response_format: "mp3",
           speed: 1.0
         }
       )
+
       filename = "#{DateTime.now.strftime('%Q').to_i}.mp3"
       filepath = Rails.root.join('tmp', filename)
-      File.binwrite(filepath, response)
+      File.binwrite(filepath, file)
 
       response << {
-        instruction: "Type what you hear below:",
-        template: "Listening Comprehension",
-        context: {
-          type: "audio/mpeg",
-          source: filepath
+        "instruction" => "Type what you hear below:",
+        "template" => "Listening Comprehension",
+        "context" => {
+          "type" => "audio/mpeg",
+          "source" => filepath.to_s
         },
-        answer: input
+        "answer" => input["phrase"],
+        "pronunciation" => input["pronunciation"]
       }
     end
+
+    response
   end
 
   # this doesn't generate the audio but rather just
@@ -55,19 +61,36 @@ class OpenAiService
 
   # create the prompt based on the request
   def make_prompt(request)
-    card_count = request["card_count"]["listening_comprehension"]
-    title = request["title"]
-    description = request["description"]
+    card_count = request[:card_count]["listening_comprehension"]
+    title = request[:title]
+    description = request[:description]
 
     <<~PROMPT
-      Create #{card_count} phrases of no more than 10 words for a lesson in simplified mandarin.
+      Create #{card_count} phrases of between 4 to 10 words for a lesson in simplified mandarin. Also provide the "han yu pin yin".
       The lesson is titled `#{title}`, and the objective: #{description}
       The aim is for a learner to be able to transcribe what is being said so the phrase should be simple.
       Do not use any placeholders or english in your response.
       Return a json response in the format:
       {
-        "phrases": ["phrase1", "phrase2"]
+        "phrases": [{phrase:"你好吗", pronunciation: "ni hao ma"}]
       }
     PROMPT
+  end
+
+  def mock_response
+    [{ "instruction" => "Type what you hear below:",
+       "template" => "Listening Comprehension",
+       "context" =>
+       { "type" => "audio/mpeg",
+         "source" => "/Users/ashley/code/1860/refyned/tmp/1733487850393.mp3" },
+       "answer" => "这个多少钱",
+       "pronunciation" => "zhè ge duō shǎo qián" },
+     { "instruction" => "Type what you hear below:",
+       "template" => "Listening Comprehension",
+       "context" =>
+       { "type" => "audio/mpeg",
+         "source" => "/Users/ashley/code/1860/refyned/tmp/1733487851545.mp3" },
+       "answer" => "我要买五个苹果",
+       "pronunciation" => "wǒ yào mǎi wǔ gè píng guǒ" }]
   end
 end

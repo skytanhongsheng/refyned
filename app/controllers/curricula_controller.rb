@@ -9,7 +9,17 @@ class CurriculaController < ApplicationController
   end
 
   def new
-    @curriculum = Curriculum.new
+    @curriculum = Curriculum.new(
+      title: 'Trip 2024',
+      purpose: 'holiday to china',
+      context: 'I want to be able to handle basic conversations',
+      start_date: "Fri, 6 Dec 2024",
+      end_date: "Fri, 10 Dec 2024",
+      language: Language.find(6),
+      lesson_hours: 1
+    )
+
+    @curriculum.card_templates << CardTemplate.all
   end
 
   def create

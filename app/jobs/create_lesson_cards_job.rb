@@ -3,7 +3,7 @@ class CreateLessonCardsJob < ApplicationJob
 
   def perform(lesson)
     # get cards info from API service
-    cards_info = CreateLessonCardsService.new.generate_cards_info(lesson)
+    cards_info = CreateLessonCardsService.new(lesson).generate_cards_info
 
     puts "Creating Cards"
     # create cards from cards info
@@ -14,6 +14,7 @@ class CreateLessonCardsJob < ApplicationJob
 
   # create a lesson card from card info
   def create_lesson_card(lesson, card_info)
+    debugger
     card = Card.new(
       instruction: card_info[:instruction],
       card_template: CardTemplate.find_by(name: card_info[:template]),
