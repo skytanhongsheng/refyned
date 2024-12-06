@@ -1,11 +1,11 @@
 <div class="d-flex justify-content-between text-left px-5">
   <h1>My curricula</h1>
-  <%= link_to 'Add new curriculum', new_curriculum_path, class: 'view-curriculum-btn mt-auto align-self-end' %>
+  <%= link_to 'Add new curriculum', new_curriculum_path, class: 'add-curriculum-btn view-curriculum-btn mt-auto align-self-end' %>
 </div>
 <div class="container">
   <%# curriculum template start --- %>
   <% @curricula.each do |curriculum|%>
-    <div class="banner-background curriculum-wrapper d-flex justify-content-between shadow rounded p-3 m-3">
+    <div class="bg-white curriculum-wrapper d-flex justify-content-between shadow rounded p-3 m-3">
       <div class="curriculum-info">
         <h2><%= curriculum.title %></h2>
         <p><%= curriculum.lessons.count%> lessons</p>
