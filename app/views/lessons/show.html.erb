@@ -12,13 +12,17 @@
         <p><%= @lesson.description %></p>
       </div>
       <div class="d-flex p-2 gap-2">
-        <%= link_to 'Learn 👩🏻‍🎓', card_path('learning', @lesson.next_card(@mode)), class: 'btn btn-learn border-radius rounded-pill' %>
-        <% if @lesson.status == 'pending' %>
-          <%= link_to 'Begin quiz', card_path('test', @lesson.next_card(@mode)), class: 'btn btn-quiz border-radius rounded-pill' %>
-        <% else %>
-          <%= link_to 'Resume quiz', card_path('test', @lesson.next_card(@mode)), class: 'btn btn-quiz border-radius rounded-pill' %>
+        <%= link_to 'Learn 👩🏻‍🎓', card_path('learning', @lesson.first_card), class: 'btn btn-learn border-radius rounded-pill' %>
+        <% if @lesson.status != "completed" %>
+          <% if @lesson.status == 'pending' %>
+            <%= link_to 'Begin quiz', card_path('test', @lesson.next_card("test")), class: 'btn btn-quiz border-radius rounded-pill' %>
+          <% else %>
+            <%= link_to 'Resume quiz', card_path('test', @lesson.next_card("test")), class: 'btn btn-quiz border-radius rounded-pill' %>
+          <% end %>
         <% end %>
-        <%= link_to 'Next lesson', lesson_path(@lesson.next_lesson), class: 'btn btn-quiz border-radius rounded-pill' if @lesson.status == 'completed' %>
+        <% if @lesson.next_lesson %>
+          <%= link_to 'Next lesson', lesson_path(@lesson.next_lesson), class: 'btn btn-quiz border-radius rounded-pill' if @lesson.status == 'completed' %>
+        <% end %>
       </div>
     </div>
 

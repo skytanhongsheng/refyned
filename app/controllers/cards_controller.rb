@@ -7,14 +7,10 @@ class CardsController < ApplicationController
   end
 
   def attempt
-    # user_answer = card_params[:user_answer]
-
-    # @card.correct = @card.model_answer == user_answer
-
-    @card.update(card_params)
+    @card.user_answer = card_params[:user_answer]
 
     if @card.save
-      next_card = @card.lesson.next_card(@mode, @card)
+      next_card = @card.lesson.next_card("test", @card)
 
       redirect_to next_card.nil? ? @card.lesson : card_path("test", next_card)
     else
