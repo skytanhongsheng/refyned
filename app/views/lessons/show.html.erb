@@ -1,93 +1,69 @@
 <div class="container">
-  <div class="mb-5 mt-5">
-    <h1><%= @lesson.title %> <%= @mode == "learning" ? ": Learning Mode" : ": Quiz Mode" %> </h1>
-  </div>
-  <div class="row">
-    <div class="col-6" >
-      <div class="lesson-description">
-        <p class="shadow p-3 mb-5 bg-body rounded border border-radius rounded-pill"><%= @lesson.description %></p>
+
+  <div class="d-flex p-3 m-5 border shadow-sm rounded">
+    <div class="col-10">
+      <div class="back p-2">
+        <%= link_to "< Back to #{@lesson.curriculum.title}", curriculum_path(@lesson.curriculum) %>
+      </div>
+      <div class="lesson-title p-2">
+        <h1><%= @lesson.title %> <%= @mode == "learning" ? ": Learning Mode" : ": Quiz Mode" %> </h1>
+      </div>
+      <div class="lesson-description p-2">
+        <p><%= @lesson.description %></p>
+      </div>
+      <div class="d-flex p-2 gap-2">
+        <%= link_to 'Learn 👩🏻‍🎓', card_path('learning', @lesson.first_card), class: 'btn btn-learn border-radius rounded-pill' %>
+        <% if @lesson.status != "completed" %>
+          <% if @lesson.status == 'pending' %>
+            <%= link_to 'Begin quiz', card_path('test', @lesson.next_card("test")), class: 'btn btn-quiz border-radius rounded-pill' %>
+          <% else %>
+            <%= link_to 'Resume quiz', card_path('test', @lesson.next_card("test")), class: 'btn btn-quiz border-radius rounded-pill' %>
+          <% end %>
+        <% end %>
+        <% if @lesson.next_lesson %>
+          <%= link_to 'Next lesson', lesson_path(@lesson.next_lesson), class: 'btn btn-quiz border-radius rounded-pill' if @lesson.status == 'completed' %>
+        <% end %>
       </div>
     </div>
-    <div class="col-6">
-      <div class="text-center">
-        <h2>Progress</h2>
-      </div>
-      <div class="d-flex flex-row-reverse px-5 mb-5 justify-content-center align-middle ">
-        <div class="position-relative" style="width: 8rem; height: 8rem;">
-          <canvas
-            data-controller="doughnut-progress-chart"
-            data-doughnut-progress-chart-input-value="[<%= @lesson.completed_cards.length %>,<%= @lesson.incomplete_cards.length %>]"
-            data-doughnut-progress-chart-colors-value='["rgb(72, 156, 150)","rgb(200, 200, 200)"]'
-          ></canvas>
-          <div class="position-absolute top-50 start-50 translate-middle">
-            <p class="mt-4 fs-5"><%= (@lesson.progress * 100).ceil %>%</p>
-          </div>
+
+    <div class="col-2">
+      <div class="position-relative" style="width: 12rem; height: 12rem;">
+        <canvas
+              data-controller="doughnut-progress-chart"
+              data-doughnut-progress-chart-input-value="[<%= @lesson.completed_cards.length %>,<%= @lesson.incomplete_cards.length %>]"
+              data-doughnut-progress-chart-colors-value='["rgb(72, 156, 150)", "rgb(255, 255, 255)"]'
+            ></canvas>
+        <div class="position-absolute top-50 start-50 translate-middle">
+          <p class="mt-4 fs-5"><%= (@lesson.progress * 100).ceil %>%</p>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="cards-info-wrapper m-5">
+    <!-- Card Header -->
+    <div class="d-flex justify-content-between m-3">
+      <div class="header-and-add-custom-card d-flex gap-2">
+        <h2>Cards</h2>
       </div>
-  <%= link_to (@mode == "learning" ? "Test yourself" : "Back to cards"), lesson_path(mode: @mode == "learning" ? "test" : "learning"), class: 'btn btn-primary border-radius rounded-pill' %>
-</div>
-
-<%# <div class="tab-pane fade lesson-tab-content" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0"> %>
-  <%# <div class="px-3 my-3"> %>
-    <%# @lesson.cards.where(bookmarked: true).each do |card| %>
-      <%#= render 'lessons/card_preview', card: card, mode: "learning" %>
-    <%# end %>
-  <%# </div> %>
-<%# </div> %>
-
-
-
-<%# <div class="tab-pane fade lesson-tab-content" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0"> %>
-  <%# <div class="px-3 my-3"> %>
-    <%# @lesson.cards.where(bookmarked: true).each do |card| %>
-      <%#= render 'lessons/card_preview', card: card, mode: "learning" %>
-    <%# end %>
-  <%# </div> %>
-<%# </div> %>
-
-<%# <div class="tab-pane fade lesson-tab-content" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0"> %>
-  <%# <div class="px-3 my-3"> %>
-    <%# @lesson.cards.each do |card| %>
-      <%#= render 'lessons/card_preview', card: card, mode: @mode %>
-    <%# end %>
-  <%# </div> %>
-<%# </div> %>
-
-<div class= "row">
-  <div class="col-6">
-    <div class="text-begin px-5 d-flex" >
-      <%= link_to (@mode == "learning" ? "Switch to Quiz Mode" : "Switch to Learning Mode"), lesson_path(mode: @mode == "learning" ? "test" : "learning"), class: 'btn btn-primary border-radius rounded-pill' %>
+      <div class="d-flex">
+        <%
+          is_correct = params[:cards] == "correct"
+          is_mistakes = params[:cards] == "mistakes"
+          is_all = !is_correct && !is_mistakes
+        %>
+        <%= link_to "All", lesson_path(@lesson), class: "px-1 #{is_all ? "text-decoration-underline" : ""}" %> |
+        <%= link_to "Correct", lesson_path(@lesson, cards: "correct"), class:"px-1 #{is_correct ? "text-decoration-underline" : ""}" %> |
+        <%= link_to "Mistakes", lesson_path(@lesson, cards: "mistakes"), class: "px-1 #{is_mistakes ? "text-decoration-underline" : ""}" %>
+      </div>
     </div>
-  </div>
-  <div class= "col-6">
-    <div class="text-end px-5">
-    <%= link_to "All", lesson_path(@lesson), class: "px-1 text-decoration-none" %> |
-    <%= link_to "Correct", lesson_path(@lesson, cards: "correct"), class:"px-1 text-decoration-none" %> |
-    <%= link_to "Mistakes", lesson_path(@lesson, cards: "mistakes"), class: "px-1 text-decoration-none" %>
+
+    <!-- Cards -->
+    <div class="cards-content-wrapper p-3 d-grid gap-3">
+      <% @cards.order(:id).each do |card| %>
+        <%= render 'card_preview', card: card %>
+      <% end %>
     </div>
-  </div>
-</div>
 
-
-
-  <div class="px-3 my-3">
-    <% @cards.order(:id).each do |card| %>
-      <%= render 'lessons/card_preview', card: card, mode: @mode %>
-    <% end %>
-  </div>
-
-  <div class="d-flex justify-content-between py-4 px-5">
-   <%= link_to 'Add custom card', new_card_path, class: 'btn btn-primary border-radius rounded-pill' %>
-   <%= if @lesson.status == 'pending'
-         link_to 'Begin Lesson', card_path(@mode, @lesson.next_card(@mode)), class: 'btn btn-primary border-radius rounded-pill'
-       elsif @lesson.next_lesson == nil
-         link_to 'Return to Curriculum', curriculum_path(@lesson.curriculum), class: 'btn btn-primary border-radius rounded-pill'
-       elsif @lesson.status == 'completed'
-         link_to 'Next Lesson', lesson_path(@lesson.next_lesson), class: 'btn btn-primary border-radius rounded-pill'
-       else
-         link_to 'Resume Lesson', card_path(@mode, @lesson.next_card(@mode)), class: 'btn btn-primary border-radius rounded-pill'
-       end
-    %>
   </div>
 </div>

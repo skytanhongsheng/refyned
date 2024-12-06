@@ -40,4 +40,12 @@ class Curriculum < ApplicationRecord
       end
     end
   end
+
+  def lessons_with_bookmarks
+    lessons.reject { |lesson| lesson.cards.where(bookmarked: true).empty? }
+  end
+
+  def bookmarks
+    cards.where(bookmarked: true)
+  end
 end

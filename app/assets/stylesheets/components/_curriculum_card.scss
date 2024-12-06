@@ -11,13 +11,25 @@
 }
 
 .view-curriculum-btn {
-  background: #295970;
+  background: $dark-blue;
   color: white;
   padding: 5px 10px;
   text-decoration: none;
   border-radius: 2.5rem;
 
   &:hover {
-    background: #40848e
+    background: #40848e;
+  }
+}
+
+.add-curriculum-btn {
+  background: $orange;
+  color: black;
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 2.5rem;
+
+  &:hover {
+    background: #d1a684;
   }
 }

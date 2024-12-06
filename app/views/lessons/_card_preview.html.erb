@@ -1,36 +1,21 @@
-<% if (mode == 'learning' && card.learn?) || mode == 'test' %>
-
-<% if @mode == "test"%>
-  <%= link_to card_path(mode, card), class:"lesson-card" do %>
-    <div class="d-flex border px-3 justify-content-between">
-      <% if card.bookmarked == true %>
-        <%= lucide_icon('bookmark-check') %>
-      <% else %>
-        <%= lucide_icon('bookmark') %>
-      <% end %>
-        <p class="ms-3 my-0 py-3 btn"><%= card.instruction %></p>
-        <p class="ms-3 my-0 py-3 btn"><%= card.card_template.name %></p>
-      <p class="ms-3 my-0 py-3">
-        <% if card.correct == true %>
-          <i class="fa-regular fa-circle-check text-success"></i>
-        <% elsif card.correct == false %>
-          <i class="fa-regular fa-circle-xmark text-danger"></i>
-        <% else %>
-          <i class="fa-solid fa-question"></i>
-        <% end %>
-      </p>
+<div class="cards-content d-flex border justify-content-between p-3 shadow rounded">
+  <div class="left-side">
+    <div class="bookmark-icon" style="width: 2rem; display: inline-block;">
+      <%= lucide_icon('bookmark-check') if card.bookmarked %>
     </div>
-    <% end %>
-  <% end %>
-<% elsif @mode == "learning" %>
-  <p class="ms-3 my-0 py-3 btn"><%= card.instruction %></p>
-        <p class="ms-3 my-0 py-3 btn"><%= card.card_template.name %></p>
-      <p class="ms-3 my-0 py-3">
-        <% if card.correct == true %>
-          <i class="fa-regular fa-circle-check text-success"></i>
-        <% elsif card.correct == false %>
-          <i class="fa-regular fa-circle-xmark text-danger"></i>
-        <% else %>
-          <i class="fa-solid fa-question"></i>
-        <% end %>
-<% end %>
+    <%= link_to "#{card.instruction}", card_path("test", card.id) %>
+  </div>
+  <div class="right-side d-flex gap-5">
+    <div text-align="center" style="width: 12rem;">
+      <p class="badge rounded-pill <%= "pill-#{card.card_template.name.downcase.gsub(" ", "-")}" %> "> <%= card.card_template.name %></p>
+    </div>
+    <p><% if card.correct == true %>
+        <i class="fa-regular fa-circle-check text-success"></i>
+      <% elsif card.correct.nil? %>
+        <i class="fa-regular fa-question-circle"></i>
+      <% else %>
+        <i class="fa-regular fa-circle-xmark text-danger"></i>
+      <% end %>
+    </p>
+  </div>
+</div>
