@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-between p-5">
-  <div class="back-to-lesson"><%= link_to 'Back to lesson', lesson_path(@card.lesson, mode: @mode)%></div>
+  <div class="back-to-lesson"><%= link_to 'Back to lesson', lesson_path(@card.lesson)%></div>
   <div class="bookmark-icon">
   <%= link_to bookmark_card_path(@card, mode: @mode), class: "text-decoration-none" do %>
     <% if @card.bookmarked %>

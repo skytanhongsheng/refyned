@@ -6,7 +6,7 @@
     <%= link_to "#{card.instruction}", card_path("learning", card.id) %>
   </div>
   <div class="right-side d-flex gap-5">
-    <div align="center" style="width: 12rem;">
+    <div text-align="center" style="width: 12rem;">
       <p class="badge rounded-pill <%= "pill-#{card.card_template.name.downcase.gsub(" ", "-")}" %> "> <%= card.card_template.name %></p>
     </div>
     <p><% if card.correct == true %>
