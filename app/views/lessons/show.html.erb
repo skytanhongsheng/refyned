@@ -28,32 +28,6 @@
   <%= link_to (@mode == "learning" ? "Test yourself" : "Back to cards"), lesson_path(mode: @mode == "learning" ? "test" : "learning"), class: 'btn btn-primary border-radius rounded-pill' %>
 </div>
 
-<%# <div class="tab-pane fade lesson-tab-content" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0"> %>
-  <%# <div class="px-3 my-3"> %>
-    <%# @lesson.cards.where(bookmarked: true).each do |card| %>
-      <%#= render 'lessons/card_preview', card: card, mode: "learning" %>
-    <%# end %>
-  <%# </div> %>
-<%# </div> %>
-
-
-
-<%# <div class="tab-pane fade lesson-tab-content" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0"> %>
-  <%# <div class="px-3 my-3"> %>
-    <%# @lesson.cards.where(bookmarked: true).each do |card| %>
-      <%#= render 'lessons/card_preview', card: card, mode: "learning" %>
-    <%# end %>
-  <%# </div> %>
-<%# </div> %>
-
-<%# <div class="tab-pane fade lesson-tab-content" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0"> %>
-  <%# <div class="px-3 my-3"> %>
-    <%# @lesson.cards.each do |card| %>
-      <%#= render 'lessons/card_preview', card: card, mode: @mode %>
-    <%# end %>
-  <%# </div> %>
-<%# </div> %>
-
 <div class= "row">
   <div class="col-6">
     <div class="text-begin px-5 d-flex" >

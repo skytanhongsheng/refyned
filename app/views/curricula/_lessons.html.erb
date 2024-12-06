@@ -1,14 +1,18 @@
+<h2 class="mx-5">Lessons</h2>
 <div class="row">
-  <div class="col-1">S/N</div>
-  <div class="col-7">Lesson</div>
-  <div class="col-2">Progress</div>
-  <div class="col-2">Score</div>
-</div>
-<% lessons.each_with_index do |lesson, i| %>
-  <%= link_to lesson_path(lesson), class:"row p-2 border rounded-4 mt-1 text-decoration-none" do %>
-    <div class="col-1"><%= i+1 %></div>
-    <div class="col-7"><%= lesson.title %></div>
-    <div class="col-2"><%= (lesson.progress * 100).ceil %>%</div>
-    <div class="col-2"><%= (lesson.score * 100).ceil %>%</div>
+
+  <% lessons.each do |lesson| %>
+    <div class="col-4">
+      <div class="bg-white d-flex flex-column justify-content-between p-2 border rounded-4 mt-1 text-decoration-none m-5 shadow h-100 d-inline-block">
+
+        <div>
+          <h3><strong><%= lesson.title %></strong></h3>
+          <p class="mt-3"><%= lesson.description %></p>
+        </div>
+
+        <%= link_to "Begin Lesson", lesson_path(lesson), class:"ms-auto view-curriculum-btn" %>
+
+      </div>
+    </div>
   <% end %>
-<% end %>
+</div>
