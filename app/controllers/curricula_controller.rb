@@ -40,7 +40,7 @@ class CurriculaController < ApplicationController
   end
 
   def curriculum_params
-    params.require(:curriculum).permit(:title, :purpose, :context, :start_date, :end_date, :language_id,
+    params.require(:curriculum).permit(:title, :purpose, :context, :start_date, :end_date, :language_id, :lesson_hours,
                                        card_template_ids: [])
   end
 end
