@@ -30,4 +30,12 @@ class Curriculum < ApplicationRecord
   def create_lessons
     CreateCurriculumLessonsJob.perform_later(self) unless ENV['SEED']
   end
+
+  def lessons_with_bookmarks
+    lessons.reject { |lesson| lesson.cards.where(bookmarked: true).empty? }
+  end
+
+  def bookmarks
+    cards.where(bookmarked: true)
+  end
 end
