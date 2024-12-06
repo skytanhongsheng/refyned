@@ -1,4 +1,4 @@
-<div class="context border border-3 rounded p-5 mt-5 mb-5">
+<div class="context border border-3 rounded p-5 mt-5 mb-5 banner-background">
   <% if card.picture.attached?  %>
     <%= render cl_image_tag @card.picture.key, height: 300, width: 400, crop: :fill %>
   <% elsif card.audio.attached? %>
