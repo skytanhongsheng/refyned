@@ -5,5 +5,7 @@ class CardScoringJob < ApplicationJob
     @card = Card.find(id)
     @card.correct = AnswerSimilarityService.is_correct?(id, user_answer, model_answer)
     @card.save
+
+    @card.broadcast_score
   end
 end

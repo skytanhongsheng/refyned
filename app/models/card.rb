@@ -42,6 +42,13 @@ class Card < ApplicationRecord
     LEARNING_TEMPLATES.include? card_template.name
   end
 
+  def broadcast_score
+    broadcast_replace_to "thumbnails",
+                         partial: "cards/thumbnail",
+                         target: "thumb_#{id}",
+                         locals: { card: self }
+  end
+
   private
 
   def check_empty
