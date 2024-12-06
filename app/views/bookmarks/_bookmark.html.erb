@@ -1,0 +1,9 @@
+<%= link_to card_path(mode:'learning', id: bookmark.id), class:"text-decoration-none" do %>
+  <div class="d-flex mt-2 rounded-3 shadow-sm border p-4 bg-cream">
+    <span><%= lucide_icon('bookmark-check') %></span>
+    <span class="flex-grow-1 mx-2"><%= bookmark.instruction %></span>
+    <span class="badge rounded-pill bg-purple d-flex align-items-center">
+      <%= bookmark.card_template.name %>
+    </span>
+  </div>
+<% end  %>

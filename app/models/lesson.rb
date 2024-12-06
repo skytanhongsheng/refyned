@@ -64,4 +64,8 @@ class Lesson < ApplicationRecord
   def incomplete_cards
     cards.where(correct: nil)
   end
+
+  def bookmarks
+    cards.where(bookmarked: true)
+  end
 end

@@ -1,3 +1,5 @@
+@import "navbar";
+
 $sidebarWidth: 400px;
 $sidebarItemIconSize: 32px;
 $sidebarToggleBtnSize: 40px;
@@ -27,7 +29,7 @@ $sidebarToggleBtnTopOffset: 40px;
   width: $sidebarToggleBtnSize;
   height: $sidebarToggleBtnSize;
   border-radius: 50%;
-  top: $sidebarToggleBtnTopOffset;
+  top: $navbarHeight - ($sidebarToggleBtnSize / 2);
   left: $sidebarWidth - ($sidebarToggleBtnSize / 2);
   z-index: 1;
 }

@@ -1,33 +1,29 @@
-<nav class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid justify-content-end">
-    <div id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-          <li>
-            <form class="d-flex" role="search">
-              <div class="searchbar d-flex align-items-center">
-                <%= lucide_icon('search') %>
-                <input class="form-control mx-2" type="search" placeholder="Search" aria-label="Search">
-              </div>
-              <button class="btn btn-outline-success d-none" type="submit">Search</button>
-            </form>
-          </li>
-          <li class="nav-item">
-            <%= link_to "#", class: "nav-link" do %>
-              <%= lucide_icon('bell') %>
-            <% end %>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="avatar">
-              <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "avatar" %>
-            </a>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          </li>
+<nav class="position-sticky top-0 z-2">
+  <ul class="my-navbar d-flex justify-content-end align-items-center ps-0 pb-0 mb-0 list-none">
+    <% if user_signed_in? %>
+      <li>
+        <form class="d-flex" role="search">
+          <div class="searchbar d-flex align-items-center">
+            <%= lucide_icon('search') %>
+            <input class="form-control mx-2" type="search" placeholder="Search" aria-label="Search">
+          </div>
+          <button class="btn btn-outline-success d-none" type="submit">Search</button>
+        </form>
+      </li>
+      <li class="nav-item">
+        <%= link_to "#", class: "nav-link" do %>
+          <%= lucide_icon('bell') %>
         <% end %>
-      </ul>
-    </div>
-  </div>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="avatar">
+          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "avatar" %>
+        </a>
+      </li>
+    <% else %>
+      <li class="nav-item">
+        <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+      </li>
+    <% end %>
+  </ul>
 </nav>
