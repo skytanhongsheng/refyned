@@ -1,10 +1,10 @@
 .cards-content {
-  background: #FAEADD;
+  background: $cream;
 }
 
 .btn-learn {
-  background-color: #FCB984;
-  color: #295970;
+  background-color: $orange;
+  color: $dark-blue;
 
     &:hover {
       background-color: #f9aa6e;
@@ -13,7 +13,7 @@
 }
 
 .btn-quiz {
-  background-color: #295970;
+  background-color: $dark-blue;
   color: #ffffff;
 
     &:hover {
@@ -31,17 +31,17 @@ a {
 }
 
 .pill-picture-comprehension {
-  background: #6B8A9E;
+  background: $light-blue;
 }
 
 .pill-listening-comprehension {
-  background: #AA4FA7;
+  background: $purple;
 }
 
 .pill-mcq {
-  background: #295970;
+  background: $dark-blue;
 }
 
 .pill-translate {
-  background: #FCB984;
+  background: $orange;
 }
