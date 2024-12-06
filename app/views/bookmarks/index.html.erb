@@ -1,0 +1,48 @@
+<% if @curricula.empty? %>
+  <div class="d-flex align-items-center justify-content-center border rounded-5 w-100 shadow bg-white" style="height: 450px">
+    <div>
+      <p class="fs-3">You have no bookmarked cards</p>
+      <%= link_to "Back to \"My Curricula\"", curricula_path, class:"d-block text-center fs-5 btn btn-primary bg-dark-blue rounded-5" %>
+    </div>
+  </div>
+<% else %>
+  <div class="d-flex position-relative">
+    <%# quick navigation links on the left %>
+    <div class="position-sticky top-0">
+      <div class="position-sticky top-nav-4 me-4" style="max-width: 300px;">
+        <h1>My Bookmarks</h1>
+        <ol>
+          <% @curricula.each do |curriculum| %>
+            <li>
+              <%=
+                link_to(
+                  "#{curriculum.title} (#{curriculum.bookmarks.length})",
+                  "##{curriculum.title.downcase.gsub(/\s+/, '-')}",
+                  class: "text-decoration-none d-block"
+                )
+              %>
+            </li>
+          <% end %>
+        </ol>
+      </div>
+    </div>
+    <%# bookmarks on the right %>
+    <div class="position-relative flex-grow-1">
+      <% @curricula.each_with_index do |curriculum, i| %>
+        <div class="<%= i > 0 ? 'mt-3' : '' %>">
+          <h2 id=<%= curriculum.title.downcase.gsub(/\s+/, '-') %>>
+            <%= curriculum.title %>
+          </h2>
+          <% curriculum.lessons_with_bookmarks.each_with_index do |lesson, j| %>
+            <div class="<%= j > 0 ? 'mt-3' : '' %>">
+              <h3><%= lesson.title %></h3>
+              <% lesson.bookmarks.each do |bookmark| %>
+                <%= render "bookmark", bookmark: bookmark %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
