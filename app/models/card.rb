@@ -11,6 +11,12 @@ class Card < ApplicationRecord
   before_validation :check_empty
   before_save :score!, if: :will_save_change_to_user_answer?
 
+  LEARNING_TEMPLATES = [
+    "Listening Comprehension",
+    "MCQ",
+    "Translate"
+  ]
+
   def attempted?
     # [true, false].include?(correct)
     !correct.nil?
@@ -30,6 +36,10 @@ class Card < ApplicationRecord
 
   def calculating_score?
     !user_answer.nil? && correct.nil?
+  end
+
+  def learn?
+    LEARNING_TEMPLATES.include? card_template.name
   end
 
   private

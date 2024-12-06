@@ -1,6 +1,11 @@
 class LessonsController < ApplicationController
   def show
     @lesson = Lesson.find(params[:id])
+
+    @cards = @lesson.cards
+    @cards = @cards.where(correct: true) if params[:cards] == "correct"
+    @cards = @cards.where(correct: false) if params[:cards] == "mistakes"
+    @mode = params[:mode] || "learning"
   end
 
   def update
