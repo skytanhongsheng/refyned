@@ -1,45 +1,42 @@
 class CreateLessonCardsService
-  def generate_cards_info(lesson)
-    send_request(request_body(lesson))
+  def initialize(lesson)
+    @client = OpenAI::Client.new
+    @lesson = lesson
+  end
+
+  def generate_cards_info
+    send_request(request_body)
+  end
+
+  def generate_audio_card
+    response = @client.audio.speech(
+      parameters: {
+        model: "tts-1",
+        input: "今天天气真好",
+        voice: "alloy",
+        response_format: "mp3", # Optional
+        speed: 1.0
+      }
+    )
+    File.binwrite(Rails.root.join('tmp', 'test.mp3'), response)
   end
 
   private
 
   # build request body
-  def request_body(lesson)
+  def request_body
     {
-      title: lesson.title,
-      description: lesson.description,
-      card_count: calculate_card_count(
-        lesson.curriculum.lesson_hours,
-        lesson.curriculum.card_templates
-      )
+      title: @lesson.title,
+      description: @lesson.description,
+      card_count: @lesson.curriculum.card_counts
     }
   end
 
   # send request to API endpoint
   def send_request(request_body)
     # TODO: replace hard coded cards below with
-    cards_file_path = File.join(Rails.root, 'db', 'data', 'cards.json')
-    cards_json_content = File.read(cards_file_path)
-    JSON.parse(cards_json_content, { symbolize_names: true })
-  end
-
-  # calculate the card count ber template for the request body
-  def calculate_card_count(lesson_hours, card_templates)
-    total_card_count = 0
-    if lesson_hours >= 6 then total_card_count = 50
-    elsif lesson_hours >= 2 then total_card_count = 25
-    elsif lesson_hours > 1 then total_card_count = 20
-    else
-      total_card_count = 10
-    end
-    count_per_template = (total_card_count.to_f / card_templates.length).round
-
-    card_count = {}
-    card_templates.each do |template|
-      card_count[template.name.strip.downcase.gsub(/\s+/, '_')] = count_per_template
-    end
-    card_count
+    # cards_file_path = File.join(Rails.root, 'db', 'data', 'cards.json')
+    # cards_json_content = File.read(cards_file_path)
+    # JSON.parse(cards_json_content, { symbolize_names: true })
   end
 end

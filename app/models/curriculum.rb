@@ -30,4 +30,14 @@ class Curriculum < ApplicationRecord
   def create_lessons
     CreateCurriculumLessonsJob.perform_later(self) unless ENV['SEED']
   end
+
+  def card_counts
+    card_templates.each_with_object({}) do |template, card_counts|
+      if ['picture_comprehension', 'listening_comprehension'].include? template.to_snake_case
+        card_counts[template.to_snake_case] = 2
+      else
+        card_counts[template.to_snake_case] = rand(4..8)
+      end
+    end
+  end
 end
