@@ -3,9 +3,9 @@
 </div>
 
 <% if mode == "learning" %>
-  <div class="d-flex flex-column">
     <%= card.model_answer %>
-    <%= link_to 'Next', next_card.nil? ? card.lesson : card_path("learning", next_card) %>
+  <div class="view-curriculum-btn w-25 m-auto">
+    <%= link_to 'Next', next_card.nil? ? card.lesson : card_path("learning", next_card), class:"text-white" %>
   </div>
 <% else %>
   <h3><%= @card.instruction %></h3>
