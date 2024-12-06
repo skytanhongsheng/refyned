@@ -1,6 +1,6 @@
 <div class="container">
   <div class="mb-5 mt-5">
-    <h1><%= @lesson.title %></h1>
+    <h1><%= @lesson.title %> <%= @mode == "learning" ? ": Learning Mode" : ": Quiz Mode" %> </h1>
   </div>
   <div class="row">
     <div class="col-6" >
@@ -46,7 +46,7 @@
 <div class= "row">
   <div class="col-6">
     <div class="text-begin px-5 d-flex" >
-      <%= link_to (@mode == "learning" ? "Test yourself" : "Back to cards"), lesson_path(mode: @mode == "learning" ? "test" : "learning"), class: 'btn btn-primary border-radius rounded-pill' %>
+      <%= link_to (@mode == "learning" ? "Switch to Quiz Mode" : "Switch to Learning Mode"), lesson_path(mode: @mode == "learning" ? "test" : "learning"), class: 'btn btn-primary border-radius rounded-pill' %>
     </div>
   </div>
   <div class= "col-6">
