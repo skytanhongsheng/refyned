@@ -27,7 +27,7 @@
         <canvas
               data-controller="doughnut-progress-chart"
               data-doughnut-progress-chart-input-value="[<%= @lesson.completed_cards.length %>,<%= @lesson.incomplete_cards.length %>]"
-              data-doughnut-progress-chart-colors-value='["rgb(49, 89, 112)", "rgb(107, 138, 158)"]'
+              data-doughnut-progress-chart-colors-value='["rgb(49, 89, 112)", "rgb(255, 255, 255)"]'
             ></canvas>
         <div class="position-absolute top-50 start-50 translate-middle">
           <p class="mt-4 fs-5"><%= (@lesson.progress * 100).ceil %>%</p>
