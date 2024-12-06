@@ -3,7 +3,7 @@
     <div class="bookmark-icon" style="width: 2rem; display: inline-block;">
       <%= lucide_icon('bookmark-check') if card.bookmarked %>
     </div>
-    <%= link_to "#{card.instruction}", card_path("learning", card.id) %>
+    <%= link_to "#{card.instruction}", card_path("test", card.id) %>
   </div>
   <div class="right-side d-flex gap-5">
     <div text-align="center" style="width: 12rem;">
@@ -11,6 +11,8 @@
     </div>
     <p><% if card.correct == true %>
         <i class="fa-regular fa-circle-check text-success"></i>
+      <% elsif card.correct.nil? %>
+        <i class="fa-regular fa-question-circle"></i>
       <% else %>
         <i class="fa-regular fa-circle-xmark text-danger"></i>
       <% end %>

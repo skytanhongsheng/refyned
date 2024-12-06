@@ -4,6 +4,10 @@ class Lesson < ApplicationRecord
 
   validates :title, :description, presence: true
 
+  def first_card
+    cards.order(:id).first
+  end
+
   def next_lesson
     curriculum.lessons.find_by(order: order + 1)
   end
@@ -29,7 +33,11 @@ class Lesson < ApplicationRecord
   def next_card(mode, card = nil)
     cardset = cards.where(correct: nil).order(:id)
 
-    cardset = cards.select { |c| Card::LEARNING_TEMPLATES.include?(c.card_template.name) } if mode == 'learning'
+    if mode == 'learning' && status != "completed"
+      cardset = cardset.select do |c|
+        Card::LEARNING_TEMPLATES.include?(c.card_template.name)
+      end
+    end
 
     if card.nil?
       cardset.first

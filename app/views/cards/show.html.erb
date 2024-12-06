@@ -18,12 +18,13 @@
     <%= render @template_path, card: @card, mode: @mode, next_card: @next_card %>
   </div>
 
-   <%#= link_to 'Answer', card_path(@card.lesson.next_card), class: 'next-card-btn mt-auto align-self-end' %>
 
-  <%= turbo_stream_from "thumbnails" %>
-  <div class="thumbnails d-flex justify-content-center mt-3">
-    <% @card.lesson.cards.order(:id).each do |card| %>
-        <%= render 'cards/thumbnail', card: card %>
-    <% end %>
-  </div>
+  <% if @mode == "test" %>
+    <%= turbo_stream_from "thumbnails" %>
+    <div class="thumbnails d-flex justify-content-center mt-3">
+      <% @card.lesson.cards.order(:id).each do |card| %>
+          <%= render 'cards/thumbnail', card: card %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
