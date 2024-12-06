@@ -78,19 +78,22 @@ class OpenAiService
   end
 
   def mock_response
-    [{ "instruction" => "Type what you hear below:",
-       "template" => "Listening Comprehension",
-       "context" =>
+    [
+      { "instruction" => "Type what you hear below:",
+        "template" => "Listening Comprehension",
+        "context" =>
        { "type" => "audio/mpeg",
          "source" => "/Users/ashley/code/1860/refyned/tmp/1733487850393.mp3" },
-       "answer" => "这个多少钱",
-       "pronunciation" => "zhè ge duō shǎo qián" },
-     { "instruction" => "Type what you hear below:",
-       "template" => "Listening Comprehension",
-       "context" =>
-       { "type" => "audio/mpeg",
-         "source" => "/Users/ashley/code/1860/refyned/tmp/1733487851545.mp3" },
-       "answer" => "我要买五个苹果",
-       "pronunciation" => "wǒ yào mǎi wǔ gè píng guǒ" }]
+        "answer" => "这个多少钱",
+        "pronunciation" => "zhè ge duō shǎo qián" },
+
+      { "instruction" => "Type what you hear below:",
+        "template" => "Listening Comprehension",
+        "context" =>
+        { "type" => "audio/mpeg",
+          "source" => "/Users/ashley/code/1860/refyned/tmp/1733487851545.mp3" },
+        "answer" => "我要买五个苹果",
+        "pronunciation" => "wǒ yào mǎi wǔ gè píng guǒ" }
+    ]
   end
 end
