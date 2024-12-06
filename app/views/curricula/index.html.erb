@@ -1,8 +1,11 @@
-<h1>My curricula</h1>
+<div class="d-flex justify-content-between text-left px-5">
+  <h1>My curricula</h1>
+  <%= link_to 'Add new curriculum', new_curriculum_path, class: 'view-curriculum-btn mt-auto align-self-end' %>
+</div>
 <div class="container">
   <%# curriculum template start --- %>
   <% @curricula.each do |curriculum|%>
-    <div class="curriculum-wrapper d-flex justify-content-between shadow rounded p-3 m-3">
+    <div class="banner-background curriculum-wrapper d-flex justify-content-between shadow rounded p-3 m-3">
       <div class="curriculum-info">
         <h2><%= curriculum.title %></h2>
         <p><%= curriculum.lessons.count%> lessons</p>
@@ -28,7 +31,7 @@
             <canvas
                 data-controller="doughnut-progress-chart"
                 data-doughnut-progress-chart-input-value="[<%= curriculum.score %>,<%= 1 - curriculum.score %>]"
-                data-doughnut-progress-chart-colors-value='["rgb(72, 156, 150)","rgb(200, 200, 200)"]'
+                data-doughnut-progress-chart-colors-value='["rgb(228, 189, 83)","rgb(200, 200, 200)"]'
               ></canvas>
             <div class="position-absolute top-50 start-50 translate-middle">
               <p class="mt-4 fs-5"><%= (curriculum.score * 100).ceil %>%</p>
@@ -41,7 +44,4 @@
     </div>
   <% end %>
   <%# --- curriculum template end%>
-  <div class="text-center">
-    <%= link_to 'Add new curriculum', new_curriculum_path, class: 'view-curriculum-btn mt-auto align-self-end' %>
-  </div>
 </div>

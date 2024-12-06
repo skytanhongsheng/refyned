@@ -1,6 +1,6 @@
 <div class="container">
   <div class="mb-5 mt-5">
-    <h1><%= @lesson.title %></h1>
+    <h1><%= @lesson.title %> <%= @mode == "learning" ? ": Learning Mode" : ": Quiz Mode" %> </h1>
   </div>
   <div class="row">
     <div class="col-6" >
@@ -25,30 +25,40 @@
         </div>
       </div>
       </div>
-  <%= link_to (@mode == "learning" ? "Test yourself" : "Back to cards"), lesson_path(mode: @mode == "learning" ? "test" : "learning"), class: 'btn btn-primary border-radius rounded-pill' %>
-</div>
-
-<div class="tab-pane fade lesson-tab-content" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-  <div class="px-3 my-3">
-    <% @lesson.cards.where(bookmarked: true).each do |card| %>
-      <%= render 'lessons/card_preview', card: card, mode: "learning" %>
-    <% end %>
   </div>
-</div>
 
-<div class="tab-pane fade lesson-tab-content" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
-  <div class="px-3 my-3">
-    <% @lesson.cards.each do |card| %>
-      <%= render 'lessons/card_preview', card: card, mode: @mode %>
-    <% end %>
+<%# <div class="tab-pane fade lesson-tab-content" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0"> %>
+  <%# <div class="px-3 my-3"> %>
+    <%# @lesson.cards.where(bookmarked: true).each do |card| %>
+      <%#= render 'lessons/card_preview', card: card, mode: "learning" %>
+    <%# end %>
+  <%# </div> %>
+<%# </div> %>
+
+<%# <div class="tab-pane fade lesson-tab-content" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0"> %>
+  <%# <div class="px-3 my-3"> %>
+    <%# @lesson.cards.each do |card| %>
+      <%#= render 'lessons/card_preview', card: card, mode: @mode %>
+    <%# end %>
+  <%# </div> %>
+<%# </div> %>
+
+<div class= "row">
+  <div class="col-6">
+    <div class="text-begin px-5 d-flex" >
+      <%= link_to (@mode == "learning" ? "Switch to Quiz Mode" : "Switch to Learning Mode"), lesson_path(mode: @mode == "learning" ? "test" : "learning"), class: 'btn btn-primary border-radius rounded-pill' %>
+    </div>
   </div>
-</div>
-
-  <div class="text-end px-5">
+  <div class= "col-6">
+    <div class="text-end px-5">
     <%= link_to "All", lesson_path(@lesson), class: "px-1 text-decoration-none" %> |
     <%= link_to "Correct", lesson_path(@lesson, cards: "correct"), class:"px-1 text-decoration-none" %> |
     <%= link_to "Mistakes", lesson_path(@lesson, cards: "mistakes"), class: "px-1 text-decoration-none" %>
+    </div>
   </div>
+</div>
+
+
 
   <div class="px-3 my-3">
     <% @cards.order(:id).each do |card| %>
