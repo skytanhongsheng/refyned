@@ -7,4 +7,8 @@ class CardTemplate < ApplicationRecord
     "MCQ",
     "Translate"
   ] }
+
+  def to_snake_case
+    name.downcase.gsub(' ', '_')
+  end
 end

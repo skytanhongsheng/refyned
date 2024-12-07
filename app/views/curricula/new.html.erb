@@ -5,7 +5,7 @@
       <%= f.input :title, wrapper_html: { class:"w-100" } %>
     </div>
     <div class="form-step" data-curriculum-form-target="step" data-step="2">
-      <%= f.input :purpose, wrapper_html: { class:"w-100" } %>
+      <%= f.input :purpose, wrapper_html: { class:"w-100" }, input_html: { placeholder: 'I am going for a holiday' } %>
     </div>
     <div class="form-step" data-curriculum-form-target="step" data-step="3">
       <%= f.input :start_date, as: :date, order: [:day, :month, :year], wrapper_html: { class:"w-100" }  %>
@@ -17,7 +17,7 @@
       <%= f.association :language, label_method: :name, value_method: :id, wrapper_html: { class:"w-100" }  %>
     </div>
     <div class="form-step" data-curriculum-form-target="step" data-step="6">
-      <%= f.input :context, wrapper_html: { class:"w-100" }  %>
+      <%= f.input :context, wrapper_html: { class:"w-100" }, input_html: { placeholder: 'I want to be able to navigate around and ask some basic questions' }  %>
     </div>
     <div class="form-step" data-curriculum-form-target="step" data-step="7">
       <%= f.input :lesson_hours, collection: 1..8, wrapper_html: { class:"w-100" }  %>

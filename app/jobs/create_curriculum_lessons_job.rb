@@ -20,7 +20,8 @@ class CreateCurriculumLessonsJob < ApplicationJob
     Lesson.create!(
       title: lesson_info["title"],
       description: lesson_info["description"],
-      curriculum: curriculum
+      curriculum: curriculum,
+      order: lesson_info["order"]
     )
   end
 end
