@@ -85,6 +85,4 @@ gem "solid_cable"
 
 gem "ruby-openai"
 
-gem "mission_control-jobs"
-
 gem "solid_queue"
