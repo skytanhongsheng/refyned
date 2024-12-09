@@ -7,18 +7,20 @@
     <%= card.context %>
   <% end %>
 </div>
-
 <% if mode == "learning" %>
-    <%= card.model_answer %>
+  <%= card.model_answer %>
   <div class="view-curriculum-btn w-25 m-auto">
     <%= link_to 'Next', next_card.nil? ? card.lesson : card_path("learning", next_card), class:"text-white" %>
   </div>
 <% else %>
-  <p><%= card.instruction %></p>
   <div class="text-center">
-      <%= simple_form_for @card, url: attempt_card_path(@card) do |f| %>
-        <%= f.collection_radio_buttons :user_answer, @card.options.map { |option| [option.content, option.content] }, :first, :last %>
-        <%= f.submit "Answer" %>
-      <% end %>
+    <%# <label for="options"></label> %>
+    <input type="radio">
+    <%= simple_form_for @card, url: attempt_card_path(@card) do |f| %>
+      <div class="grid-style">
+        <%= f.collection_radio_buttons :user_answer, @card.options.map { |option| [option.content, option.content] }, :first, :last, item_label_class: 'mcq' %>
+      </div>
+      <%= f.submit "Answer" %>
+    <% end %>
   </div>
 <% end %>

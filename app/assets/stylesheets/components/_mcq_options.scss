@@ -1,0 +1,27 @@
+input[type="radio"] {
+  display: none;
+}
+
+label.mcq {
+  display: block;
+  padding: 2rem 3rem;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  background-color: white;
+  transition: 300ms;
+  cursor: pointer;
+}
+
+label.mcq:hover {
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.2)
+}
+
+input[type="radio"]:checked + label.mcq {
+  background-color: $cream;
+}
+
+.grid-style {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}

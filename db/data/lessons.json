@@ -55,7 +55,7 @@
         "pronunciation": "(Wǒ yào zhège)"
       },
       {
-        "instruction": "Translate the following phrase:",
+        "instruction": "Choose the correct answer:",
         "card_template": "MCQ",
         "context": "Sorry",
         "options": [
@@ -68,7 +68,7 @@
         "pronunciation": "(Duìbuqǐ)"
       },
       {
-        "instruction": "Translate the following phrase:",
+        "instruction": "Choose the correct answer:",
         "card_template": "MCQ",
         "context": "Goodbye",
         "options": [
@@ -81,7 +81,7 @@
         "pronunciation": "(Zàijiàn)"
       },
       {
-        "instruction": "Translate the following phrase:",
+        "instruction": "Choose the correct answer:",
         "card_template": "MCQ",
         "context": "Can you help me?",
         "options": [
@@ -152,7 +152,7 @@
         "pronunciation": "(wǒ zhǐyǒu yī bǎi kuài)"
       },
       {
-        "instruction": "Translate the following phrase:",
+        "instruction": "Choose the correct answer:",
         "card_template": "MCQ",
         "context": "It's too expensive.",
         "options": [
@@ -165,7 +165,7 @@
         "pronunciation": "(tài guì le)"
       },
       {
-        "instruction": "Translate the following phrase:",
+        "instruction": "Choose the correct answer:",
         "card_template": "MCQ",
         "context": "Can I pay cash?",
         "options": [
@@ -179,7 +179,7 @@
 
       },
       {
-        "instruction": "Translate the following phrase:",
+        "instruction": "Choose the correct answer:",
         "card_template": "MCQ",
         "context": "I need change.",
         "options": [
