@@ -3,7 +3,13 @@ class CardScoringJob < ApplicationJob
 
   def perform(id, user_answer, model_answer)
     @card = Card.find(id)
-    @card.correct = AnswerSimilarityService.is_correct?(id, user_answer, model_answer)
+    req_body = {
+      id:,
+      user_text: user_answer,
+      model_answer:
+    }
+    response = QuestLinguaApiService::SimilarityComparison.call(req_body)
+    @card.correct = response["score"] > 0.7
     @card.save
 
     @card.broadcast_score
