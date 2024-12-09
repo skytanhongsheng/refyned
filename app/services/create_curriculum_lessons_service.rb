@@ -1,27 +1,35 @@
 class CreateCurriculumLessonsService
+  def initialize(curriculum)
+    @curriculum = curriculum
+  end
+
   # Make API call to get array of curriculum lesson data
   # { title: string, description: string}[]
-  def generate_lessons_info(curriculum)
-    send_request(request_body(curriculum))
+  def generate_lessons_info
+    send_request(request_body)
   end
 
   private
 
   # build request body
-  def request_body(curriculum)
+  def request_body
     {
-      title: curriculum.title,
-      purpose: curriculum.purpose,
-      context: curriculum.context,
-      duration: curriculum.end_date - curriculum.start_date
+      language: @curriculum.language.name,
+      purpose: @curriculum.purpose,
+      context: @curriculum.context,
+      n_days: (@curriculum.end_date - @curriculum.start_date).to_i
     }
   end
 
   # send request to API endpoint
+  # def send_mock_request(request_body)
+  #   lessons_file_path = File.join(Rails.root, 'db', 'data', 'lesson_plan.yml')
+  #   lessons_info = YAML.load(File.open(lessons_file_path))
+  #   lessons_info.first(2)
+  # end
+
+  # send request to API endpoint
   def send_request(request_body)
-    # TODO: replace the following hard coded data with API request
-    lessons_file_path = File.join(Rails.root, 'db', 'data', 'lesson_plan.yml')
-    lessons_info = YAML.load(File.open(lessons_file_path))
-    lessons_info.first(2)
+    QuestLinguaApiService::LessonGeneration.call(request_body)
   end
 end

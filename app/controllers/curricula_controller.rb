@@ -11,16 +11,15 @@ class CurriculaController < ApplicationController
   def new
     # === Use for testing ===
     # @curriculum = Curriculum.new(
-    #   title: 'Trip 2024',
+    #   title: 'Trip 2024 again',
     #   purpose: 'holiday to china',
-    #   context: 'I want to be able to handle basic conversations',
-    #   start_date: "Fri, 6 Dec 2024",
-    #   end_date: "Fri, 10 Dec 2024",
-    #   language: Language.find(6),
-    #   lesson_hours: 1
+    #   context: 'I want to be able to handle basic conversations and ask for directions on my trip',
+    #   start_date: "Fri, 9 Dec 2024",
+    #   end_date: "Fri, 13 Dec 2024",
+    #   language: Language.find(226),
+    #   lesson_hours: 1,
+    #   card_templates: CardTemplate.all
     # )
-
-    # @curriculum.card_templates << CardTemplate.all
 
     @curriculum = Curriculum.new
   end

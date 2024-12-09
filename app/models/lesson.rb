@@ -2,7 +2,7 @@ class Lesson < ApplicationRecord
   belongs_to :curriculum
   has_many :cards, dependent: :destroy
 
-  validates :title, :description, presence: true
+  validates :title, :description, :order, presence: true
 
   def first_card
     cards.order(:id).first
