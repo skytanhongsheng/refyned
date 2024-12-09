@@ -131,9 +131,9 @@ CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
           file = File.open(file_path)
           card.audio.attach(io: file, filename: context[:source].last, content_type: "audio/mpeg")
         elsif context[:type] == "image/png"
-          file_path = File.join(Rails.root, "app", "assets", "images", "sample_card_picture.jpg")
+          file_path = File.join(Rails.root, *context[:source])
           file = File.open(file_path)
-          card.picture.attach(io: file, filename: "sample_card_picture.jpg", content_type: "image/png")
+          card.picture.attach(io: file, filename: context[:source].last, content_type: "image/png")
         end
       end
     end

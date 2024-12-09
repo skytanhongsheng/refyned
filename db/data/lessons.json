@@ -12,11 +12,14 @@
         "pronunciation": "(Nǐ hǎo)"
       },
       {
-        "instruction": "Translate the following phrase:",
-        "card_template": "Translate",
-        "context": "Thank you",
-        "model_answer": "谢谢",
-        "pronunciation": "(Xièxiè)"
+        "instruction": "Describe the image below: ",
+        "card_template": "Picture Comprehension",
+        "context": {
+          "type": "image/png",
+          "source": ["app", "assets", "images", "credit_card.png"]
+        },
+        "model_answer": "我想用信用卡支付",
+        "pronunciation": "(Wǒ xiǎng yòng xìnyòngkǎ zhīfù)"
       },
       {
         "instruction": "Translate the following phrase:",
@@ -88,10 +91,10 @@
         "card_template": "MCQ",
         "context": "Can you help me?",
         "options": [
-          "对不起",
-          "谢谢",
-          "你能帮我吗",
-          "这里"
+          "厕所在哪儿?",
+          "你叫什么名字?",
+          "你能帮我吗?",
+          "我可以帮你吗?"
         ],
         "model_answer": "你能帮我吗",
         "pronunciation": "(Nǐ néng bāng wǒ ma?)"
@@ -151,11 +154,14 @@
         "pronunciation": "(kěyǐ gěi wǒ kāi fāpiào ma?)"
       },
       {
-        "instruction": "Translate the following phrase:",
-        "card_template": "Translate",
-        "context": "I only have one hundred dollars.",
-        "model_answer": "我只有一百块",
-        "pronunciation": "(wǒ zhǐyǒu yī bǎi kuài)"
+        "instruction": "Describe the image below: ",
+        "card_template": "Picture Comprehension",
+        "context": {
+          "type": "image/png",
+          "source": ["app", "assets", "images", "credit_card.png"]
+        },
+        "model_answer": "我想用信用卡支付",
+        "pronunciation": "(Wǒ xiǎng yòng xìnyòngkǎ zhīfù)"
       },
       {
         "instruction": "Choose the correct answer:",
@@ -163,9 +169,9 @@
         "context": "It's too expensive.",
         "options": [
           "太贵了",
-          "谢谢",
-          "你能帮我吗",
-          "这里"
+          "很便宜",
+          "很热",
+          "冷的"
         ],
         "model_answer": "太贵了",
         "pronunciation": "(tài guì le)"
@@ -175,10 +181,10 @@
         "card_template": "MCQ",
         "context": "Can I pay cash?",
         "options": [
-          "太贵了",
+          "你能帮助我吗?",
           "我可以用现金支付吗?",
-          "你能帮我吗",
-          "这里"
+          "厕所在哪儿?",
+          "你好吗?"
         ],
         "model_answer": "我可以用现金支付吗?",
         "pronunciation": "(wǒ kěyǐ yòng xiànjīn zhīfù ma?)"
@@ -189,10 +195,10 @@
         "card_template": "MCQ",
         "context": "I need change.",
         "options": [
-          "太贵了",
-          "我可以用现金支付吗?",
-          "你能帮我吗",
-          "我需要找零钱"
+          "折扣",
+          "我可以用现金支付吗",
+          "收据",
+          "退款"
         ],
         "model_answer": "我需要找零钱",
         "pronunciation": "(wǒ xūyào zhǎo língqián)"
