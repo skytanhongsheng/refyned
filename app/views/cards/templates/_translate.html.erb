@@ -8,7 +8,6 @@
     <%= link_to 'Next', next_card.nil? ? card.lesson : card_path("learning", next_card), class:"text-white" %>
   </div>
 <% else %>
-  <h3><%= @card.instruction %></h3>
   <div class="text-center">
       <%= simple_form_for @card, url: attempt_card_path(@card) do |f| %>
         <%= f.input :user_answer, label: false %>
