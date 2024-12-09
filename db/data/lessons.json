@@ -109,13 +109,6 @@
       {
         "instruction": "Translate the following phrase:",
         "card_template": "Translate",
-        "context": "1, 2, 3, 4, 5, 6, 7, 8, 9, 10.",
-        "model_answer": "一, 二, 三 , 四 , 五 , 六 , 七, 八, 九, 十",
-        "pronunciation": "(yī), (èr), (sān), (sì), (wǔ), (liù), (qī), (bā), (jiǔ), (shí)"
-      },
-      {
-        "instruction": "Translate the following phrase:",
-        "card_template": "Translate",
         "context": "How much is this?",
         "model_answer": "多少钱?",
         "pronunciation": "(duōshǎo qián?)"
@@ -202,6 +195,13 @@
         ],
         "model_answer": "我需要找零钱",
         "pronunciation": "(wǒ xūyào zhǎo língqián)"
+      },
+      {
+        "instruction": "Translate the following phrase:",
+        "card_template": "Translate",
+        "context": "1, 2, 3, 4, 5, 6, 7, 8, 9, 10.",
+        "model_answer": "一, 二, 三 , 四 , 五 , 六 , 七, 八, 九, 十",
+        "pronunciation": "(yī), (èr), (sān), (sì), (wǔ), (liù), (qī), (bā), (jiǔ), (shí)"
       }
     ]
   }
