@@ -144,7 +144,8 @@ CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
         instruction: card_info[:instruction],
         card_template: CardTemplate.find_by(name: card_info[:card_template]),
         model_answer: card_info[:model_answer],
-        lesson: lesson
+        lesson: lesson,
+        correct: card_info[:correct]
       )
       # check context and set context to appropriate columns accordingly
       set_card_context(card, card_info[:context])

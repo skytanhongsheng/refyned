@@ -9,7 +9,8 @@
         "card_template": "Translate",
         "context": "Hello",
         "model_answer": "你好",
-        "pronunciation": "(Nǐ hǎo)"
+        "pronunciation": "(Nǐ hǎo)",
+        "correct": true
       },
       {
         "instruction": "Describe the image below: ",
@@ -19,35 +20,40 @@
           "source": ["app", "assets", "images", "credit_card.png"]
         },
         "model_answer": "我想用信用卡支付",
-        "pronunciation": "(Wǒ xiǎng yòng xìnyòngkǎ zhīfù)"
+        "pronunciation": "(Wǒ xiǎng yòng xìnyòngkǎ zhīfù)",
+        "correct": false
       },
       {
         "instruction": "Translate the following phrase:",
         "card_template": "Translate",
         "context": "How much is this?",
         "model_answer": "这个多少钱？",
-        "pronunciation":  "(Zhège duōshǎo qián?)"
+        "pronunciation":  "(Zhège duōshǎo qián?)",
+        "correct": false
       },
       {
         "instruction": "Translate the following phrase:",
         "card_template": "Translate",
         "context": "Where is the washroom?",
         "model_answer": "厕所在哪里",
-        "pronunciation": "(Cèsuǒ zài nǎlǐ?)"
+        "pronunciation": "(Cèsuǒ zài nǎlǐ?)",
+        "correct": true
       },
       {
         "instruction": "Translate the following phrase:",
         "card_template": "Translate",
         "context": "I don't understand",
         "model_answer": "我听不懂",
-        "pronunciation": "(Wǒ tīng bù dǒng)"
+        "pronunciation": "(Wǒ tīng bù dǒng)",
+        "correct": true
       },
       {
         "instruction": "Translate the following phrase:",
         "card_template": "Translate",
         "context": "Do you speak English?",
         "model_answer": "你会说英语吗",
-        "pronunciation": "(Nǐ huì shuō Yīngyǔ ma?)"
+        "pronunciation": "(Nǐ huì shuō Yīngyǔ ma?)",
+        "correct": null
 
       },
       {
@@ -58,7 +64,8 @@
           "source": ["app", "assets", "audio", "where_is_the_bus_stop.mp3"]
         },
         "model_answer": "公交车站在哪里？",
-        "pronunciation": "(Gōngjiāo chē zhàn zài nǎlǐ?)"
+        "pronunciation": "(Gōngjiāo chē zhàn zài nǎlǐ?)",
+        "correct": null
       },
       {
         "instruction": "Choose the correct answer:",
@@ -71,7 +78,8 @@
           "不客气"
         ],
         "model_answer": "对不起",
-        "pronunciation": "(Duìbuqǐ)"
+        "pronunciation": "(Duìbuqǐ)",
+        "correct": null
       },
       {
         "instruction": "Choose the correct answer:",
@@ -84,7 +92,8 @@
           "这里"
         ],
         "model_answer": "再见",
-        "pronunciation": "(Zàijiàn)"
+        "pronunciation": "(Zàijiàn)",
+        "correct": null
       },
       {
         "instruction": "Choose the correct answer:",
@@ -96,8 +105,9 @@
           "你能帮我吗?",
           "我可以帮你吗?"
         ],
-        "model_answer": "你能帮我吗",
-        "pronunciation": "(Nǐ néng bāng wǒ ma?)"
+        "model_answer": "你能帮我吗?",
+        "pronunciation": "(Nǐ néng bāng wǒ ma?)",
+        "correct": null
       }
     ]
   },
@@ -111,7 +121,8 @@
         "card_template": "Translate",
         "context": "How much is this?",
         "model_answer": "多少钱?",
-        "pronunciation": "(duōshǎo qián?)"
+        "pronunciation": "(duōshǎo qián?)",
+        "correct": null
 
       },
       {
@@ -122,21 +133,24 @@
           "source": ["app", "assets", "audio", "i_want_to_buy_this.mp3"]
         },
         "model_answer": "我要买这个",
-        "pronunciation": "(Wǒ yào mǎi zhège)"
+        "pronunciation": "(Wǒ yào mǎi zhège)",
+        "correct": null
       },
       {
         "instruction": "Translate the following phrase:",
         "card_template": "Translate",
         "context": "Do you accept credit cards?",
         "model_answer": "你们接受信用卡吗?",
-        "pronunciation": "(nǐmen jiēshòu xìnyòngkǎ ma?)"
+        "pronunciation": "(nǐmen jiēshòu xìnyòngkǎ ma?)",
+        "correct": null
       },
       {
         "instruction": "Translate the following phrase:",
         "card_template": "Translate",
         "context": "Discount",
         "model_answer": "打折",
-        "pronunciation": "(dǎzhé)"
+        "pronunciation": "(dǎzhé)",
+        "correct": null
 
       },
       {
@@ -144,7 +158,8 @@
         "card_template": "Translate",
         "context": "Can you give me a receipt?",
         "model_answer": "可以给我开发票吗?",
-        "pronunciation": "(kěyǐ gěi wǒ kāi fāpiào ma?)"
+        "pronunciation": "(kěyǐ gěi wǒ kāi fāpiào ma?)",
+        "correct": null
       },
       {
         "instruction": "Describe the image below: ",
@@ -154,7 +169,8 @@
           "source": ["app", "assets", "images", "credit_card.png"]
         },
         "model_answer": "我想用信用卡支付",
-        "pronunciation": "(Wǒ xiǎng yòng xìnyòngkǎ zhīfù)"
+        "pronunciation": "(Wǒ xiǎng yòng xìnyòngkǎ zhīfù)",
+        "correct": null
       },
       {
         "instruction": "Choose the correct answer:",
@@ -167,7 +183,8 @@
           "冷的"
         ],
         "model_answer": "太贵了",
-        "pronunciation": "(tài guì le)"
+        "pronunciation": "(tài guì le)",
+        "correct": null
       },
       {
         "instruction": "Choose the correct answer:",
@@ -180,7 +197,8 @@
           "你好吗?"
         ],
         "model_answer": "我可以用现金支付吗?",
-        "pronunciation": "(wǒ kěyǐ yòng xiànjīn zhīfù ma?)"
+        "pronunciation": "(wǒ kěyǐ yòng xiànjīn zhīfù ma?)",
+        "correct": null
 
       },
       {
@@ -194,14 +212,16 @@
           "退款"
         ],
         "model_answer": "我需要找零钱",
-        "pronunciation": "(wǒ xūyào zhǎo língqián)"
+        "pronunciation": "(wǒ xūyào zhǎo língqián)",
+        "correct": null
       },
       {
         "instruction": "Translate the following phrase:",
         "card_template": "Translate",
         "context": "1, 2, 3, 4, 5, 6, 7, 8, 9, 10.",
         "model_answer": "一, 二, 三 , 四 , 五 , 六 , 七, 八, 九, 十",
-        "pronunciation": "(yī), (èr), (sān), (sì), (wǔ), (liù), (qī), (bā), (jiǔ), (shí)"
+        "pronunciation": "(yī), (èr), (sān), (sì), (wǔ), (liù), (qī), (bā), (jiǔ), (shí)",
+        "correct": null
       }
     ]
   }
