@@ -1,18 +1,26 @@
 class QuestLinguaApiService
+  # Base method to handle API calls with redirect handling
+  def self.make_request(url, request, headers)
+    begin
+      res = RestClient.post(url, JSON.generate(request), headers)
+    rescue RestClient::TemporaryRedirect => e
+      redirected_url = e.response.headers[:location]
+      res = RestClient.post(redirected_url, JSON.generate(request), headers)
+    end
+    res
+  end
+
   # -------------------------------------------
   # Card Generation
   # -------------------------------------------
   class CardGeneration
+    API_URL = "https://zc75at5z6z49uz-8888.proxy.runpod.net/card-generation/"
+
     def self.call(request)
-      return mock_response
+      # return mock_response
 
-      headers = {
-        content_type: :json
-      }
-
-      res = RestClient.post("https://q68aemnb5sgph8-4000.proxy.runpod.net/card-generation/", JSON.generate(request),
-                            headers)
-
+      headers = { content_type: :json }
+      res = QuestLinguaApiService.make_request(API_URL, request, headers)
       JSON.parse(res.body)
     end
 
@@ -66,14 +74,11 @@ class QuestLinguaApiService
   # Similarity Comparison
   # -------------------------------------------
   class SimilarityComparison
+    API_URL = "http://34.143.209.64:8000/scoring-and-restructuring/"
+
     def self.call(request)
-      headers = {
-        content_type: :json
-      }
-
-      res = RestClient.post("http://34.143.209.64:8000/scoring-and-restructuring", JSON.generate(request),
-                            headers)
-
+      headers = { content_type: :json }
+      res = QuestLinguaApiService.make_request(API_URL, request, headers)
       JSON.parse(res)
     end
   end
