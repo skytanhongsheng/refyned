@@ -9,7 +9,7 @@ class OpenAiService
   def generate_audio_cards(request)
     return if request[:card_count]["listening_comprehension"].nil?
 
-    return mock_response
+    # return mock_response
 
     inputs = create_inputs(request)
     response = []

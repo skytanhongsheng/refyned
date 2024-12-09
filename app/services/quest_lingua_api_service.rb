@@ -11,6 +11,21 @@ class QuestLinguaApiService
   end
 
   # -------------------------------------------
+  # Lesson Generation
+  # -------------------------------------------
+  class LessonGeneration
+    API_URL = "https://zc75at5z6z49uz-8888.proxy.runpod.net/lesson-plan-generation/"
+
+    def self.call(request)
+      # return mock_response
+
+      headers = { content_type: :json }
+      res = QuestLinguaApiService.make_request(API_URL, request, headers)
+      JSON.parse(res.body)
+    end
+  end
+
+  # -------------------------------------------
   # Card Generation
   # -------------------------------------------
   class CardGeneration
