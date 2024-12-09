@@ -6,7 +6,7 @@ export default class extends Controller {
 
   connect() {
     this.currentStep = 1;
-
+    this.lastSlide = false;
   }
 
   previous() {
@@ -14,13 +14,16 @@ export default class extends Controller {
       this.currentStep -= 1;
       this.showStep();
     }
+    this.lastStep = false
   }
 
-  next(e) {
+  next() {
     if (this.currentStep < this.stepTargets.length) {
       this.currentStep += 1;
       this.showStep();
     }
+
+    this.lastStep = this.currentStep === this.stepTargets.length
   }
 
   toggleControls() {
@@ -42,5 +45,23 @@ export default class extends Controller {
     });
 
     this.toggleControls()
+  }
+
+  submit(e) {
+    e.preventDefault()
+    
+    if (this.lastStep) {
+      e.currentTarget.submit()
+    }
+  }
+
+  keyDispatcher(e) {
+    if (e.key === "ArrowRight") {
+      this.next()
+    }
+
+    if (e.key === "ArrowLeft") {
+      this.previous()
+    }
   }
 }
