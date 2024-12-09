@@ -10,7 +10,7 @@ class CardsController < ApplicationController
     @card.user_answer = card_params[:user_answer]
 
     if @card.save
-      next_card = @card.lesson.next_card("test", @card)
+      next_card = @card.lesson.next_card("test", @card, true)
 
       redirect_to next_card.nil? ? @card.lesson : card_path("test", next_card)
     else

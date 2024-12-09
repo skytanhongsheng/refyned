@@ -29,9 +29,8 @@ class Lesson < ApplicationRecord
   # "next" card.
   # if card is passed as an argument, return the
   # next card from that provided card
-
-  def next_card(mode, card = nil)
-    cardset = cards.where(correct: nil).order(:id)
+  def next_card(mode, card = nil, include_answered = false)
+    cardset = include_answered ? cards.order(:id) : cards.where(correct: nil).order(:id)
 
     if mode == 'learning' && status != "completed"
       cardset = cardset.select do |c|
