@@ -9,6 +9,19 @@ class CurriculaController < ApplicationController
   end
 
   def new
+    # === Use for testing ===
+    # @curriculum = Curriculum.new(
+    #   title: 'Trip 2024',
+    #   purpose: 'holiday to china',
+    #   context: 'I want to be able to handle basic conversations',
+    #   start_date: "Fri, 6 Dec 2024",
+    #   end_date: "Fri, 10 Dec 2024",
+    #   language: Language.find(6),
+    #   lesson_hours: 1
+    # )
+
+    # @curriculum.card_templates << CardTemplate.all
+
     @curriculum = Curriculum.new
   end
 
@@ -30,7 +43,7 @@ class CurriculaController < ApplicationController
   end
 
   def curriculum_params
-    params.require(:curriculum).permit(:title, :purpose, :context, :start_date, :end_date, :language_id,
+    params.require(:curriculum).permit(:title, :purpose, :context, :start_date, :end_date, :language_id, :lesson_hours,
                                        card_template_ids: [])
   end
 end
