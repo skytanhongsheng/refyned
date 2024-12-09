@@ -2,7 +2,6 @@
   <p><%= cl_image_tag @card.picture.key, height: 300, width: 400, crop: :fill %></p>
 </div>
 
-  <h3><%= @card.instruction %></h3>
   <div class="text-center">
     <%= simple_form_for @card, url: attempt_card_path(@card) do  |f| %>
       <%= f.input :user_answer, label: false %>
