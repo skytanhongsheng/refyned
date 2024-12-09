@@ -15,6 +15,7 @@
 <div class="container text-center">
   <div class="card-content">
     <%# render partials of templates here%>
+    <h3><%= @card.instruction %></h3>
     <%= render @template_path, card: @card, mode: @mode, next_card: @next_card %>
   </div>
 
