@@ -88,11 +88,6 @@ card_templates = CardTemplate.all
 # from today and up to 3 weeks from the date
 
 # parse card data from json
-cards_file_path = File.join(__dir__, 'data', 'cards.json')
-puts cards_file_path
-cards_info = "";
-File.open(cards_file_path, "r") { |file| cards_info = JSON.parse(file.read, { symbolize_names: true }) }
-
 puts "Creating curricula and lessons..."
 CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
   start_date = Date.today
@@ -115,13 +110,13 @@ CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
   # LESSONS
   # ----------------------------------------------
 
-  lesson_file_path = File.join(__dir__, 'data', 'lesson_plan.yml')
-  lesson_plan_data = YAML::load(File.open(lesson_file_path))
+  lessons_file_path = File.join(__dir__, 'data', 'lessons.json')
+  lessons_data = JSON.parse(File.read(lessons_file_path), symbolize_names: true)
 
-  lesson_plan_data.first(2).each_with_index do |plan, index|
+  lessons_data.each_with_index do |lesson_data, index|
     lesson = Lesson.create!(
-      title: plan["title"],
-      description: plan["description"],
+      title: lesson_data[:title],
+      description: lesson_data[:description],
       curriculum:,
       order: index + 1,
     )
@@ -144,11 +139,11 @@ CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
     end
 
     # seed 1 card for each card template
-    cards_info.each do |card_info|
+    lesson_data[:cards].each do |card_info|
       card = Card.new(
         instruction: card_info[:instruction],
-        card_template: CardTemplate.find_by(name: card_info[:template]),
-        model_answer: card_info[:answer],
+        card_template: CardTemplate.find_by(name: card_info[:card_template]),
+        model_answer: card_info[:model_answer],
         lesson: lesson
       )
       # check context and set context to appropriate columns accordingly
