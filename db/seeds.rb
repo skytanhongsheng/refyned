@@ -127,9 +127,9 @@ CURRICULUM_CONTENT["titles"].each_with_index do |title, index|
         card.context = context
       else
         if context[:type] == "audio/mpeg"
-          file_path = File.join(Rails.root, "app", "assets", "audio", "sample_card_audio.mp3")
+          file_path = File.join(Rails.root, *context[:source])
           file = File.open(file_path)
-          card.audio.attach(io: file, filename: "sample_card_audio.mp3", content_type: "audio/mpeg")
+          card.audio.attach(io: file, filename: context[:source].last, content_type: "audio/mpeg")
         elsif context[:type] == "image/png"
           file_path = File.join(Rails.root, "app", "assets", "images", "sample_card_picture.jpg")
           file = File.open(file_path)

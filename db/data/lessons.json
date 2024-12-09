@@ -48,11 +48,14 @@
 
       },
       {
-        "instruction": "Translate the following phrase:",
-        "card_template": "Translate",
-        "context": "I want this one.",
-        "model_answer": "我要这个",
-        "pronunciation": "(Wǒ yào zhège)"
+        "instruction": "Type what you hear below:",
+        "card_template": "Listening Comprehension",
+        "context": {
+          "type": "audio/mpeg",
+          "source": ["app", "assets", "audio", "where_is_the_bus_stop.mp3"]
+        },
+        "model_answer": "公交车站在哪里？",
+        "pronunciation": "(Gōngjiāo chē zhàn zài nǎlǐ?)"
       },
       {
         "instruction": "Choose the correct answer:",
@@ -116,11 +119,14 @@
 
       },
       {
-        "instruction": "Translate the following phrase:",
-        "card_template": "Translate",
-        "context": "Fifty dollars.",
-        "model_answer": "五十块 / 五十元",
-        "pronunciation": "(wǔ shí kuài) / (wǔ shí yuán)"
+        "instruction": "Type what you hear below:",
+        "card_template": "Listening Comprehension",
+        "context": {
+          "type": "audio/mpeg",
+          "source": ["app", "assets", "audio", "i_want_to_buy_this.mp3"]
+        },
+        "model_answer": "我要买这个",
+        "pronunciation": "(Wǒ yào mǎi zhège)"
       },
       {
         "instruction": "Translate the following phrase:",
