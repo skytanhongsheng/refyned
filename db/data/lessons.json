@@ -1,0 +1,196 @@
+[
+  {
+    "title": "Introduction to Mandarin",
+    "description": "Learn basic Mandarin greetings, introductions, and common phrases for politeness.",
+
+    "cards": [
+      {
+        "instruction": "Translate the following phrase:",
+        "card_template": "Translate",
+        "context": "Hello",
+        "model_answer": "你好",
+        "pronunciation": "(Nǐ hǎo)"
+      },
+      {
+        "instruction": "Translate the following phrase:",
+        "card_template": "Translate",
+        "context": "Thank you",
+        "model_answer": "谢谢",
+        "pronunciation": "(Xièxiè)"
+      },
+      {
+        "instruction": "Translate the following phrase:",
+        "card_template": "Translate",
+        "context": "How much is this?",
+        "model_answer": "这个多少钱？",
+        "pronunciation":  "(Zhège duōshǎo qián?)"
+      },
+      {
+        "instruction": "Translate the following phrase:",
+        "card_template": "Translate",
+        "context": "Where is the washroom?",
+        "model_answer": "厕所在哪里",
+        "pronunciation": "(Cèsuǒ zài nǎlǐ?)"
+      },
+      {
+        "instruction": "Translate the following phrase:",
+        "card_template": "Translate",
+        "context": "I don't understand",
+        "model_answer": "我听不懂",
+        "pronunciation": "(Wǒ tīng bù dǒng)"
+      },
+      {
+        "instruction": "Translate the following phrase:",
+        "card_template": "Translate",
+        "context": "Do you speak English?",
+        "model_answer": "你会说英语吗",
+        "pronunciation": "(Nǐ huì shuō Yīngyǔ ma?)"
+
+      },
+      {
+        "instruction": "Translate the following phrase:",
+        "card_template": "Translate",
+        "context": "I want this one.",
+        "model_answer": "我要这个",
+        "pronunciation": "(Wǒ yào zhège)"
+      },
+      {
+        "instruction": "Translate the following phrase:",
+        "card_template": "MCQ",
+        "context": "Sorry",
+        "options": [
+          "对不起",
+          "谢谢",
+          "这里",
+          "不客气"
+        ],
+        "model_answer": "对不起",
+        "pronunciation": "(Duìbuqǐ)"
+      },
+      {
+        "instruction": "Translate the following phrase:",
+        "card_template": "MCQ",
+        "context": "Goodbye",
+        "options": [
+          "再见",
+          "对不起",
+          "谢谢",
+          "这里"
+        ],
+        "model_answer": "再见",
+        "pronunciation": "(Zàijiàn)"
+      },
+      {
+        "instruction": "Translate the following phrase:",
+        "card_template": "MCQ",
+        "context": "Can you help me?",
+        "options": [
+          "对不起",
+          "谢谢",
+          "你能帮我吗",
+          "这里"
+        ],
+        "model_answer": "你能帮我吗",
+        "pronunciation": "(Nǐ néng bāng wǒ ma?)"
+      }
+    ]
+  },
+
+  {
+    "title": "Numbers and Money",
+    "description": "Learn numbers, basic counting, and essential phrases for shopping and handling money.",
+    "cards": [
+      {
+        "instruction": "Translate the following phrase:",
+        "card_template": "Translate",
+        "context": "1, 2, 3, 4, 5, 6, 7, 8, 9, 10.",
+        "model_answer": "一, 二, 三 , 四 , 五 , 六 , 七, 八, 九, 十",
+        "pronunciation": "(yī), (èr), (sān), (sì), (wǔ), (liù), (qī), (bā), (jiǔ), (shí)"
+      },
+      {
+        "instruction": "Translate the following phrase:",
+        "card_template": "Translate",
+        "context": "How much is this?",
+        "model_answer": "多少钱?",
+        "pronunciation": "(duōshǎo qián?)"
+
+      },
+      {
+        "instruction": "Translate the following phrase:",
+        "card_template": "Translate",
+        "context": "Fifty dollars.",
+        "model_answer": "五十块 / 五十元",
+        "pronunciation": "(wǔ shí kuài) / (wǔ shí yuán)"
+      },
+      {
+        "instruction": "Translate the following phrase:",
+        "card_template": "Translate",
+        "context": "Do you accept credit cards?",
+        "model_answer": "你们接受信用卡吗?",
+        "pronunciation": "(nǐmen jiēshòu xìnyòngkǎ ma?)"
+      },
+      {
+        "instruction": "Translate the following phrase:",
+        "card_template": "Translate",
+        "context": "Discount",
+        "model_answer": "打折",
+        "pronunciation": "(dǎzhé)"
+
+      },
+      {
+        "instruction": "Translate the following phrase:",
+        "card_template": "Translate",
+        "context": "Can you give me a receipt?",
+        "model_answer": "可以给我开发票吗?",
+        "pronunciation": "(kěyǐ gěi wǒ kāi fāpiào ma?)"
+      },
+      {
+        "instruction": "Translate the following phrase:",
+        "card_template": "Translate",
+        "context": "I only have one hundred dollars.",
+        "model_answer": "我只有一百块",
+        "pronunciation": "(wǒ zhǐyǒu yī bǎi kuài)"
+      },
+      {
+        "instruction": "Translate the following phrase:",
+        "card_template": "MCQ",
+        "context": "It's too expensive.",
+        "options": [
+          "太贵了",
+          "谢谢",
+          "你能帮我吗",
+          "这里"
+        ],
+        "model_answer": "太贵了",
+        "pronunciation": "(tài guì le)"
+      },
+      {
+        "instruction": "Translate the following phrase:",
+        "card_template": "MCQ",
+        "context": "Can I pay cash?",
+        "options": [
+          "太贵了",
+          "我可以用现金支付吗?",
+          "你能帮我吗",
+          "这里"
+        ],
+        "model_answer": "我可以用现金支付吗?",
+        "pronunciation": "(wǒ kěyǐ yòng xiànjīn zhīfù ma?)"
+
+      },
+      {
+        "instruction": "Translate the following phrase:",
+        "card_template": "MCQ",
+        "context": "I need change.",
+        "options": [
+          "太贵了",
+          "我可以用现金支付吗?",
+          "你能帮我吗",
+          "我需要找零钱"
+        ],
+        "model_answer": "我需要找零钱",
+        "pronunciation": "(wǒ xūyào zhǎo língqián)"
+      }
+    ]
+  }
+]
