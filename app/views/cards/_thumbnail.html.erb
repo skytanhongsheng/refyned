@@ -1,12 +1,13 @@
-<div id="thumb_<%= card.id %>" class="px-1">
-  <% if card.correct %>
-    🟢
-  <% elsif card.correct == false %>
-    🔴
-  <% elsif card.calculating_score? %>
-    <%= lucide_icon("loader") %>
-  <% else %>
-    ⚪️
-  <% end %>
-
-</div>
+<%= link_to card_path(params[:mode], card) do %>
+  <div id="thumb_<%= card.id %>" class="px-1 <%= "active" if params[:id].to_i == card.id %>">
+    <% if card.correct %>
+      🟢
+    <% elsif card.correct == false %>
+      🔴
+    <% elsif card.calculating_score? %>
+      <%= lucide_icon("loader") %>
+    <% else %>
+      ⚪️
+    <% end %>
+  </div>
+<% end %>
