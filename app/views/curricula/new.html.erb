@@ -1,39 +1,53 @@
 <div class="container" data-controller="curriculum-form">
   <%= simple_form_for(@curriculum) do |f| %>
     <h1 class="position-relative mt-4 z-2">Adding a Curriculum</h1>
+
     <div class="form-step active" data-curriculum-form-target="step" data-step="1">
-      <%= f.input :title, wrapper_html: { class:"w-100" } %>
+      <h2 class="my-5">Title</h2>
+      <%= f.input :title, label: false, wrapper_html: { class:"w-100" } %>
+      <p class="text-center text-secondary">Name your curricula plan.</p>
     </div>
+
     <div class="form-step" data-curriculum-form-target="step" data-step="2">
-      <%= f.input :purpose, wrapper_html: { class:"w-100" }, input_html: { placeholder: 'I am going for a holiday' } %>
+      <h2 class="my-5">Purpose</h2>
+      <%= f.input :purpose, label: false, wrapper_html: { class:"w-100" }, input_html: { placeholder: 'I am going for a holiday' } %>
+      <p class="text-center text-secondary">What is your purpose of learning a new language? - Your "why?"</p>
     </div>
+
     <div class="form-step" data-curriculum-form-target="step" data-step="3">
-      <%= f.input :start_date, as: :date, order: [:day, :month, :year], wrapper_html: { class:"w-100" }  %>
+      <h2 class="my-5">Start date</h2>
+      <%= f.input :start_date, label: false, as: :date, order: [:day, :month, :year], wrapper_html: { class:"w-100" }  %>
+      <p class="text-center text-secondary">The date where you want to begin your lesson.</p>
     </div>
+
     <div class="form-step" data-curriculum-form-target="step" data-step="4">
-      <%= f.input :end_date, as: :date, order: [:day, :month, :year], wrapper_html: { class:"w-100" }  %>
+      <h2 class="my-5">End date</h2>
+      <%= f.input :end_date, label: false, as: :date, order: [:day, :month, :year], wrapper_html: { class:"w-100" }  %>
+      <p class="text-center text-secondary">The date where you want to end your lesson.</p>
     </div>
+
     <div class="form-step" data-curriculum-form-target="step" data-step="5">
-      <%= f.association :language, label_method: :name, value_method: :id, wrapper_html: { class:"w-100" }  %>
+      <h2 class="my-5">Language</h2>
+      <%= f.association :language, label: false, label_method: :name, value_method: :id, wrapper_html: { class:"w-100" }  %>
+      <p class="text-center text-secondary">What language are you interested in learning?</p>
     </div>
+
     <div class="form-step" data-curriculum-form-target="step" data-step="6">
-      <%= f.input :context, wrapper_html: { class:"w-100" }, input_html: { placeholder: 'I want to be able to navigate around and ask some basic questions' }  %>
+      <h2 class="my-5">Context</h2>
+      <%= f.input :context, label: false, wrapper_html: { class:"w-100" }, input_html: { placeholder: 'I want to be able to navigate around and ask some basic questions' }  %>
+      <p class="text-center text-secondary">Provide some context by describing scenarios where you will be using this language.</p>
     </div>
+
     <div class="form-step" data-curriculum-form-target="step" data-step="7">
-      <%= f.input :lesson_hours, collection: 1..8, wrapper_html: { class:"w-100" }  %>
+      <h2 class="my-5">Lesson hours</h2>
+      <%= f.input :lesson_hours, label: false, collection: 1..8, wrapper_html: { class:"w-100" }  %>
+      <p class="text-center text-secondary">Total number of hours you are expected to commit into your curriculum.</p>
     </div>
+
     <div class="form-step" data-curriculum-form-target="step" data-step="8">
-      <%= f.association :card_templates, as: :check_boxes %>
-      <%#=
-        f.input(
-          :card_templates,
-          as: :check_boxes,
-          collection: CardTemplate.all.map { |t| [t.name, t.id] },
-          include_blank: false,
-          label: "Card Template(s):",
-          wrapper_html: { class:"w-100" }
-        )
-      %>
+      <h2 class="my-5">Choose your preferred card template(s)</h2>
+      <%= f.association :card_templates, label:false, as: :check_boxes %>
+    <p class="text-center text-secondary">Choose your learning preference - you can pick more than 1.</p>
     </div>
     <div class="arrow-button">
       <a><i class="fa-solid fa-arrow-left" data-action="click->curriculum-form#previous"></i></a>
